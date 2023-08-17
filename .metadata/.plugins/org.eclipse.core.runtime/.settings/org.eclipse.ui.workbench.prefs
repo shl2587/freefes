@@ -1,0 +1,10 @@
+CONTENT_ASSIST_BACKGROUND_COLOR=241,241,241
+ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.ui.workbenchMisc
+ColorsAndFontsPreferencePage.selectedElement=Forg.eclipse.jface.textfont
+PLUGINS_NOT_ACTIVATED_ON_STARTUP=;org.eclipse.m2e.discovery;
+eclipse.preferences.version=1
+org.eclipse.egit.ui.UncommittedChangeBackgroundColor=255,255,255
+org.eclipse.jdt.ui.Javadoc.backgroundColor=241,241,241
+org.eclipse.ui.workbench.INFORMATION_BACKGROUND=241,241,241
+org.eclipse.ui.workbench.texteditor.blockSelectionModeFont=1|Fira Code|9.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Fira Code;
+overriddenByCSS=,CONTENT_ASSIST_BACKGROUND_COLOR,org.eclipse.egit.ui.UncommittedChangeBackgroundColor,org.eclipse.jdt.ui.Javadoc.backgroundColor,org.eclipse.ui.workbench.INFORMATION_BACKGROUND,
