@@ -29,8 +29,6 @@ public class Fes_boardService {
 				String origin_file_name = f.getOriginalFilename();
 				path.add(origin_file_name);
 				
-				
-				
 				String f_name = origin_file_name.substring(0, origin_file_name.indexOf("."));
 				String real_name = (f_name + ".");
 				origin_path += real_name;
