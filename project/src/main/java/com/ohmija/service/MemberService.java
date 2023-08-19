@@ -1,5 +1,6 @@
 package com.ohmija.service;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,10 @@ public class MemberService {
 
 	public String getEmail(MemberDTO dto) {
 		return dao.selectEmail(dto);
+	}
+
+	public MemberDTO findId(HashMap<String, Object> param) {
+		return dao.findId(param);
 	}
 
 

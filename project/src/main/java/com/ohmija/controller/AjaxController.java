@@ -3,6 +3,8 @@ package com.ohmija.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +55,21 @@ public class AjaxController {
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("email", email);
 		result.put("status",email != null);
+		return result;
+	}
+	
+	@PostMapping("/findId")
+	public boolean login(@RequestBody HashMap<String, Object> param, HttpSession session) {
+		int sessionNumber = (int)session.getAttribute("authNumber");
+		boolean result = false;
+		
+		if(sessionNumber == (int)param.get("authNumber")) {
+			MemberDTO findId = memberService.findId(param);
+			session.setAttribute("findId", findId);
+			session.setMaxInactiveInterval(600);
+			result = true;
+		}
+		
 		return result;
 	}
 }

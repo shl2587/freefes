@@ -28,13 +28,6 @@
 				email = #{email}
 </select>
 
-
-<select id="findId" parameterType="string" resultType="int">
-	select count(*) from member
-		where 
-			name = #{name} and email = #{email}
-</select>
-
 <select id="findId2" parameterType="string" resultType="int">
 	select count(*) from member
 		where 
@@ -51,6 +44,14 @@
 	
 	<select id="selectEmail" parameterType="member" resultType="string">
 		select email from member
+			where
+				name = #{name}
+				and
+				email = #{email}
+	</select>
+
+<select id="findId" parameterType="hashmap" resultType="member">
+		select * from member
 			where
 				name = #{name}
 				and

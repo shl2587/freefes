@@ -1,5 +1,7 @@
 package com.ohmija.repository;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Repository;
 
 import com.ohmija.model.MemberDTO;
@@ -12,7 +14,7 @@ public interface MemberDAO {
 
 	int insertpasswd(String userpw);
 
-	int findId(MemberDTO dto);
+	MemberDTO findId(HashMap<String, Object> param);
 
 	int findId2(String name, String email);
 
