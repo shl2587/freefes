@@ -1,4 +1,4 @@
-package com.omija.model;
+package com.ohmija.model;
 
 import java.sql.Date;
 

@@ -1,4 +1,5 @@
-package com.omija.controller;
+package com.ohmija.controller;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.omija.model.MemberDTO;
-import com.omija.service.MemberService;
+import com.ohmija.model.MemberDTO;
+import com.ohmija.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
@@ -42,29 +43,16 @@ public class MemberController {
 	public void join() {}
 	
 	@PostMapping("/join")
-	public String join(MemberDTO dto, String userpw) {
-		int row1 = memberService.insertpasswd(userpw);
-		System.out.println(row1 != 0 ? "성공" : "실패1");
-		if(row1 != 0) {
-			int row2 = memberService.insert(dto);
-			System.out.println(row2 != 0 ? "성공" : "실패2");
-		}
+	public String join(MemberDTO dto,String userpw, String nickname){
+		int row = memberService.insert(dto);
 		return "redirect:/";
 	}
 
 	@GetMapping("/findId")
 	public void findId() {}
 	
-	@PostMapping("/findId")
-	public String findId(MemberDTO dto) {
-		int row = memberService.findId(dto);
-		System.out.println(row != 0 ? "성공" : "실패");
-		return "redirect:/member" + (row != 0 ? "/findIdPage" : "/findId");
-	}
 	
 	@GetMapping("/findIdPage")
 	public void findIdPage() {}
-	
-	@GetMapping("/noFind")
-	public void noFind() {}
+
 }

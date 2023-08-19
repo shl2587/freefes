@@ -1,20 +1,22 @@
-package com.omija.service;
+package com.ohmija.service;
 
 import java.util.Random;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.omija.mail.MailComponent;
-import com.omija.model.MemberDTO;
-import com.omija.repository.MemberDAO;
+import com.ohmija.mail.MailComponent;
+import com.ohmija.model.MemberDTO;
+import com.ohmija.repository.MemberDAO;
+
 @Service
 public class MemberService {
 	@Autowired private MailComponent mailComponent;
 	@Autowired private MemberDAO dao;
+	
 	@Value("classpath:find.html")
 	private Resource html;
 	private Random ran = new Random();
@@ -27,7 +29,8 @@ public class MemberService {
 		return dao.selectCount(userid);
 	}
 
-	public int insertpasswd(String userpw) {		
+
+	public int passCheck(String userpw) {		
 		  int row = 0;
 		    // 1) 걸러줄 변수 지정
 		    String abc = "abcdefghijklmnopqrstuvwxyz";
@@ -51,22 +54,22 @@ public class MemberService {
 
 		    if (userpw.length() > 7 && userpw.length() < 21) {
 		        if (containsLower && containsUpper && containsSpecial) {
-		            row = dao.insertpasswd(userpw);
 		            System.out.println("비밀번호 사용 가능합니다.");
-		            return row; // 올바른 경우에만 DAO에 비밀번호 삽입 요청
+		            return row =1; // 올바른 경우에만 DAO에 비밀번호 삽입 요청
 		        } else {
 		            System.out.println("비밀번호는 영문과 특수문자 숫자를 포함하여야 합니다.");
 		        }
 		    } else {
 		        System.out.println("8자리 이상 20자리 이하의 비밀번호여야 합니다.");
+		        return row = -1;
 		    }
 		    return row;
-
-}
-	public int passCheck(String userpw) {
-		return dao.insertpasswd(userpw);
 	}
 
+	public int nickCheck(String nickname) {
+		return dao.nickCheck(nickname);
+	}
+	
 //	public int findId(MemberDTO dto) {
 //		
 //		
@@ -89,4 +92,18 @@ public class MemberService {
 	public MemberDTO login(MemberDTO dto) {
 		return dao.selectLogin(dto);
 	}
+
+	public int nickNameCheck(String nickname) {
+		return dao.nickNameCheck(nickname);
+	}
+
+	public int emailCheck(String email) {
+		return dao.emailCheck(email);
+	}
+
+	public String getEmail(MemberDTO dto) {
+		return dao.selectEmail(dto);
+	}
+
+
 }

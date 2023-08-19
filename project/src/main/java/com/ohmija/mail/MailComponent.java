@@ -1,4 +1,4 @@
-package com.omija.mail;
+package com.ohmija.mail;
 
 import java.io.IOException;
 import java.util.Properties;

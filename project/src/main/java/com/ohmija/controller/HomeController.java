@@ -1,4 +1,4 @@
-package com.omija.controller;
+package com.ohmija.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
