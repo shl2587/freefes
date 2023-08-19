@@ -8,6 +8,7 @@
 		<setting name="cacheEnabled" value="false" />
 		<setting name="useGeneratedKeys" value="false" />
 		<setting name="mapUnderscoreToCamelCase" value="false"/>
+		<!-- DB에서는 컬럼 이름에 _가 사용되는데 자바에서는 camelcase 방식 작성 시 true로 변경 -->
 	</settings>
 	
 	<typeAliases>

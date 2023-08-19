@@ -5,7 +5,7 @@
 	
 <mapper namespace="com.ohmija.repository.QnADAO">
 
-    <select id="selectAll" resultType="qna">
+     <select id="selectAll" resultType="qna">
         select * from qna order by idx desc
     </select>
 
@@ -13,9 +13,9 @@
         select * from qna where idx = #{idx}
     </select>
 
-    <insert id="write" parameterType="qna">
-        insert into qna (category, title, question) 
-        	values (#{category}, #{title}, #{question})
+    <insert id="write" parameterType="qna" useGeneratedKeys="true" keyProperty="idx">
+        insert into qna (member, category, title, question) 
+        	values (#{member}, #{category}, #{title}, #{question})
     </insert>
 
     <update id="answer" parameterType="qna">

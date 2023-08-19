@@ -34,7 +34,6 @@
 			<value>classpath:mybatis/test-mapper.xml</value>
 			<value>classpath:mybatis/admin_board-mapper.xml</value>
 			<value>classpath:mybatis/qna-mapper.xml</value>
-<!-- 			<value>classpath:mybatis/reply-mapper.xml</value> -->
 <!-- 			<value>classpath:mybatis/postmessage-mapper.xml</value> -->
 		</list>
 		</property>
@@ -55,6 +54,6 @@
 	</bean>
 
 	<context:component-scan base-package="com.ohmija.service" />
-<!-- 	<context:component-scan base-package="com.ohmija.mail" /> -->
+	<context:component-scan base-package="com.ohmija.mail" />
 	<mybatis-spring:scan base-package="com.ohmija.repository" />
 </beans>

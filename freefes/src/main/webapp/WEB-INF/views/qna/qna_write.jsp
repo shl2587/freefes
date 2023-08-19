@@ -4,8 +4,8 @@
 
 <h3>1:1 문의하기</h3>
 <hr>
-<!--  action="${cpath}/qna/qna_write" -->
-<form method="POST">
+
+<form method="POST" action="${cpath}/qna/qna_write">
     <label for="category">카테고리:</label>
     <select name="category" id="category" required>
         <option value="">선택</option>

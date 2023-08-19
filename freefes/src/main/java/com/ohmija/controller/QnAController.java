@@ -1,5 +1,6 @@
 package com.ohmija.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ohmija.mail.MailComponent;
 import com.ohmija.model.PostMessageDTO;
 import com.ohmija.model.QnADTO;
 import com.ohmija.service.PostMessageService;
 import com.ohmija.service.QnAService;
+
 
 @Controller
 @RequestMapping("/qna")
@@ -29,7 +32,13 @@ public class QnAController {
 	@Autowired
 	private PostMessageService postMessageService;
 	
+	// ----------------메일 발송 기능 연결
+	@Autowired 
+	private MailComponent mailComponent;
 	
+	
+	
+	// ---------- 1:1 문의목록
 	@GetMapping("/qna_list")
 	public ModelAndView list() {
 		ModelAndView mav = new ModelAndView("/qna/qna_list");
@@ -38,6 +47,8 @@ public class QnAController {
 		return mav;
 	}
 	
+	
+	// ----------- 1:1 문의글 보기
 	@GetMapping("/view/{idx}")
 	public ModelAndView view(@PathVariable("idx") int idx) {
 		ModelAndView mav = new ModelAndView("/qna/qna_view");
@@ -46,6 +57,8 @@ public class QnAController {
 		return mav;
 	}
 	
+	
+	// ----------- 1:1문의글 작성
 	@GetMapping("/qna_write")
 	public void write() {
 	}
@@ -53,12 +66,14 @@ public class QnAController {
 	@PostMapping("/qna_write")
 	public String write(QnADTO dto) {
 		int row = qnaService.write(dto);
-		System.out.println(row + "행 추가");
-		return "redirect:/qna";
+		if (row > 0) {
+			System.out.println(row + "행 추가");
+			return "redirect:/qna/qna_list";
+		} else {
+			System.out.println("작성 실패");
+			return "redirect:/qna/qna_write";
+		}
 	}
-	
-	// ------------ admin만 볼 수 있는 question list
-	
 
 	
 	// ------------- 쪽지 알람 함수
@@ -77,5 +92,17 @@ public class QnAController {
 
 	    return "ggeut";
 	}
+
+	// ------------- 메일 발송 함수
+	@GetMapping("/mailTest")
+	public void mailTest() {}
+	
+	@PostMapping("/mailTest")
+	public String mailTest(String email, String content) throws IOException {
+		int row = mailComponent.sendMail(email, content);
+		System.out.println(row);
+		return "redirect:/mailTest";
+	}
+
 				
 }

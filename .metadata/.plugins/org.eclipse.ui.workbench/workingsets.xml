@@ -9,4 +9,5 @@
 <item elementID="=freefes/src\/test\/resources" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1692259803293_2" label="Window Working Set" name="Aggregate for window 1692259803293"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1692412939891_3" label="Window Working Set" name="Aggregate for window 1692412939891"/>
 </workingSetManager>
