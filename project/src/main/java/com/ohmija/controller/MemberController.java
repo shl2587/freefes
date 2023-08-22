@@ -54,5 +54,7 @@ public class MemberController {
 	
 	@GetMapping("/findIdPage")
 	public void findIdPage() {}
+	
+	
 
 }

@@ -1,5 +1,6 @@
 package com.ohmija.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -57,7 +58,8 @@ public class MemberService {
 		        if (containsLower && containsUpper && containsSpecial) {
 		            System.out.println("비밀번호 사용 가능합니다.");
 		            return row =1; // 올바른 경우에만 DAO에 비밀번호 삽입 요청
-		        } else {
+		        } 
+		        else {
 		            System.out.println("비밀번호는 영문과 특수문자 숫자를 포함하여야 합니다.");
 		        }
 		    } else {
@@ -108,6 +110,17 @@ public class MemberService {
 
 	public MemberDTO findId(HashMap<String, Object> param) {
 		return dao.findId(param);
+	}
+
+	public int sendAuthNumber(String email) throws IOException {
+		// 서버에서는 랜덤 정수 8자리를 생성하여 메일을 전송하고, 전송한 인증번호를 세션에 저장해둔다
+		String content = "<h3>인증번호는 [%s]입니다</h3>";
+		int authNumber = ran.nextInt(89999999) + 10000000;
+		content = String.format(content, authNumber);
+		int row = mailComponent.sendMail(email, content);
+		
+		// 메일을 정상적으로 보냈을 경우에만, 인증번호를 반환하여 세션에 저장하도록 한다
+		return row > 0 ? authNumber : row;
 	}
 
 

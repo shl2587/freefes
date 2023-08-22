@@ -20,6 +20,11 @@
 <div><a href="${cpath }/member/terms">약관동의</a></div>
 <div><a href="${cpath }/member/join">회원가입</a></div>
 <div><a href="${cpath }/member/findId">아이디 찾기</a></div>
+<div>	
+	<c:if test="${not empty login }">
+		<a href="${cpath }/mypage/mypage">나의 페이지</a>
+	</c:if>
+</div>
 
 
 </body>

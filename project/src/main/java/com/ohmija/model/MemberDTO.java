@@ -2,6 +2,8 @@ package com.ohmija.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDTO {
 //	idx                 number                  generated always as identity primary key,
 //    role                number                  not null check(role in (0, 1, 2)), -- role을 0(관리자), 1(회원), 2(가게 주인)
@@ -23,6 +25,7 @@ public class MemberDTO {
 //    attend              number                  default 0 check (attend >= 0),
 //    productlist         number             
 	
+	
 	private int idx;
 	private int role;
 	private String userid;
@@ -36,12 +39,36 @@ public class MemberDTO {
 	private Date birth;
 	private String name;
 	private String nickname;
-	private String profile_img;
 	private int mileage;
 	private String address;
 	private String phonenumber;
 	private int attend;
 	private int productlist;
+	private String loggedInUserId;
+	private String userpwNew;
+	private String profile_img;		// DB에 저장된 파일 경로를 문자열로 받아오기 위한 필드
+	private MultipartFile upload;	// <form>으로 전송되는 파일을 저장하기 위한 필드
+	
+	public String getUserpwNew() {
+		return userpwNew;
+	}
+	public void setUserpwNew(String userpwNew) {
+		this.userpwNew = userpwNew;
+	}
+	public String getLoggedInUserId() {
+		return loggedInUserId;
+	}
+	public void setLoggedInUserId(String loggedInUserId) {
+		this.loggedInUserId = loggedInUserId;
+	}
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -157,5 +184,8 @@ public class MemberDTO {
 		this.productlist = productlist;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "MemberDTO [userid=" + userid + ", profile_img=" + profile_img + "]";
+	}
 } 
