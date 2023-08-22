@@ -20,14 +20,15 @@ import jakarta.mail.internet.MimeMessage;
 
 @Component
 public class MailComponent {
-
 	
+	// src/main/java
+	// src/main/resources
 	@Value("classpath:mailAccount.txt")
 	private Resource mailAccount;
 	
 	private String host = "smtp.naver.com";
 	private int port = 465;
-	private String serverId = "";	
+	private String serverId = "";	// 네이버 혹은 구글의 사용자 계정
 	private String serverPw = "";	// 계정의 비밀번호
 	
 	private Properties props = new Properties();
@@ -64,9 +65,9 @@ public class MailComponent {
 		Message mimeMessage = new MimeMessage(mailSession);
 		
 		try {
-			mimeMessage.setFrom(new InternetAddress(serverId + "@freefes.com"));	// 보내는 사람
+			mimeMessage.setFrom(new InternetAddress(serverId + "@naver.com"));	// 보내는 사람
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는사람
-			mimeMessage.setSubject("[FreeFes] 고객센터에서 알려드립니다.");	// 제목
+			mimeMessage.setSubject("[KGITBANK] 메일 테스트입니다");	// 제목
 
 //			mimeMessage.setText(content);	// 단순 텍스트 내용
 			if(content.contains("<") == false) {
@@ -77,13 +78,8 @@ public class MailComponent {
 				style += "font-size: 20px;";
 				style += "width: fit-content;";
 				style += "font-weight: bold;";
-				String contents = "";
-				contents += "Freefes";
-				contents += "고객센터에 문의하신 내용에 답변이 완료되었습니다.";
-				contents += "마이페이지 1:1 문의함이나 쪽지함에서 답변을 확인하실 수 있습니다.";
-				contents += "감사합니다";
 				
-				content = String.format(tag, style, contents);
+				content = String.format(tag, style, content);
 			}
 			
 			mimeMessage.setContent(content, "text/html; charset=utf-8");
@@ -101,9 +97,3 @@ public class MailComponent {
 		}
 	}
 }
-
-
-
-
-
-

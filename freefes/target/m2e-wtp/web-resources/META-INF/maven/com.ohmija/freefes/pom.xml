@@ -115,7 +115,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>    
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/xerces/xercesImpl -->
 		<dependency>
@@ -152,6 +152,7 @@
 		    <version>3.5.13</version>
 		</dependency>
 		
+		
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -166,16 +167,21 @@
 		    <version>2.13.0</version>
 		</dependency>
 		
-
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.5</version>
+		</dependency>		
+		
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<dependency>
 		    <groupId>org.apache.logging.log4j</groupId>
 		    <artifactId>log4j-slf4j-impl</artifactId>
 		    <version>2.20.0</version>
-		<!-- 	    <scope>test</scope> -->
+<!-- 		    <scope>test</scope> -->
 		</dependency>
-
-
+		
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
 		    <groupId>org.apache.logging.log4j</groupId>
@@ -188,31 +194,20 @@
 		    	</exclusion>
 		    </exclusions>
 		</dependency>
-
-
+		
 		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4 -->
 		<dependency>
 		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
 		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 		    <version>1.16</version>
-		</dependency>  
-
-
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.15.2</version>
 		</dependency>
-
-
+		
 		<!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
 		<dependency>
 		    <groupId>com.sun.mail</groupId>
 		    <artifactId>jakarta.mail</artifactId>
 		    <version>2.0.1</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -226,15 +221,8 @@
 		    <artifactId>com-jcraft-jsch</artifactId>
 		    <version>RELEASE180</version>
 		</dependency>
-		
-<!-- 		https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>commons-fileupload</groupId> -->
-<!-- 		    <artifactId>commons-fileupload</artifactId> -->
-<!-- 		    <version>1.5</version> -->
-<!-- 		</dependency> -->
-		    
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>
