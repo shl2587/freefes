@@ -67,7 +67,7 @@ public class MailComponent {
 		try {
 			mimeMessage.setFrom(new InternetAddress(serverId + "@naver.com"));	// 보내는 사람
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는사람
-			mimeMessage.setSubject("[KGITBANK] 메일 테스트입니다");	// 제목
+			mimeMessage.setSubject("[KGITBANK] 인증번호 입니다");	// 제목
 
 //			mimeMessage.setText(content);	// 단순 텍스트 내용
 			if(content.contains("<") == false) {
