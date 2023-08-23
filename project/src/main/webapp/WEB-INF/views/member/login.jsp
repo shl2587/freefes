@@ -1,63 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
+<%@include file="../header.jsp" %>
 
 <style>
-  .puzzle {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
-    gap: 5px;
-  }
-  .tile {
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .red {
-    background-color: red;
-  }
-  
-   .hidden-image {
-    display: none;
-  }
-
-  #loading {
-    display: none;
-    text-align: center;
-  }
-
-  #loading .loader {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 2s linear infinite;
-    margin: 10px auto;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+		.hidden {
+		display: none;
+	}
+	
+	#modal-overlay {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0.3);
+		top: 0;
+		left: 0;
+		z-index: 1;
+	}
+	#modal-content {
+		width: fit-content;
+		height: fit-content;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		z-index: 2;
+		transform: translate(-50%, -50%);
+		box-shadow: 5px 5px 5px grey;
+		border-radius: 10px;
+		background-color: white;
+	}
+	.center {
+		width: 600px;;
+		height: 200px;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		z-index: 2;
+		transform: translate(-50%, -50%);
+		box-shadow: 5px 5px 5px grey;
+		border-radius: 10px;
+		background-color: white;
+	}
+	.center > h4 {
+		text-align: center;
+		
+	}
+	.qqqq {
+		display: flex;
+		justify-content: space-around;
+	}	
+	.closebnt{
+		display: flex;
+		align-items: center;
+		text-align: center;
+		justify-content: center;
+	}
+	
 </style>
 
-
-<h3>로그인</h3>
-
-<form id="loginForm" method="POST">
+<form method="POST">
 	<p><input type="text" name="userid" placeholder="ID" required autofocus></p>
 	<p><input type="password" name="userpw" placeholder="Password" required></p>
-	<p><input type="submit" value="로그인"></p>
+	<p><input type="submit" value="완료"></p>
 </form>
 
-<h4><button id="pw">비밀번호찾기</button></h4>
+<p>
+	<a href="${cpath }/member/findId"><button>아이디 찾기</button></a>
+	<button id="pw">비밀번호 재설정</button>	
+</p>
 
 <div id="modal" class="hidden">
 	<div id="modal-overlay"></div>
@@ -69,7 +78,7 @@
 		<h4>비밀번호 재설정</h4>
 		<div class="qqqq">
 			<p><a href="${cpath }/member/repw_email">이메일</a></p>
-			<p><a href="${cpath }/bb">질문</a></p>
+			<p><a href="${cpath }/member/verify">질문</a></p>
 		</div>
 		<div>
 			<button id="cc" class="closebnt">닫기</button>
@@ -97,30 +106,6 @@
 	cc.onclick = hiddencc
 	
 </script>
-<script>
 
-	const loginForm = document.getElementById('loginForm')
-
-	async function loginFormHandler(event) {
-		event.preventDefault()
-		const ob = {
-			userid: event.target.querySelector('input[name="userid"]').value,
-			userpw: event.target.querySelector('input[name="userpw"]').value,
-		}
-		const url = '${cpath}/getlogin'
-		const opt = {
-			method: 'POST',
-			body: JSON.stringify(ob),
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			}
-		}
-		const result = await fetch(url, opt).then(resp => resp.json())
-		if(result.status == false) {
-			alert('계정 정보를 다시 확인해주세요')
-			return
-		}
-	}
-</script>
 </body>
 </html>
