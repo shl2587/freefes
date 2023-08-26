@@ -48,10 +48,17 @@
 		margin-bottom: 35px;
 	}
 	
+	.qna_board_btn {
+		margin-bottom: 100px;
+	}
+	
+	/* 공지사항 작성 버튼 */
 	.admin_board_btn h3 {
 	  float: right;
-	  margin-top: 30px;
+	  margin-top: 0px;
 	  margin-right: 150px;
+	  background-color: transparent;
+
 	}
 	
 	.fa-pen-nib {
@@ -60,7 +67,8 @@
 	}
 	
 	.admin_board_btn button {
-		background-color: white;
+		background-color: transparent;
+		margin-top: 20px;
 		border: none;
 		text-decoration: none;
 		text-align: center;
@@ -69,9 +77,10 @@
 	
 	.admin_board_btn button .write-icon-text {
 	    display: block;
-	    margin-top: 3px;
+	    margin-top: 6px;
 	    text-align: center;
 	    color: #5398a2;
+	    font-weight: bold;
 	  }
 	
 	.admin_board_btn button:hover {

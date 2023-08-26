@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
+<%@ include file = "../header.jsp" %>
 
-<main id="wrap">
 <div class="admin_board_menu">
 	<ul>
 		<li><a href="${cpath }/admin_board/admin_board">공지사항</a></li>
@@ -13,8 +12,8 @@
 </div>
 
 <div class="admin_board_title">
-<h3 style="color: black; font-size:23px;">1:1 문의함   / 
-	<span style="color: #537188; font-size:27px;"> 1:1 문의하기</span>
+<h3 style="color: black; font-size:23px;">글 수정   / 
+	<span style="color: #537188; font-size:27px;"> No.${dto.idx } ${dto.title }</span>
 </h3>
 </div>
 <hr>
@@ -23,7 +22,7 @@
 <form method="POST">
 	<div>
 	    <label for="title"></label>
-	    <input type="text" name="title" id="q_title" placeholder="문의할 제목을 정해주세요" required autofocus>
+	    <input type="text" name="title" id="q_title" value="${dto.title }" required autofocus>
 	    <label for="category"></label>
 	    <select name="category" id="category" onchange="addcategory()" required>
 	        <option value="선택">말머리</option>
@@ -34,11 +33,12 @@
     </div>
     <div>
 	    <label for="question"></label>
-	    <textarea name="question" id="question" placeholder="문의 내용을 작성하세요" required></textarea>
+	    <textarea name="question" id="question" required>${dto.question }</textarea>
     </div>
-    <div class="submit_btn"><button type="submit">문의 등록</button></div>
+    <div class="submit_btn"><button type="submit">수정 완료</button></div>
 </form>
 </div>
+
 
 </body>
 </html>

@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-
-<main id="wrap">
 <div class="admin_board_menu">
 	<ul>
 		<li><a href="${cpath }/admin_board/admin_board">공지사항</a></li>
@@ -14,8 +12,8 @@
 </div>
 
 <div class="admin_board_title">
-<h3 style="color: black; font-size:23px;">공지사항   / 
-	<span style="color: #537188; font-size:27px;"> 공지사항 작성</span>
+<h3 style="color: black; font-size:23px;">공지 수정   / 
+	<span style="color: #537188; font-size:27px;"> No.${dto.idx } ${dto.title }</span>
 </h3>
 </div>
 <hr>
@@ -24,7 +22,7 @@
 	<form method="POST">
 		<div>
 			<label for="title"></label>
-			<input type="text" id="a_title" name="title" placeholder="공지 제목을 정해주세요" required autofocus>
+			<input type="text" id="a_title" name="title" value="${dto.title }" required autofocus>
 			<label for="horsehead"></label>
 			<select name="horsehead" id="horsehead" onchange="addhorsehead()">
 				<option value="선택">말머리</option>
@@ -34,12 +32,12 @@
 		</div>
 		<div>
 			<label for="content"></label>
-			<textarea id="a_content" name="content" placeholder="공지 내용을 작성하세요" required></textarea>
+			<textarea id="a_content" name="content" required>${dto.content }</textarea>
 		</div>
-		<div class="submit_btn"><button type="submit">공지 등록</button></div>
+		<div class="submit_btn"><button type="submit">수정 완료</button></div>
 	</form>
 </div>
-</main>
+
 
 
 </body>

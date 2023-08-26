@@ -7,38 +7,46 @@
 <div class="admin_board_menu">
 	<ul>
 		<li><a href="${cpath }/admin_board/admin_board">공지사항</a></li>
-		<li><a href="${cpath }/qna/qna_list">1:1 문의함</a></li>
+		<li><a href="${cpath }/qna/${login.role >= 1 ? 'qna_board' : 'qna_list'}">1:1 문의함</a>
 		<li><a href="${cpath }/admin_board/admin_board_ask">자주묻는 질문</a></li>
 		<li><a href="${cpath }/admin_board/surround">주위 시설</a></li>
 	</ul>
 </div>
 
 <div class="admin_board_title">
-<h3 style="color: black; font-size:23px;">고객센터   / 
+<h3 style="color: black; font-size:23px;">운영진 전용  / 
 	<span style="color: #537188; font-size:27px;"> 1:1 문의함</span>
 </h3>
 </div>
 <hr>
 
 
-<div class="admin_board_btn">
-<%-- <c:if test="${sessionScope.role == 1}"> --%>
-    <h3><a href="${cpath }/qna/qna_write">
-    <button>
-    	<i class="fa-solid fa-pen-nib" style="color: #5398a2;"></i>
-    	<span class="write-icon-text">1:1 문의하기</span>
-    </button>
-    </a></h3>
-<%-- </c:if> --%>
+<div class="qna_board_btn">
+	<c:if test="${login.role == 0}">
+		<div id="qna_admin_list">
+			<table class="qna_board_table">
+			  <thead>
+			    <tr>
+			      <th>작성자</th>
+			      <th>제목</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <c:forEach var="dto" items="${list }">
+			      <tr>
+			        <td>${dto.nickname }</td>
+			        <td><a href="${cpath}/qna/qna_view/${dto.idx}">${dto.title}</a></td>
+			      </tr>
+			    </c:forEach>
+			  </tbody>
+			</table>
+		</div>
+	</c:if>
 </div>
 
 
-<c:forEach var="dto" items="${list }">
-    <div>
-        <h3><a href="${cpath }/qna/qna_view/${dto.idx }">${dto.title }</a></h3>
-        <div>작성자: ${dto.member }</div>
-    </div>
-</c:forEach>
+
+
 </main>
 
 </body>

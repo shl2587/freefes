@@ -7,7 +7,7 @@
 <div class="admin_board_menu">
 	<ul>
 		<li><a href="${cpath }/admin_board/admin_board">공지사항</a></li>
-		<li><a href="${cpath }/qna/qna_list">1:1 문의함</a></li>
+		<li><a href="${cpath }/qna/${login.role >= 1 ? 'qna_board' : 'qna_list'}">1:1 문의함</a>
 		<li><a href="${cpath }/admin_board/admin_board_ask">자주묻는 질문</a></li>
 		<li><a href="${cpath }/admin_board/surround">주위 시설</a></li>
 	</ul>

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-
 <main id="wrap">
 <div class="admin_board_menu">
 	<ul>
@@ -16,26 +15,19 @@
 
 
 <div class="admin_board_title">
-<h3 style="color: black; font-size:23px;">고객센터   / 
-	<span style="color: #537188; font-size:27px;"> 자주 묻는 질문</span>
-</h3>
+	<h3 style="color: black; font-size:23px;">공지사항 / No.${dto.idx }  
+		<span style="color: #537188; font-size:27px;">${dto.title }</span>
+	</h3>
 </div>
-
 <hr>
 
-<div id="answer_modal"></div>
-<div id="modal" class="modalOverlay">
-    <div class="modalWindow">
-        <div class="title">
-            <h2 id="modalTitle"></h2>
-        </div>
-        <div class="close">X</div>
-        <div class="content">
-            <p id="modalContent"></p>
-        </div>
-    </div>
+
+<div class="admin_write_form">
+	<div>
+		<label for="content"></label>
+		<textarea id="a_content" name="content" readonly required>${dto.content }</textarea>
+	</div>
 </div>
-</main>
-   
+
 </body>
 </html>

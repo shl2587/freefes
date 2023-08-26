@@ -40,7 +40,7 @@
 			<ul>
 				<li><a href="${cpath }/">축제일정</a></li>
 				<li><a href="${cpath }/">지역축제</a></li>
-				<li><a href="${cpath }/">축제게식판</a></li>
+				<li><a href="${cpath }/fes_board/fes_board_list">축제게식판</a></li>
 				<li><a href="${cpath }/">1:1채팅</a></li>
 				<li><a href="${cpath }/admin_board/admin_board">고객센터</a></li>
 			</ul>
