@@ -64,12 +64,12 @@
 					<i class="fa-solid fa-arrow-down inactive-icon" style="color: #edeff3; display: none;"></i>
 				</button>
 			    <ul class="dropdown-menu">
-					<li class="festival"><a href="${cpath}/board/board_list">Festival</a></li>
+					<li class="festival"><a href="${cpath}/fes_board/fes_board_list">Festival</a></li>
 					<li><a href="${cpath}/admin_board/admin_board">공지사항</a></li>
 					<c:if test="${not empty login}">
 						<li><h3>나중에 ${nickname }님 환영합니다 형식으로 ㄱ</h3></li>
 						<li><a href="${cpath}/member/logout">로그아웃</a></li>
-						<li><a href="${cpath}/board/">마이페이지</a></li>
+						<li><a href="${cpath}/member/mypage/mypage">마이페이지</a></li>
 					</c:if>
 					<c:if test="${empty login}">
 						<li><a href="${cpath}/member/login">로그인</a></li>

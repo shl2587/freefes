@@ -11,7 +11,15 @@
 <title>freefes</title>
 </head>
 <body>
-
+<% 
+if (session.getAttribute("headerIncluded") == null) {
+  session.setAttribute("headerIncluded", "true");
+%>
+<% } %>
 <h1><a href="${cpath }">freefes</a></h1>
 
 <hr>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
