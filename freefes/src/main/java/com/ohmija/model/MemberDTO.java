@@ -48,7 +48,16 @@ public class MemberDTO {
 	private String userpwNew;
 	private String profile_img;		// DB에 저장된 파일 경로를 문자열로 받아오기 위한 필드
 	private MultipartFile upload;	// <form>으로 전송되는 파일을 저장하기 위한 필드
+	private Date member_ban;
 	
+	
+	
+	public Date getMember_ban() {
+		return member_ban;
+	}
+	public void setMember_ban(Date member_ban) {
+		this.member_ban = member_ban;
+	}
 	public String getUserpwNew() {
 		return userpwNew;
 	}

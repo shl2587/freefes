@@ -5,23 +5,49 @@
 <c:set var="cpath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
+<!-- css -->
+<link rel="stylesheet" href="${cpath }/resources/css/header.css" type="text/css" />
+<link rel="stylesheet" href="${cpath }/resources/css/admin_board.css" type="text/css" />
 <link rel="stylesheet" href="${cpath }/resources/css/qna_board.css" type="text/css" />
 <head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+<!-- css -->
 <meta charset="UTF-8">
 <title>freefes</title>
 </head>
 <body>
-<% 
-if (session.getAttribute("headerIncluded") == null) {
-  session.setAttribute("headerIncluded", "true");
-%>
-<% } %>
-<h1><a href="${cpath }">freefes</a></h1>
-
-<hr>
-
+<!-- js -->
+<script>
+	const cpath = "${cpath}";
+</script>
+<script defer src="${cpath }/resources/js/qna_board.js"></script>
+<script defer src="${cpath }/resources/js/admin_board.js"></script>
+<!-- js -->
 
 
-<!-- 동영, 승록 게시판 js -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="${cpath }/resources/js/fes_board_list.js"></script>
+<header>
+		<div id="homepage_logo">
+			<a href="${cpath }"><input type="image" 
+				src="${cpath }/resources/image/로고.png" height="100px"></a>
+		</div>
+		<div class="header1">
+			<c:if test="${empty login}">
+			<a href="${cpath }/member/login">로그인</a>
+			</c:if>
+			<c:if test="${not empty login}">
+			<a href="${cpath }/member/logout">로그아웃</a>
+			<a href="${cpath }/member/mypage/mypage">마이페이지</a>
+			</c:if>
+		</div>
+		<div class="header2">
+			<ul>
+				<li><a href="${cpath }/">축제일정</a></li>
+				<li><a href="${cpath }/">지역축제</a></li>
+				<li><a href="${cpath }/fes_board/fes_board_list">축제게식판</a></li>
+				<li><a href="${cpath }/">1:1채팅</a></li>
+				<li><a href="${cpath }/admin_board/admin_board">고객센터</a></li>
+			</ul>
+		</div>
+</header>
+
+
