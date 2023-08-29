@@ -1,8 +1,10 @@
 package com.ohmija.service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -130,5 +132,13 @@ public class MemberService {
 		return dao.passCheck_before(dto);
 	}
 
+
+	public MemberDTO selectVerify(MemberDTO dto) {
+		return dao.selectVerify(dto);
+	}
+
+	public int selectAnswer(MemberDTO dto) {
+		return dao.selectAnswer(dto);
+	}
 
 }

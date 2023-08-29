@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
-
+<style>
 <style>
 	.hidden {
 		display: none;
@@ -73,7 +73,6 @@
 		const row =  await fetch(url).then(resp => resp.text()) 
 		const authMessage = document.getElementById('authMessage')
 		if(row != 0){
-			alert('들어와')
 			const redirectUrl = '../member/repw'; 
 	    	window.location.href = redirectUrl; 
 		}
