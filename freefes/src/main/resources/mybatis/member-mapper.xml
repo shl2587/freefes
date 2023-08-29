@@ -72,10 +72,6 @@
 					and
 				email = #{email}
 	</select>
-	
-	<update id="updateMemberBan" parameterType="hashmap">
-		update member set member_ban = #{member_ban} where idx = #{idx}
-	</update>
 </mapper>
 
 

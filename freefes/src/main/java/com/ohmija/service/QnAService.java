@@ -1,18 +1,15 @@
 package com.ohmija.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ohmija.model.PostMessageDTO;
 import com.ohmija.model.QnADTO;
 import com.ohmija.repository.QnADAO;
 
 @Service
-@Transactional
 public class QnAService {
 
 	@Autowired
@@ -34,7 +31,9 @@ public class QnAService {
 		return dao.write(dto);
 	}
 
-	
+	public QnADTO answer(int idx, String answer) {
+		return dao.answer(idx, answer);
+	}
 
 	public void sendMessage(QnADTO qna) {
 		PostMessageDTO message = new PostMessageDTO();
@@ -45,25 +44,4 @@ public class QnAService {
 		message.setCategory("알림");
 		postMessageService.sendMessage(message); // 메시지 전송
 	}
-
-	public List<QnADTO> myList(int idx) {
-		return dao.myList(idx);
-	}
-
-
-	public int answer(int idx, String answer) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("idx", idx);
-		map.put("answer", answer);
-		return dao.answer(map);
-	}
-
-	public int modify(QnADTO dto) {
-		return dao.modify(dto);
-	}
-
-	public int delete(int idx) {
-		return dao.delete(idx);
-	}
-
 }
