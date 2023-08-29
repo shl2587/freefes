@@ -16,6 +16,16 @@ public class QnADTO {
 	private String question;
 	private String answer;
 
+	private String nickname;
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public int getIdx() {
 		return idx;
 	}

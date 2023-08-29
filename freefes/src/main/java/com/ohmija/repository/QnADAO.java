@@ -1,5 +1,6 @@
 package com.ohmija.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,14 @@ public interface QnADAO {
 
 	int write(QnADTO dto);
 
-	QnADTO answer(int idx, String answer);
-
 	List<QnADTO> selectAll();
-	
+
+	List<QnADTO> myList(int idx);
+
+	int answer(HashMap<String, Object> map);
+
+	int modify(QnADTO dto);
+
+	int delete(int idx);
+
 }

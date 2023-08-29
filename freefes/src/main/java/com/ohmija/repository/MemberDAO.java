@@ -33,4 +33,7 @@ public interface MemberDAO {
 	String selectMyid(String name);
 
 	int selectpw_id(MemberDTO dto);
+
+	int updateMemberBan(HashMap<String, Object> params);
+
 }
