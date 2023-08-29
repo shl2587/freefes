@@ -29,9 +29,9 @@ public class BoardDTO {
 	private int member;
 	private Date write_date;
 
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date start_date;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date end_date;
 	
 	private String title;
@@ -40,11 +40,24 @@ public class BoardDTO {
 	private int favorites;
 	private int grade;
 	private String region;
+	private String festival_category;
+	private String period;
+	private String url;
+	private String place;
+	private String way_to_come;
+	private String fee; 
+	private String age_limit;
+	private String time;
+	private String host_org;
+	private String inquire;
 	private String file_name;
 	private String file_path;
 	private List<MultipartFile> file_list;
 	
-	
+	// 동영 추가
+	private boolean is_hold;
+	private String remain;
+	private int rank;
 	
 	
 	public int getIdx() {
@@ -113,6 +126,66 @@ public class BoardDTO {
 	public void setRegion(String region) {
 		this.region = region;
 	}
+	public String getFestival_category() {
+		return festival_category;
+	}
+	public void setFestival_category(String festival_category) {
+		this.festival_category = festival_category;
+	}
+	public String getPeriod() {
+		return period;
+	}
+	public void setPeriod(String period) {
+		this.period = period;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	public String getWay_to_come() {
+		return way_to_come;
+	}
+	public void setWay_to_come(String way_to_come) {
+		this.way_to_come = way_to_come;
+	}
+	public String getFee() {
+		return fee;
+	}
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+	public String getAge_limit() {
+		return age_limit;
+	}
+	public void setAge_limit(String age_limit) {
+		this.age_limit = age_limit;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getHost_org() {
+		return host_org;
+	}
+	public void setHost_org(String host_org) {
+		this.host_org = host_org;
+	}
+	public String getInquire() {
+		return inquire;
+	}
+	public void setInquire(String inquire) {
+		this.inquire = inquire;
+	}
 	public String getFile_name() {
 		return file_name;
 	}
@@ -130,6 +203,26 @@ public class BoardDTO {
 	}
 	public void setFile_list(List<MultipartFile> file_list) {
 		this.file_list = file_list;
+	}
+	
+	// 동영 추가
+	public boolean isIs_hold() {
+		return is_hold;
+	}
+	public void setIs_hold(boolean is_hold) {
+		this.is_hold = is_hold;
+	}
+	public String getRemain() {
+		return remain;
+	}
+	public void setRemain(String remain) {
+		this.remain = remain;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 	
 	

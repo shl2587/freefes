@@ -5,15 +5,23 @@
 <c:set var="cpath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="${cpath }/resources/css/qna_board.css" type="text/css" />
 <head>
 <meta charset="UTF-8">
 <title>freefes</title>
 </head>
 <body>
-
+<% 
+if (session.getAttribute("headerIncluded") == null) {
+  session.setAttribute("headerIncluded", "true");
+%>
+<% } %>
 <h1><a href="${cpath }">freefes</a></h1>
 
-<ul>
-	<li><a href="${cpath }/fes_board/mainboard">축제 게시판</a></li>
-</ul>
 <hr>
+
+
+
+<!-- 동영, 승록 게시판 js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${cpath }/resources/js/fes_board_list.js"></script>
