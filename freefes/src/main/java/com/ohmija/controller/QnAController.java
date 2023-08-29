@@ -6,14 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -39,6 +35,8 @@ public class QnAController {
 		mav.addObject("list", list);
 		return mav;
 	}
+	
+	
 	
 	// 클라이언트가 볼 내 1:1 문의글 목록
 	@GetMapping("/qna_board")
@@ -84,20 +82,6 @@ public class QnAController {
 		}
 	}
 	
-	// 트랜잭션으로 클라이언트 1:1 문의 여러개 삭제
-	@PostMapping("/delete")
-	@Transactional	// 메서드 내 모든 작업이 실행되고 중간 오류 발생 시 전체 롤백
-	public ResponseEntity<?> delete(@RequestBody List<Integer> idxList) {
-	  try {
-	    for (int idx : idxList) {	// idxList에 있는 각 인덱스 반복
-	      qnaService.delete(idx);	// 현재 인덱스에 해당하는 글 삭제하는 service 호출
-	    }
-	    return new ResponseEntity<>(HttpStatus.OK);	 // 모든 문의글 삭제 성공 시 200 반환
-	  } catch (Exception e) {
-	    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	    // 예외 발생시 500 반환
-	  }
-	}
 	
 	// view에서 답글 달기
 	@PostMapping("/qna_view/{idx}")
@@ -120,6 +104,7 @@ public class QnAController {
 	        return "redirect:/qna/qna_view/" + idx;
 	    }
 	}
+	
 	
 	// 문의글 board에서 수정버튼 눌러 이동하기
 	@GetMapping("/qna_modify/{idx}")

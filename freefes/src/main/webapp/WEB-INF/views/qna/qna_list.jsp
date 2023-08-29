@@ -27,6 +27,7 @@
 			<table class="qna_board_table">
 			  <thead>
 			    <tr>
+<!-- 			      <th>번호</th> -->
 			      <th>작성자</th>
 			      <th>제목</th>
 			    </tr>
@@ -34,6 +35,7 @@
 			  <tbody>
 			    <c:forEach var="dto" items="${list }">
 			      <tr>
+<%-- 			        <td>${dto.idx }</td> --%>
 			        <td>${dto.nickname }</td>
 			        <td><a href="${cpath}/qna/qna_view/${dto.idx}">${dto.title}</a></td>
 			      </tr>

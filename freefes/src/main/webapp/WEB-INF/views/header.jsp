@@ -17,8 +17,11 @@
 </head>
 <body>
 <!-- js -->
-<script defer src="${cpath }/resources/js/admin_board.js"></script>
+<script>
+	const cpath = "${cpath}";
+</script>
 <script defer src="${cpath }/resources/js/qna_board.js"></script>
+<script defer src="${cpath }/resources/js/admin_board.js"></script>
 <!-- js -->
 
 

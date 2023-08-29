@@ -39,13 +39,9 @@
     		on m.idx = q.member
     			where m.idx = #{idx} order by q.idx desc
 	</select>
-	
-	<!-- idxList 파라미터 받고 해당 리스트에 idx 값을 qna 테이블에서 삭제. in절을 사용하여 idx 값을 한 번에 삭제 -->
-	<delete id="delete" parameterType="list">
-	    delete from qna where idx in
-	    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
-	        #{item}
-	    </foreach>
+
+	<delete id="delete" parameterType="int">
+		delete from qna where idx = #{idx}	
 	</delete>
 	
 	<update id="modify" parameterType="qna">

@@ -3,6 +3,7 @@
 <%@ include file="../header.jsp" %>
 
 
+
 <main id="wrap">
 <div class="admin_board_menu">
 	<ul>

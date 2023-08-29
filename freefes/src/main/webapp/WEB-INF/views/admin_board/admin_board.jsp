@@ -7,7 +7,9 @@
 <div class="admin_board_menu">
 	<ul>
 		<li><a href="${cpath }/admin_board/admin_board">공지사항</a></li>
-		<li><a href="${cpath }/qna/${login.role >= 1 ? 'qna_board' : 'qna_list'}">1:1 문의함</a>
+		<c:if test="${not empty login }">
+			<li><a href="${cpath }/qna/${login.role >= 1 ? 'qna_board' : 'qna_list'}">1:1 문의함</a>
+		</c:if>
 		<li><a href="${cpath }/admin_board/admin_board_ask">자주묻는 질문</a></li>
 		<li><a href="${cpath }/admin_board/surround">주위 시설</a></li>
 	</ul>
@@ -16,22 +18,22 @@
 
 
 <div class="admin_board_title">
-<h3 style="color: black; font-size:23px;">고객센터   / 
-	<span style="color: #537188; font-size:27px;"> 공지사항</span>
-</h3>
-</div>
-<hr>
+	<h3 style="color: black; font-size:23px;">고객센터   / 
+		<span style="color: #537188; font-size:27px;"> 공지사항</span>
+	</h3>
+	</div>
+	<hr>
 
-<div class="admin_board_btn">
-<c:if test="${login.role == 0}">
-    <h3><a href="${cpath }/admin_board/admin_write">
-    <button>
-    	<i class="fa-solid fa-pen-nib" style="color: #5398a2;"></i>
-    	<span class="write-icon-text">글 쓰기</span>
-    </button>
-    </a></h3>
-</c:if>
-</div>
+	<div class="admin_board_btn">
+	<c:if test="${login.role == 0}">
+	    <h3><a href="${cpath }/admin_board/admin_write">
+	    <button>
+	    	<i class="fa-solid fa-pen-nib" style="color: #5398a2;"></i>
+	    	<span class="write-icon-text">글 쓰기</span>
+	    </button>
+	    </a></h3>
+	</c:if>
+	</div>
 
 <div id="qna_board_main">
 		<table class="qna_board_table">

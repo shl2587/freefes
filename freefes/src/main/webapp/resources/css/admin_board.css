@@ -3,7 +3,7 @@
   /*admin_board 공지사항 시작 */
 
 	main {
-		background-color: #F9F5F6;
+		background-color: #FFF1DC;
 	}
 	.admin_board_menu ul {
 		position: relative;
@@ -16,8 +16,8 @@
 		margin-top: 80px;
 		width: 80%;
 		margin-left: 120px;
-		border: 6px double skyblue;
-		padding: 20px;
+		border: 3px double #3A98B9;
+		padding: 13px;
 		border-left: none;
 		border-right: none;
 	}

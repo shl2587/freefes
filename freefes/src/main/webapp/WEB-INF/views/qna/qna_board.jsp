@@ -34,7 +34,7 @@
 		      <th>번호</th>
 		      <th>제목</th>
 		      <th>글 수정</th>
-		      <th><input type="checkbox" id="selectAll">전체 선택</th>
+		      <th><input type="checkbox" id="selectAll" data-idx="${dto.idx}">전체 선택</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -47,21 +47,21 @@
 		        		<i class="fa-regular fa-pen-to-square" style="color: #7292ca;"></i>
 		        	</button>
 		        </a></td>
-		        <td><input type="checkbox" name="deleteCheckbox" value="${dto.idx }"></td>
+		        <td><input type="checkbox" class="deletecheckbox" value="${dto.idx }" data-idx="${dto.idx}"></td>
 		      </tr>
 		    </c:forEach>
 		  </tbody>
 		</table>
 	</div>
 	<div class="delete_btn">
-		<button type="submit" onclick="deletemy_q()">
+		<button type="button" class="delete-button"  data-idx="${dto.idx}">
 			<i class="fa-solid fa-trash fa-bounce" style="color: #4676c8;"></i>
 		</button>
 	</div>
 </c:if>
 </div>
 
-
+</main>
 
 </body>
 </html>
