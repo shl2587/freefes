@@ -42,6 +42,7 @@ public class BoardDTO {
 	private String region;
 	private String festival_category;
 	private String period;
+	private String category;
 	private String url;
 	private String place;
 	private String way_to_come;
@@ -137,6 +138,12 @@ public class BoardDTO {
 	}
 	public void setPeriod(String period) {
 		this.period = period;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getUrl() {
 		return url;

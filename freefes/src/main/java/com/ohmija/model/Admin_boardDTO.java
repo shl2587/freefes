@@ -15,6 +15,7 @@ public class Admin_boardDTO {
 	private String title;
 	private Date write_date;
 	private String content;
+	
 
 	public int getIdx() {
 		return idx;
