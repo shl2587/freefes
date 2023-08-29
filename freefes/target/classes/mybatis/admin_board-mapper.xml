@@ -17,9 +17,5 @@
 		insert into admin_board (member, title, content) values (#{member}, #{title}, #{content})
 	</insert>
 	
-	<update id="modify" parameterType="adminboard">
-		update admin_board set title = #{title}, content = #{content} where idx = #{idx}
-	</update>
-	
 </mapper>
 

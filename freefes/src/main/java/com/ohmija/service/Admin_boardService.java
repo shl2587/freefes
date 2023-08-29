@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ohmija.model.Admin_boardDTO;
-import com.ohmija.model.QnADTO;
 import com.ohmija.repository.Admin_boardDAO;
 
 @Service
@@ -26,11 +25,6 @@ public class Admin_boardService {
 	public int write(Admin_boardDTO dto) {
 		return dao.admin_write(dto);
 	}
-
-	public int modify(Admin_boardDTO dto) {
-		return dao.modify(dto);
-	}
-	
 	
 	
 }
