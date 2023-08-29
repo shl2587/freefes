@@ -22,4 +22,6 @@ if (session.getAttribute("headerIncluded") == null) {
 
 
 
+<!-- 동영, 승록 게시판 js -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="${cpath }/resources/js/fes_board_list.js"></script>

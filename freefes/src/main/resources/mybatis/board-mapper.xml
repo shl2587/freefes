@@ -4,6 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.ohmija.repository.Fes_boardDAO">
+	<!-- 동영 -->
 	<insert id="mainWrite" parameterType="fes_board">
 		insert into board
 				(member, start_date, end_date,
@@ -39,6 +40,55 @@
 				 fetch first 10 rows only
 	</select>
 	
+	<!-- 임시 저장 -->
+	
+	<!-- upsert를 이용하여 임시저장글 저장 (member, title이 동시에 중복될 경우 update / 아니면 insert) -->
+	<update id="temp_board_save" parameterType="fes_board">
+		merge into temp_board t
+		using (
+			select
+				#{member} as member,
+				#{title} as title,
+				#{start_date} as start_date,
+				#{end_date} as end_date,
+				#{content} as content,
+				#{region} as region,
+				#{festival_category} as festival_category
+			from dual
+		) s
+		on (t.member = s.member and t.title = s.title)
+		when matched then
+			update set
+				t.start_date = s.start_date,
+				t.end_date = s.end_date,
+				t.content = s.content,
+				t.region = s.region,
+				t.festival_category = s.festival_category
+		when not matched then
+			insert (member, title, start_date, end_date,
+					content, region, festival_category)
+			values (s.member, s.title, s.start_date, s.end_date,
+					s.content, s.region, s.festival_category)
+	</update>
+	
+	<select id="select_temp_board" resultType="fes_board" parameterType="int">
+		select * from temp_board
+			where member = #{member}
+				order by write_date desc
+	</select>
+	
+	<select id="load_temp_board" resultType="fes_board" parameterType="int">
+		select * from temp_board
+			where idx = #{idx}
+	</select>
+	
+	<delete id="temp_delete" parameterType="int">
+		delete from temp_board where idx = #{idx}
+	</delete>
+	
+	
+	
+	<!-- 승록 -->
 	<!-- 페이징을 위한 모든 게시물 개수 불러오기 -->
 	<select id="select_total_page" resultType="int">
 		select count(*) from board

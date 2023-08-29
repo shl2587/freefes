@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +25,30 @@ public class Fes_boardAjaxController {
 
 	@Autowired Fes_boardService fes_boardService;
 	
+	// 동영
+	// 임시 게시글 저장
+	@PostMapping("/temp_board_save")
+	public int temp_board_save(@RequestBody BoardDTO dto) {
+		int row = fes_boardService.temp_board_save(dto);
+		return row;
+	}
+	
+	// 임시 게시글 불러오기
+	@GetMapping("/load_temp_board/{idx}")
+	public BoardDTO load_temp_board(@PathVariable int idx) {
+		BoardDTO dto = fes_boardService.load_temp_board(idx);
+		return dto;
+	}
+	
+	// 임시 게시글 삭제
+	@GetMapping("/temp_delete/{idx}")
+	public int temp_delete(@PathVariable int idx) {
+		int row = fes_boardService.temp_delete(idx);
+		return row;
+	}
+	
+	
+	// 승록
 	@Transactional
 	@GetMapping("/fes_board_list")
 	public ModelAndView main_board_list(@RequestParam(value="request_page", defaultValue="1") int request_page,

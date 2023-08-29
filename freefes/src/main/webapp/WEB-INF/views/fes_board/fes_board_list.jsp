@@ -78,7 +78,7 @@
 				</a>
 			</div>
 		</c:forEach>
-		<a href="${cpath }/fes_board/mainboardWrite"><button>글쓰기</button></a>
+		<a href="${cpath }/fes_board/mainboardWrite/${login.idx}"><button>글쓰기</button></a>
 	</div>
 	<div class="fes_board_paging">
 		<c:if test="${fes_paging_dto.prev }">

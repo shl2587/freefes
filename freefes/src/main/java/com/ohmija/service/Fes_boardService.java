@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ohmija.model.BoardDTO;
 import com.ohmija.model.Fes_searchDTO;
@@ -22,6 +23,7 @@ public class Fes_boardService {
 	private LocalDate now = LocalDate.now();
 	
 	// 동영 코드
+	// 다가오는 축제
 	public ArrayList<BoardDTO> select_coming() {
 		ArrayList<BoardDTO> list = dao.select_coming();
 		for(BoardDTO dto:list) {
@@ -50,6 +52,7 @@ public class Fes_boardService {
 		return list;
 	}
 
+	// 상위 10개
 	public ArrayList<BoardDTO> select_top10() {
 		ArrayList<BoardDTO> list = dao.select_top10();
 		for(BoardDTO dto:list) {
@@ -75,7 +78,57 @@ public class Fes_boardService {
 		}
 		return list;
 	}
+	
+	public int mainWrite(BoardDTO dto) {
+		
+		int row = 0;
+		List<MultipartFile> list = dto.getFile_list();
+		ArrayList<String> path = new ArrayList<>();
+		String origin_path="";
+		if (!list.contains("@")) {			
+			for (MultipartFile f : list) {
+				if(f.isEmpty()) { break; }
+				String origin_file_name = f.getOriginalFilename();
+				path.add(origin_file_name);
+				
+				String f_name = origin_file_name.substring(0, origin_file_name.indexOf("."));
+				String real_name = (f_name + ".");
+				origin_path += real_name;
+				dto.setFile_path(origin_path);
+			}
+		}
+		else {
+			dto.setFile_path(null);
+		}
+		
+		row = dao.mainWrite(dto);
+		return row;
+	}
 
+	/* 임시 게시판 코드 */
+	// 임시게시글 목록 불러오는 코드
+	public ArrayList<BoardDTO> select_temp_board(int member) {
+		return dao.select_temp_board(member);
+	}
+
+	// 새로운 임시저장글을 저장하는 코드
+	public int temp_board_save(BoardDTO dto) {
+		int row = dao.temp_board_save(dto);
+		System.out.println(row + "행이 temp_board에 추가/변경 되었습니다");
+		return row;
+	}
+
+	public BoardDTO load_temp_board(int idx) {
+		return dao.load_temp_board(idx);
+	}
+
+	public int temp_delete(int idx) {
+		return dao.temp_delete(idx);
+	}
+	
+	
+	
+	// 승록
 	// 전체 게시글 수를 불러오는 메서드
 	public int select_total_page() {
 		return dao.select_total_page();
