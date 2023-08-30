@@ -55,7 +55,7 @@
 				</a>
 			</li>
 			<c:if test="${login.role == 1 || login.role == 2 }">
-				<li><a href="${cpath }/member/mypage/mypage">
+				<li><a href="${cpath }/member/mypage/mypage/${login.idx}">
 					<button><i class="fa-solid fa-address-book" style="color: #f2f5f7;"></i></button>
 				</a></li>
 			</c:if>
