@@ -33,4 +33,18 @@ public interface MemberDAO {
 	String selectMyid(String name);
 
 	int selectpw_id(MemberDTO dto);
+
+	MemberDTO findReciever(String reciever_nickname);
+
+	MemberDTO selectOne(int idx);
+
+	int reciever_nicknameCheck(String reciever_nickname);
+
+	int passCheck_before(MemberDTO dto);
+
+	MemberDTO selectVerify(MemberDTO dto);
+
+	int selectAnswer(MemberDTO dto);
+
+
 }

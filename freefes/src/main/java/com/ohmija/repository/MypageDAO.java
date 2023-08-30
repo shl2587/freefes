@@ -13,11 +13,13 @@ public interface MypageDAO {
 
 	int changepw(String userpw2);
 
-	int selectuserpw(String userpw);
+	int selectuserpw(String newPassword);
 
 	int userpwNew(MemberDTO dto);
 
 	int update(MemberDTO dto);
+
+	MemberDTO selectOne(int idx);
 
 
 }

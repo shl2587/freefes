@@ -2,59 +2,86 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <style>
-.hidden {
+<style>
+	.hidden {
 		display: none;
 	}
-	
-	#modal-overlay {
-		width: 100%;
-		height: 100%;
-		position: fixed;
-		background-color: rgba(0, 0, 0, 0.3);
-		top: 0;
-		left: 0;
-		z-index: 1;
+	#end{
+		border: 1px solid black;
+		 
 	}
-	#modal-content {
-		width: fit-content;
-		height: fit-content;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		z-index: 2;
-		transform: translate(-50%, -50%);
-		box-shadow: 5px 5px 5px grey;
-		border-radius: 10px;
-		background-color: white;
-	}
-	#login-auth {
-		width: 500px;
-		height: 150px;
-		text-align: center;
-		
-	}
-	.center {
-		display: flex;
-		width: 80%;
-		margin: auto;
-		justify-content: space-around;
-		align-items: center;
-	}
-	#loginInfo {
-		text-align: right;
-		padding-right: 20px;
-		height: 30px;
-		line-height: 30px;
+	#endBtn{
+		border: 1px solid red; 
 	}
 </style>
 
 <h3>이메일로 찾기</h3>
 
 <form method="POST">
-	<p><input type="text" name="userid" placeholder="ID" required autofocus></p>
-	<p><input type="email" name="email" placeholder="E-mail" required></p>
-	<p><input type="submit" value="전송"></p>
+		<input type="text" name="userid" placeholder="아이디" required autofocus>
+		<input type="text" name="name" placeholder="이름" required>
+		<input type="email" name="email" placeholder="email" required>
+		<input type="button" id="send_Auth_pwnum" value="이메일 보내기" >
 </form>
 
+<div class="hidden">
+		<input type="number" name="authNumber" placeholder="인증번호8자리" required>
+		<input id="check_Number" type="button" value="인증 확인">
+		<br>
+		<span id="authMessage"></span>
+	</div>
+	<br>
+	<br>
+	<button id="end">나가기</button>
+<script>
+	
+	const send_Auth_pwnum = document.getElementById('send_Auth_pwnum')
+	
+	const userid = document.querySelector('input[name="userid"]')
+	const name = document.querySelector('input[name="name"]')
+	const email = document.querySelector('input[name="email"]')
+	
+	async function send_Auth_pwnumHandler() {
+		
+	const ob = {
+			userid: userid.value,
+			name: name.value,
+			email: email.value,
+		}
+		
+		const url = '${cpath}/send_Auth_pwnum'
+		const opt = {
+			method: 'POST',
+			body: JSON.stringify(ob),
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			}
+		}
+		const result = await fetch(url, opt).then(resp => resp.json())
+		alert(result.message)
+		if(result.success != 0){
+			document.querySelector('.hidden').classList.remove('hidden');
+		}
+	}
+	send_Auth_pwnum.onclick = send_Auth_pwnumHandler	
+	
+	const check_Number = document.getElementById('check_Number')
+	
+	async function check_NumberHandler(){
+		const authNumber =  document.querySelector('input[name="authNumber"]')
+		const url = '${cpath}/check_Number/' + authNumber.value
+		const row =  await fetch(url).then(resp => resp.text()) 
+		const authMessage = document.getElementById('authMessage')
+		if(row != 0){
+			const redirectUrl = '../member/repw'; 
+	    	window.location.href = redirectUrl; 
+		}
+		else{
+			authMessage.innerText = '인증실패'
+			authMessage.style.color = 'red'
+		}
+	}
+	check_Number.onclick = check_NumberHandler
+</script>
 </body>
 </html>

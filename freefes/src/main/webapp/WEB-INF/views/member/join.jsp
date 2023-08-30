@@ -104,6 +104,7 @@
 <script>
 	const passCheckMessage = document.getElementById('passCheckMessage');
 	const userpw = document.querySelector('input[name="userpw"]')
+	const userpw = document.querySelector('input[name="userpw"]')
 	passCheckMessage.innerText = '비밀번호는 8자리 이하 20자리 이상이여야 하며 대소영문자와 특수문자가 포함되어야합니다.';
 	passCheckMessage.style.color = 'black';
 	
@@ -114,6 +115,7 @@
 			passCheckMessage.style.color = 'black';
 			return
 		}
+		
 		const url = '${cpath}/passCheck/' + userpw.value
 		const count = await fetch(url).then(resp => resp.text())
 		console.log(count)
@@ -136,10 +138,10 @@
 </script>
 
 <script>
-	const nickNameCheckBtn = document.getElementById('nickNameCheckBtn');
+	const nickNameCheckBtn = document.getElementById('nickNameCheckBtn')
 	
 	async function nickNameCheckHandler() {
-		const nickCheckMessage = document.getElementById('nickCheckMessage');
+		const nickCheckMessage = document.getElementById('nickCheckMessage')
 		const nickname = document.querySelector('input[name="nickname"]')
 		
 		const url = '${cpath}/nicknNameCheck/'+nickname.value
@@ -162,10 +164,10 @@
 </script>
 	
 <script>
-	const emailBtn = document.getElementById('emailBtn');
+	const emailBtn = document.getElementById('emailBtn')
 	
 	async function emailCheckHandler() {
-		const emailCheckMessage = document.getElementById('emailCheckMessage');
+		const emailCheckMessage = document.getElementById('emailCheckMessage')
 		const email = document.querySelector('input[name="email"]')
 		
 		const url = '${cpath}/emailCheck/'+email.value
@@ -183,7 +185,7 @@
 	emailBtn.addEventListener('click', emailCheckHandler)
 	emailBtn.addEventListener('mousedown', () => {
 		// 버튼을 누를 때마다 비밀번호 체크 함수를 호출하여 계속 실행되도록 함
-		emailCheckHandler();
+		emailCheckHandler()
 	});
 </script>
 </body>

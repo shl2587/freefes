@@ -18,15 +18,16 @@
 <body>
 
 <h1>My Page</h1>
+<p>${login }</p>
 <hr>
 
 <div class="all">
-	<div><a href="${cpath }/member/mypage/modify">회원 정보 수정</a></div>
-	<div><a href="${cpath }/member/mypage/mileageuselist">마일리지 내역</a></div>
-	<div><a href="${cpath }/member/mypage/list">게시글 내역</a></div>
-	<div><a href="${cpath }/member/mypage/reply">댓글 내역</a></div>
-	<div><a href="${cpath }/member/mypage/attend">출석</a></div>
-	<div><a href="${cpath }/member/mypage/like">좋아요 내역</a></div>
+	<div><a href="${cpath }/member/mypage/modify/${login.idx}">회원 정보 수정</a></div>
+	<div><a href="${cpath }/member/mypage/list/${login.idx}">게시글 신청 내역</a></div>
+	<div><a href="${cpath }/member/mypage/reply/${login.idx}">댓글 내역</a></div>
+	<div><a href="${cpath }/member/mypage/like/${login.idx}">좋아요 내역</a></div>
+	<div><a href="${cpath }/message/sendMessage/${login.idx}">쪽지보내기</a></div>
+	<div><a href="${cpath }/message/listMessage/${login.idx}">쪽지목록</a></div>
 	<div><a href="${cpath }/admin_board/admin_board">고객센터</a></div>
 </div>
 <hr>

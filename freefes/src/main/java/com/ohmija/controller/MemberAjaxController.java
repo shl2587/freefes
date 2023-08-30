@@ -24,63 +24,22 @@ public class MemberAjaxController {
 	@Autowired private MemberService memberService;
 	@Autowired private MypageService mypageService;
 	
-	@GetMapping("/dupCheck/{userid}")
-	public String dupCheck(@PathVariable("userid") String userid) {
-		int row = memberService.dupCheck(userid);
-		return String.format("%d",row);
-	}
 	
-	@GetMapping("/passCheck/{userpw}")
-	public String passCheck(@PathVariable("userpw") String userpw){
-		int row = memberService.passCheck(userpw);
-		System.out.println(row);
-		return String.format("%d", row);
-	}
-	
-	@GetMapping("/nicknNameCheck/{nickname}")
-	public String nickNameCheck(@PathVariable("nickname")String nickname) {
-		int row = memberService.nickNameCheck(nickname);
-		return String.format("%d", row);
-	}
-	
-	@GetMapping("/emailCheck/{email}")
-	public String emailCheck(@PathVariable("email")String email) {
-		int row = memberService.emailCheck(email);
-		System.out.println("경로닉네임");
-		return String.format("%d", row);
-	}
-
-	
-	@PostMapping("/upload_pw")
-	public String upload_pw(MemberDTO dto, String userpw2, HttpSession session) {
-		String loggedInUserId = (String) session.getAttribute("login.userid");
-		
-		int row = mypageService.changepw(userpw2);
-		if(row != 0) {
-			session.invalidate();			
-		}
-		return "redirect:/mypage/modify";
-	}
-	
-	@GetMapping("/userpwsam/{userpw}")
-	public String userpwsam(@PathVariable("userpw") String userpw) {
-		int row = mypageService.userpwsam(userpw);
-		System.out.println("userpw : "+userpw);
-		return String.format("%d", row);
-	}
-	
-	@PostMapping("/userpwNew")
-	public HashMap<String, Object>userpwNew (@RequestBody MemberDTO dto) {
+	@PostMapping("/getLogin")
+	public int getLogin(@RequestBody MemberDTO dto, HttpSession session) {
 		System.out.println(dto.getUserid());
-		System.out.println(dto.getUserpwNew());
-		int passNew = mypageService.userpwNew(dto);
-		System.out.println("안녕");
-		
-		HashMap<String, Object> result = new HashMap<>();
-		result.put("passNew", passNew);
-		result.put("status", true);
-		return result;
-	}
+		System.out.println(dto.getUserpw());
+		MemberDTO login = memberService.login(dto);
+		if(login != null) {
+			session.setAttribute("login", login);
+			System.out.println("로그인 성공");
+			return 1;
+		}
+		else {
+			System.out.println("로그인실패");
+			return 0;
+		}	
+	}	
 	
 	@PostMapping("/send_Auth_Idnum")
 	public HashMap<String, Object> send_Auth_Idnum(@RequestBody MemberDTO dto, HttpSession session) throws IOException {
@@ -131,12 +90,7 @@ public class MemberAjaxController {
 	@PostMapping("/send_Auth_pwnum")
 	public HashMap<String, Object> send_Auth_pwnum(@RequestBody MemberDTO dto, HttpSession session) throws IOException {
 
-		System.out.println("userid: " + dto.getUserid());
-		System.out.println("name : " + dto.getName());
-		System.out.println("email : " + dto.getEmail());
-
 		String userid = memberService.selectMyid(dto.getName());
-		System.out.println("userid= " + userid);
 		session.setAttribute("userid", userid);
 		System.out.println("session name = " +  session.getAttribute("userid"));
 		
@@ -156,4 +110,80 @@ public class MemberAjaxController {
 	}
 
 	
+	
+	@GetMapping("/dupCheck/{userid}")
+	public String dupCheck(@PathVariable("userid") String userid) {
+		int row = memberService.dupCheck(userid);
+		return String.format("%d",row);
+	}
+	
+	@GetMapping("/passCheck/{userpw}")
+	public String passCheck(@PathVariable("userpw") String userpw){
+		int row = memberService.passCheck(userpw);
+		System.out.println(row);
+		return String.format("%d", row);
+	}
+	
+	@GetMapping("/nicknNameCheck/{nickname}")
+	public String nickNameCheck(@PathVariable("nickname")String nickname) {
+		int row = memberService.nickNameCheck(nickname);
+		return String.format("%d", row);
+	}
+	
+	@GetMapping("/emailCheck/{email}")
+	public String emailCheck(@PathVariable("email")String email) {
+		int row = memberService.emailCheck(email);
+		System.out.println("경로닉네임");
+		return String.format("%d", row);
+	}
+
+	
+	@PostMapping("/upload_pw")
+	public String upload_pw(MemberDTO dto, String userpw2, HttpSession session) {
+		String loggedInUserId = (String) session.getAttribute("login.userid");
+		
+		int row = mypageService.changepw(userpw2);
+		if(row != 0) {
+			session.invalidate();			
+		}
+		return "redirect:/mypage/modify";
+	}
+	
+	@GetMapping("/userpwsam/{newPassword}")
+	public int userpwsam(@PathVariable("newPassword") String newPassword) {
+		System.out.println("전비밀번호와 일치 불일치 조건문 들어옴");
+		System.out.println("새 패스워드 : " + newPassword);
+		int row = mypageService.userpwsam(newPassword);
+		System.out.println("row :" + row);
+		System.out.println("전비밀번호와 일치 불일치 : " + newPassword);
+		return row;
+	}
+	
+	@PostMapping("/userpwNew")
+	public HashMap<String, Object>userpwNew (@RequestBody MemberDTO dto) {
+		System.out.println(dto.getUserid());
+		System.out.println(dto.getUserpwNew());
+		int passNew = mypageService.userpwNew(dto);
+		System.out.println("안녕");
+		
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("passNew", passNew);
+		result.put("status", true);
+		return result;
+	}
+
+	@PostMapping("/passCheck_before/")
+	public int passCheck_before(@RequestBody MemberDTO dto) {
+		System.out.println("아이디 비번 일치 불일치");
+		
+		System.out.println(dto.getUserpw());
+		System.out.println(dto.getUserid());
+		
+		int row = memberService.passCheck_before(dto);
+		System.out.println(row);
+		return row;
+	}
+
+
+
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ohmija.model.PostMessageDTO;
+import com.ohmija.model.Post_messageDTO;
 import com.ohmija.service.PostMessageService;
 
 @Controller
@@ -19,7 +19,7 @@ public class PostMessageController {
 	
 	@PostMapping("/send")
 	@ResponseBody
-	public String sendMessage(@RequestBody PostMessageDTO message) {
+	public String sendMessage(@RequestBody Post_messageDTO message) {
 		postMessageService.sendMessage(message);
 		return "wanlyo";
 	}

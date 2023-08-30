@@ -72,6 +72,44 @@
 					and
 				email = #{email}
 	</select>
+	
+	<select id="findReciever" parameterType="string" resultType="member">
+		SELECT idx FROM member
+			WHERE nickname = #{reciever_nickname}
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="member">
+	select * from member where idx = #{idx}
+</select>
+
+<select id="reciever_nicknameCheck" parameterType="string" resultType="int">
+	select count(*) from member where nickname = #{reciever_nickname}
+</select>
+
+<select id="passCheck_before" parameterType="member" resultType="int">
+	select count(*) from member where userid = #{userid} and userpw = #{userpw}
+</select>
+<select id="selectVerify" parameterType="member" resultType="member">
+	select verify1, verify2
+		from member 
+			where 
+				userid = #{userid}
+					and
+				name = #{name}
+					and
+				email = #{email}
+</select>
+	
+<select id="selectAnswer" parameterType="member" resultType="int">
+	select count(*) from member
+		where
+			answer1 = #{answer1}
+				and
+			answer2 = #{answer2}
+				and
+			userid = #{userid}
+</select>
+
 </mapper>
 
 
