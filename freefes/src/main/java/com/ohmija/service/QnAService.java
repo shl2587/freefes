@@ -18,8 +18,6 @@ public class QnAService {
 	@Autowired
 	private QnADAO dao;
 	
-	@Autowired
-	private PostMessageService postMessageService;
 	
 
 	public List<QnADTO> selectAll() {
@@ -43,7 +41,6 @@ public class QnAService {
 		message.setTitle("1:1 문의 답변");
 		message.setContent("1:1 문의에 답변이 등록되었습니다.");
 		message.setCategory("알림");
-		postMessageService.sendMessage(message); // 메시지 전송
 	}
 
 	public List<QnADTO> myList(int idx) {

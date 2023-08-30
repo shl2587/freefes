@@ -37,16 +37,6 @@ public class Admin_boardService {
 		return dao.modify(dto);
 	}
 	
-	public void member_ban(int memberId, Date excludedUntil) {
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("memberId", memberId);
-        params.put("excludedUntil", excludedUntil);
-        int row = mdao.updateMemberBan(params);
-        if (row > 0) {
-            System.out.println("회원 밴 상태 업데이트 성공");
-        } else {
-            System.out.println("회원 밴 상태 업데이트 실패");
-        }
-    }
+
 }
 

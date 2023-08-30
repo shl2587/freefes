@@ -208,43 +208,6 @@ public class Admin_boardController {
 			return mav;
 		}
 		
-		// 세션에서 지정하는 멤버 제외
-		public boolean member_ban(MemberDTO member) {
-		    if (member.getMember_ban() != null) {
-		        LocalDate excludedUntil = member.getMember_ban().toLocalDate();
-		        if (excludedUntil.isAfter(LocalDate.now())) {
-		            return true;
-		        }
-		    }
-		    return false;
-		}
-		
-		@PostMapping("/excludeMember")
-		public String excludeMember(String nickname, HttpServletRequest request) {
-		    HttpSession session = request.getSession();
-		    MemberDTO member = (MemberDTO) session.getAttribute("login");
-
-		    if (nickname.equals(member.getNickname())) {
-		        LocalDate threeDaysLater = LocalDate.now().plusDays(3);
-		        member.setMember_ban(java.sql.Date.valueOf(threeDaysLater));
-		        // DB 업데이트 로직 추가
-		    }
-
-		    return "redirect:/*";
-		}
-
-		
-		
-
-
-
-
-
-		
-		
-		
-		
-		
 	
 	@GetMapping("/{choice}")
 	public ModelAndView choice_menu(@PathVariable("choice") String choice) {
