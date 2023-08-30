@@ -42,5 +42,9 @@ public interface MemberDAO {
 
 	int passCheck_before(MemberDTO dto);
 
+	MemberDTO selectVerify(MemberDTO dto);
+
+	int selectAnswer(MemberDTO dto);
+
 
 }

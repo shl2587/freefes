@@ -24,6 +24,93 @@ public class MemberAjaxController {
 	@Autowired private MemberService memberService;
 	@Autowired private MypageService mypageService;
 	
+	
+	@PostMapping("/getLogin")
+	public int getLogin(@RequestBody MemberDTO dto, HttpSession session) {
+		System.out.println(dto.getUserid());
+		System.out.println(dto.getUserpw());
+		MemberDTO login = memberService.login(dto);
+		if(login != null) {
+			session.setAttribute("login", login);
+			System.out.println("로그인 성공");
+			return 1;
+		}
+		else {
+			System.out.println("로그인실패");
+			return 0;
+		}	
+	}	
+	
+	@PostMapping("/send_Auth_Idnum")
+	public HashMap<String, Object> send_Auth_Idnum(@RequestBody MemberDTO dto, HttpSession session) throws IOException {
+
+//		System.out.println("name : " + dto.getName());
+//		System.out.println("email : " + dto.getEmail());
+
+		String name = memberService.selectMyid(dto.getName());
+//		System.out.println("name= " + name);
+		session.setAttribute("name", name);
+//		System.out.println("session name = " +  session.getAttribute("name"));
+		
+		int row = memberService.selectid(dto);
+		int row2 = 0;
+		if (row != 0) {
+			row2 = memberService.sendAuthNumber(dto);
+			session.setAttribute("authNumber", row2);
+			session.setMaxInactiveInterval(180);
+			System.out.println("row2 = " + session.getAttribute("authNumber"));
+		}
+
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("success", row2 > 0 ? 1 : 0);
+		result.put("message", row2 > 0 ? "메일이 발송되었습니다" : "메일 전송에 실패했습니다");
+		return result;
+	}
+
+	@GetMapping("/check_Number/{authNumber}")
+	public int check_Number(@PathVariable("authNumber") int authNumber, HttpSession session) {
+		int sessionNumber = (int) session.getAttribute("authNumber");
+		session.setMaxInactiveInterval(1800);
+		return authNumber == sessionNumber ? 1 : 0;
+	}
+	
+	@GetMapping("/end")
+	public void end(HttpServletRequest request) {
+	    System.out.println("end");
+	    HttpSession session = request.getSession(false);
+	    System.out.println("name1 = " + session.getAttribute("name"));
+	    if (session != null) {
+	        session.invalidate();
+	    }
+	    System.out.println(session == null ? 1 : 2);
+	    System.out.println("end2");
+	    
+	}
+	
+	@PostMapping("/send_Auth_pwnum")
+	public HashMap<String, Object> send_Auth_pwnum(@RequestBody MemberDTO dto, HttpSession session) throws IOException {
+
+		String userid = memberService.selectMyid(dto.getName());
+		session.setAttribute("userid", userid);
+		System.out.println("session name = " +  session.getAttribute("userid"));
+		
+		int row = memberService.selectpw_id(dto);
+		int row2 = 0;
+		if (row != 0) {
+			row2 = memberService.sendAuthNumber(dto);
+			session.setAttribute("authNumber", row2);
+			session.setMaxInactiveInterval(180);
+			System.out.println("row2 = " + session.getAttribute("authNumber"));
+		}
+
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		result.put("success", row2 > 0 ? 1 : 0);
+		result.put("message", row2 > 0 ? "메일이 발송되었습니다" : "메일 전송에 실패했습니다");
+		return result;
+	}
+
+	
+	
 	@GetMapping("/dupCheck/{userid}")
 	public String dupCheck(@PathVariable("userid") String userid) {
 		int row = memberService.dupCheck(userid);
@@ -84,79 +171,6 @@ public class MemberAjaxController {
 		result.put("status", true);
 		return result;
 	}
-	
-	@PostMapping("/send_Auth_Idnum")
-	public HashMap<String, Object> send_Auth_Idnum(@RequestBody MemberDTO dto, HttpSession session) throws IOException {
-
-//		System.out.println("name : " + dto.getName());
-//		System.out.println("email : " + dto.getEmail());
-
-		String name = memberService.selectMyid(dto.getName());
-//		System.out.println("name= " + name);
-		session.setAttribute("name", name);
-//		System.out.println("session name = " +  session.getAttribute("name"));
-		
-		int row = memberService.selectid(dto);
-		int row2 = 0;
-		if (row != 0) {
-			row2 = memberService.sendAuthNumber(dto);
-			session.setAttribute("authNumber", row2);
-			session.setMaxInactiveInterval(180);
-			System.out.println("row2 = " + session.getAttribute("authNumber"));
-		}
-
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put("success", row2 > 0 ? 1 : 0);
-		result.put("message", row2 > 0 ? "메일이 발송되었습니다" : "메일 전송에 실패했습니다");
-		return result;
-	}
-
-	@GetMapping("/check_Number/{authNumber}")
-	public int check_Number(@PathVariable("authNumber") int authNumber, HttpSession session) {
-		int sessionNumber = (int) session.getAttribute("authNumber");
-		session.setMaxInactiveInterval(1800);
-		return authNumber == sessionNumber ? 1 : 0;
-	}
-	
-	@GetMapping("/end")
-	public void end(HttpServletRequest request) {
-	    System.out.println("end");
-	    HttpSession session = request.getSession(false);
-	    System.out.println("name1 = " + session.getAttribute("name"));
-	    if (session != null) {
-	        session.invalidate();
-	    }
-	    System.out.println(session == null ? 1 : 2);
-	    System.out.println("end2");
-	    
-	}
-	
-	@PostMapping("/send_Auth_pwnum")
-	public HashMap<String, Object> send_Auth_pwnum(@RequestBody MemberDTO dto, HttpSession session) throws IOException {
-
-		System.out.println("userid: " + dto.getUserid());
-		System.out.println("name : " + dto.getName());
-		System.out.println("email : " + dto.getEmail());
-
-		String userid = memberService.selectMyid(dto.getName());
-		System.out.println("userid= " + userid);
-		session.setAttribute("userid", userid);
-		System.out.println("session name = " +  session.getAttribute("userid"));
-		
-		int row = memberService.selectpw_id(dto);
-		int row2 = 0;
-		if (row != 0) {
-			row2 = memberService.sendAuthNumber(dto);
-			session.setAttribute("authNumber", row2);
-			session.setMaxInactiveInterval(180);
-			System.out.println("row2 = " + session.getAttribute("authNumber"));
-		}
-
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put("success", row2 > 0 ? 1 : 0);
-		result.put("message", row2 > 0 ? "메일이 발송되었습니다" : "메일 전송에 실패했습니다");
-		return result;
-	}
 
 	@PostMapping("/passCheck_before/")
 	public int passCheck_before(@RequestBody MemberDTO dto) {
@@ -169,5 +183,7 @@ public class MemberAjaxController {
 		System.out.println(row);
 		return row;
 	}
-	
+
+
+
 }
