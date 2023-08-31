@@ -50,19 +50,31 @@ public class BoardDTO {
 	private String time;
 	private String host_org;
 	private String inquire;
-	private String file_name;
 	private String file_path;
 	private List<MultipartFile> file_list;
+	private int approve;
+	
 	
 	// 동영 추가
 	private boolean is_hold;
 	private String remain;
 	private int rank;
-	
-	// 도윤 추가
-	private int approve;
+	private MultipartFile poster;
 	private String writer;
 	
+	
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	public MultipartFile getPoster() {
+		return poster;
+	}
+	public void setPoster(MultipartFile poster) {
+		this.poster = poster;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -189,12 +201,6 @@ public class BoardDTO {
 	public void setInquire(String inquire) {
 		this.inquire = inquire;
 	}
-	public String getFile_name() {
-		return file_name;
-	}
-	public void setFile_name(String file_name) {
-		this.file_name = file_name;
-	}
 	public String getFile_path() {
 		return file_path;
 	}
@@ -232,12 +238,6 @@ public class BoardDTO {
 	}
 	public void setApprove(int approve) {
 		this.approve = approve;
-	}
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
 	}
 	
 	
