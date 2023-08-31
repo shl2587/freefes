@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-D:\github\freefes\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4112769335.index
-\freefes\src\main\java
