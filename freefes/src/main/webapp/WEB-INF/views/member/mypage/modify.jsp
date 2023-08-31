@@ -10,13 +10,6 @@
 
 <form method="POST" enctype="multipart/form-data" >
 
-<p>
-   <div class="img">
-   <input type="file" name="upload" multiple> 
-   <input type="hidden" value="${login.upload }">
-   </div>
-</p>
-
 <div class="pw">
 <p>
    ${login.userpw }
