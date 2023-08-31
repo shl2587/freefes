@@ -1,10 +1,7 @@
 package com.ohmija.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ohmija.model.MemberDTO;
 import com.ohmija.repository.MypageDAO;
@@ -23,12 +20,16 @@ public class MypageService {
 		return dao.update(dto);
 	}
 
-	public int userpwsam(String userpw) {
-		return dao.selectuserpw(userpw);
+	public int userpwsam(String newPassword) {
+		return dao.selectuserpw(newPassword);
 	}
 
 	public int userpwNew(MemberDTO dto) {
 		return dao.userpwNew(dto);
+	}
+
+	public MemberDTO selectOne(int idx) {
+		return dao.selectOne(idx);
 	}
 
 	

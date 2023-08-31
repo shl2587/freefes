@@ -5,15 +5,9 @@
 	
 <mapper namespace="com.ohmija.repository.MypageDAO">
 
-<update id="changepw" parameterType="String"> 
+<update id="changepw" parameterType="string"> 
 	update member set userpw = #{userpw2} where userid = #{loggedInUserId}
 </update>
-
-<select id="selectuserpw" parameterType="string" resultType="int">
-	select count(*) from member
-			where
-				userpw = #{userpw}
-</select>
 
 <update id="userpwNew" parameterType="member"> 
 	update member set userpw = #{userpwNew} where userid = #{userid}
@@ -28,6 +22,7 @@ update member set
 	phonenumber = #{phonenumber} 
 where idx=#{idx}
 </update>
+
 
 </mapper>
 

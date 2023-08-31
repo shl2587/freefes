@@ -1,9 +1,7 @@
 package com.ohmija.service;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,8 +120,27 @@ public class MemberService {
 	public int selectpw_id(MemberDTO dto) {
 		return dao.selectpw_id(dto);
 	}
-
-
-
 	
+	public MemberDTO selectOne(int idx) {
+		return dao.selectOne(idx);
+	}
+
+	public int passCheck_before(MemberDTO dto) {
+		return dao.passCheck_before(dto);
+	}
+
+
+	public MemberDTO selectVerify(MemberDTO dto) {
+		return dao.selectVerify(dto);
+	}
+
+	public int selectAnswer(MemberDTO dto) {
+		return dao.selectAnswer(dto);
+	}
+
+	public int login_bye_check(MemberDTO dto) {
+		return dao.login_bye_check(dto);
+	}
+
+
 }

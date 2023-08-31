@@ -245,27 +245,27 @@ public class Admin_boardController {
 			return mav;
 		}
 		
-	    // 축제 게시글 view
-	    @GetMapping("/confirm_list_view/{idx}")
-		public ModelAndView confirm_lsit_view(@PathVariable("idx") int idx) {
-			ModelAndView mav = new ModelAndView("/admin_board/confirm_list_view");
-			BoardDTO dto = admin_boardService.confirm_selectOne(idx);
-			mav.addObject("dto", dto);
-			return mav;
-		}
-		
-		@PostMapping("/confirm_list_view/{idx}")
-		public String insertConfirm(@PathVariable("idx") HttpServletRequest request, RedirectAttributes redirectAttributes) {
-			HttpSession session = request.getSession();
-		    BoardDTO dto = (BoardDTO)session.getAttribute("approve");
-		    int approve = dto.getApprove();
-		    
-		    if(approve == 0) {
-		        return "redirect:/admin_board/management__view";
-		    }
-	
-			return "";
-		}
+//	    // 축제 게시글 view
+//	    @GetMapping("/confirm_list_view/{idx}")
+//		public ModelAndView confirm_lsit_view(@PathVariable("idx") int idx) {
+//			ModelAndView mav = new ModelAndView("/admin_board/confirm_list_view");
+//			BoardDTO dto = admin_boardService.confirm_selectOne(idx);
+//			mav.addObject("dto", dto);
+//			return mav;
+//		}
+//		
+//		@PostMapping("/confirm_list_view/{idx}")
+//		public String insertConfirm(@PathVariable("idx") HttpServletRequest request, RedirectAttributes redirectAttributes) {
+//			HttpSession session = request.getSession();
+//		    BoardDTO dto = (BoardDTO)session.getAttribute("approve");
+//		    int approve = dto.getApprove();
+//		    
+//		    if(approve == 0) {
+//		        return "redirect:/admin_board/management__view";
+//		    }
+//	
+//			return "";
+//		}
 	    
 	    
 		

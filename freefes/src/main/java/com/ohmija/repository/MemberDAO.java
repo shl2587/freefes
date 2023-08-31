@@ -1,7 +1,6 @@
 package com.ohmija.repository;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -35,9 +34,20 @@ public interface MemberDAO {
 
 	int selectpw_id(MemberDTO dto);
 
-	List<MemberDTO> getExcludeList();
-	
-	
+	MemberDTO findreceiver(String receiver_nickname);
+
+	MemberDTO selectOne(int idx);
+
+	int receiver_nicknameCheck(String receiver_nickname);
+
+	int passCheck_before(MemberDTO dto);
+
+	MemberDTO selectVerify(MemberDTO dto);
+
+	int selectAnswer(MemberDTO dto);
+
+	int login_bye_check(MemberDTO dto);
+
 
 
 }

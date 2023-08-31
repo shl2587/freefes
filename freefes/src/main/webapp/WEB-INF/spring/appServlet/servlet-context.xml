@@ -47,6 +47,7 @@
 	</interceptors>	
 	
 	
+	
 	<context:component-scan base-package="com.ohmija.controller" />
 	
 	
