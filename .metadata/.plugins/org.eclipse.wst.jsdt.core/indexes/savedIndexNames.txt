@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+D:\github\freefes\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1899874753.index
-3607535146.index
-2944370035.index
-164698895.index
-1421310101.index

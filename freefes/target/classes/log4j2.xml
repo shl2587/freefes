@@ -32,12 +32,12 @@
 			<AppenderRef ref="file" />			
 		</Logger>
 		
-		<Logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
+		<Logger name="jdbc.sqlonly" level="WARN" additivity="false">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="file" />			
 		</Logger>
 		
-		<Logger name="jdbc.resultsettable" level="DEBUG" additivity="false">
+		<Logger name="jdbc.resultsettable" level="WARN" additivity="false">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="file" />			
 		</Logger>
