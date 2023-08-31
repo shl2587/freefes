@@ -1,5 +1,7 @@
 package com.ohmija.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ public class ReplyService {
 	
 	@Autowired private ReplyDAO dao;
 
-	public ReplyDTO selectfav(int idx) {
+	public List<ReplyDTO> selectfav(int idx) {
 		return dao.selectfav(idx);
 	}
 

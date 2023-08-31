@@ -14,6 +14,7 @@
 
 
 
+
 <div id="b_fes_list">
 	<div class="b_search">
 		<form>
@@ -103,6 +104,8 @@
 
 
 <script src="${cpath }/resources/js/fes_board_list.js"></script>
+
+
 <script>
 
 
@@ -132,42 +135,7 @@ $(function() {
 })
 
 </script>
-<script>
-    $(document).ready(function() {
-        $("#search_submit").click(function(event) {
-        	event.preventDefault()
-            
-            let formData = {
-                region: $("#local_gov").val(),
-                region_section: $("#region_section").val(),
-                festival_category: $("#festival_category").val(),
-                start_date: $("#start_date").val(),
-                end_date: $("#end_date").val(),
-                search_method: $("#search_method").val(),
-                fes_keyword: $("#search").val()
-            };
 
-            $.ajax({
-                type: "GET",
-                url: "${cpath}/fes_board/fes_board_list",
-                data: formData,
-                headers: {
-                	'Content-Type': 'application/json'
-                },
-                success: function(form_data) {
-                	var b_fes_list = $("#b_fes_list")
-                	b_fes_list.empty()
-                	b_fes_list.html(form_data)
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log("AJAX Error:", textStatus, errorThrown);
-                }
-            })
-        })
-    })
-    
-
-</script>
 
 
 </body>

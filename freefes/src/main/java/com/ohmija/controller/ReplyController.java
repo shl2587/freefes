@@ -1,5 +1,7 @@
 package com.ohmija.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ public class ReplyController {
 	@GetMapping("/reply_list/{idx}")
 	public ModelAndView Favorites(@PathVariable("idx")int idx) {
 		ModelAndView mav = new ModelAndView("/member/mypage/reply_list");
-		ReplyDTO Rep = replyService.selectfav(idx);
+		List<ReplyDTO> Rep = replyService.selectfav(idx);
 		mav.addObject("Rep", Rep);
 		return mav;
 	}

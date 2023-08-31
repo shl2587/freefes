@@ -226,8 +226,6 @@ button:hover {
 <div class="login-options">
 	<a href="${cpath }/member/findId"><button>아이디 찾기</button></a>
 	<button id="pw">비밀번호 재설정</button>
-</div>
-<div class="join">
 	<a href="${cpath }/member/terms"><button>회원가입</button></a>
 </div>
 </div>

@@ -22,11 +22,10 @@
 </script>
 <script defer src="${cpath }/resources/js/qna_board.js"></script>
 <script defer src="${cpath }/resources/js/admin_board.js"></script>
-<!-- js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <header>
-	<div id="header">
 		<div id="homepage_logo">
 			<a href="${cpath }"><input type="image" 
 				src="${cpath }/resources/image/로고.png" height="100px"></a>
@@ -48,7 +47,6 @@
 				<li><a href="${cpath }/">1:1채팅</a></li>
 				<li><a href="${cpath }/admin_board/admin_board">고객센터</a></li>
 			</ul>
-		</div>
 		</div>
 </header>
 

@@ -13,7 +13,7 @@
         </tr>
     </thead>
 
-    <c:forEach var="dto" items="${list}">
+    <c:forEach var="dto" items="${Rep}">
         <tr class="favorites-row">
             <td>
                 <div class="item">${dto.board}</div>

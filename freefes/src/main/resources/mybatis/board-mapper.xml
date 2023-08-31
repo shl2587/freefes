@@ -103,6 +103,12 @@
 	</select>
 	
 	<!-- 해당 게시물 띄우기 -->
+	<update id="update_board_count" parameterType="fes_board">
+		update board set
+			count = #{count}
+			where idx = #{idx}
+	</update>
+	
 	<select id="select_main_board" parameterType="int" resultType="fes_board">
 		select * from board
 			where idx = #{idx}
@@ -121,9 +127,10 @@
 				<if test="end_date != null and end_date != ''">
 				    and end_date &lt;= #{end_date}
 				</if>
+				<if test="fes_keyword != null and fes_keyword != ''">
 				and member = 
 					(select idx from member where nickname like '%' || #{fes_keyword} || '%')
-					order by idx desc
+				</if>
 	</select>
 	
 	<select id="search_complex_total" parameterType="fes_search" resultType="int">
@@ -147,7 +154,6 @@
 				or inquire like '%' || #{fes_keyword} || '%'
 				or host_org like '%' || #{fes_keyword} || '%'
 				or content like '%' || #{fes_keyword} || '%')
-			order by idx desc
 	</select>
 
 	<!-- 검색 결과 -->	
@@ -163,8 +169,10 @@
 				<if test="end_date != null and end_date != ''">
 				    and end_date &lt;= #{end_date}
 				</if>
+				<if test="fes_keyword != null and fes_keyword != ''">
 				and member = 
 					(select idx from member where nickname like '%' || #{fes_keyword} || '%')
+				</if>
 			order by idx desc
 			offset #{offset} rows
 			fetch next #{per_page} rows only
@@ -196,12 +204,6 @@
 			fetch next #{per_page} rows only
 	</select>
 	
-	<!-- 계립 좋아요 내역-->
-	<select id="selectfav" parameterType="int" resultType="fes_board">
-	select * from board b
-    	join favorites f
-    on b.idx = f.board
-    	join member m
-    on #{idx} = f.member
-	</select>
+	
+	
 </mapper>

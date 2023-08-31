@@ -1,5 +1,7 @@
 package com.ohmija.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ohmija.model.BoardDTO;
 import com.ohmija.model.MemberDTO;
+import com.ohmija.service.Fes_boardService;
 import com.ohmija.service.MemberService;
 import com.ohmija.service.MypageService;
 
@@ -18,6 +22,7 @@ public class MypageController {
 	
 	@Autowired private MypageService mypageService;
 	@Autowired private MemberService memberService;
+	@Autowired private Fes_boardService boardService;
 	
 	@GetMapping("/mypage/{idx}")
 	public ModelAndView mypage(@PathVariable("idx")int idx) {
@@ -46,6 +51,12 @@ public class MypageController {
 	@GetMapping("/changeProfile")
 	public void changeProfile() {}
 	
-
+	@GetMapping("/favorites/{idx}")
+	public ModelAndView Favorites(@PathVariable("idx")int idx) {
+		ModelAndView mav = new ModelAndView("/member/mypage/favorites");
+		List<BoardDTO> fav = boardService.selectfav(idx);
+		mav.addObject("fav", fav);
+		return mav;
+	}
 
 }

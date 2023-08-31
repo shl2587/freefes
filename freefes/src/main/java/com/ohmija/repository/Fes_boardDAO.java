@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.ohmija.model.BoardDTO;
 import com.ohmija.model.Fes_searchDTO;
 import com.ohmija.model.Festival_board_pagingDTO;
-import com.ohmija.model.MemberDTO;
 
 @Repository
 public interface Fes_boardDAO {
@@ -38,6 +37,7 @@ public interface Fes_boardDAO {
 	List<BoardDTO> fes_board_selectAll(Festival_board_pagingDTO fes_paging_dto);
 
 	// 선택한 게시판 불러오기
+	int update_board_count(BoardDTO dto);
 	BoardDTO select_main_board(BoardDTO dto);
 
 	// 검색했을때 게시판 리스트
@@ -48,7 +48,7 @@ public interface Fes_boardDAO {
 	int search_complex_total(Fes_searchDTO fes_search);
 	List<BoardDTO> select_search_complex(Fes_searchDTO fes_search);
 
-	BoardDTO selectfav(int idx);
+	List<BoardDTO> selectfav(int idx);
 
 
 

@@ -59,6 +59,9 @@ public class BoardDTO {
 	private String remain;
 	private int rank;
 	
+	// 도윤 추가
+	private int approve;
+	private String writer;
 	
 	public int getIdx() {
 		return idx;
@@ -223,6 +226,18 @@ public class BoardDTO {
 	}
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+	public int getApprove() {
+		return approve;
+	}
+	public void setApprove(int approve) {
+		this.approve = approve;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.ohmija.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.ohmija.model.ReplyDTO;
@@ -7,6 +9,6 @@ import com.ohmija.model.ReplyDTO;
 @Repository
 public interface ReplyDAO {
 
-	ReplyDTO selectfav(int idx);
+	List<ReplyDTO> selectfav(int idx);
 
 }

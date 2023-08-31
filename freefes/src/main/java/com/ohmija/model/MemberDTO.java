@@ -39,15 +39,16 @@ public class MemberDTO {
 	private Date birth;
 	private String name;
 	private String nickname;
-	private int mileage;
 	private String address;
 	private String phonenumber;
 	private int attend;
-	private int productlist;
+	
 	private String loggedInUserId;
 	private String userpwNew;
 	private String profile_img;		// DB에 저장된 파일 경로를 문자열로 받아오기 위한 필드
 	private MultipartFile upload;	// <form>으로 전송되는 파일을 저장하기 위한 필드
+	
+	private Date ban_until;
 	
 	public String getUserpwNew() {
 		return userpwNew;
@@ -153,12 +154,6 @@ public class MemberDTO {
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
 	}
-	public int getMileage() {
-		return mileage;
-	}
-	public void setMileage(int mileage) {
-		this.mileage = mileage;
-	}
 	public String getAddress() {
 		return address;
 	}
@@ -177,13 +172,13 @@ public class MemberDTO {
 	public void setAttend(int attend) {
 		this.attend = attend;
 	}
-	public int getProductlist() {
-		return productlist;
-	}
-	public void setProductlist(int productlist) {
-		this.productlist = productlist;
-	}
 	
+	public Date getBan_until() {
+		return ban_until;
+	}
+	public void setBan_until(Date ban_until) {
+		this.ban_until = ban_until;
+	}
 	@Override
 	public String toString() {
 		return "MemberDTO [userid=" + userid + ", profile_img=" + profile_img + "]";

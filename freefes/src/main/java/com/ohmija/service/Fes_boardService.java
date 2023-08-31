@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ohmija.model.BoardDTO;
 import com.ohmija.model.Fes_searchDTO;
 import com.ohmija.model.Festival_board_pagingDTO;
-import com.ohmija.model.MemberDTO;
 import com.ohmija.repository.Fes_boardDAO;
 
 @Service
@@ -142,11 +141,16 @@ public class Fes_boardService {
 	
 
 	// 해당 게시글을 불러오는 메서드
-	public BoardDTO get_main_board(int idx, BoardDTO dto) {
-		dto.setIdx(idx);
-		int count = 0;
-		dto.setCount(count++);
-		return dao.select_main_board(dto);
+	public BoardDTO get_main_board(BoardDTO dto) {
+		dto = dao.select_main_board(dto);
+		int count = dto.getCount();
+		dto.setCount(++count);
+		int row = dao.update_board_count(dto);
+		
+		if (row != 0) {
+			return dto;			
+		}
+		return null;
 	}
 
 	
@@ -190,7 +194,7 @@ public class Fes_boardService {
 		}
 	}
 
-	public BoardDTO selectfav(int idx) {
+	public List<BoardDTO> selectfav(int idx) {
 		return dao.selectfav(idx);
 	}
 

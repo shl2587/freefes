@@ -127,3 +127,70 @@ function update_region_section(seleted_option, initial_region_section = null) {
 		}
 	}
 }
+
+$(document).ready(function() {
+    $("#search_submit").click(function(event) {
+    	event.preventDefault()
+        
+        let form_data = {
+            region: $("#local_gov").val(),
+            region_section: $("#region_section").val(),
+            festival_category: $("#festival_category").val(),
+            start_date: $("#start_date").val(),
+            end_date: $("#end_date").val(),
+            search_method: $("#search_method").val(),
+            fes_keyword: $("#search").val()
+        };
+
+        $.ajax({
+            type: "GET",
+            url: cpath + "/fes_board/board_search_list",
+            data: form_data,
+            headers: {
+            	'Content-Type': 'application/json'
+            },
+            success: function(response) {
+            	console.log(response)
+            	const result_div = $("#result_div")
+            	result_div.empty()
+            	
+            	
+            	const board_list= response.fes_boardList
+            	board_list.forEach(function(board) {
+            		 const festival_list = `
+                         <div class="festival_list">
+                             <a href="${cpath}/fes_board/mainboard/${board.idx}">
+                                 ${board.idx} ${board.title} ${board.count}
+                             </a>
+                         </div>`
+                     result_div.append(festival_list)
+            	})
+            	
+            	const fes_paging_dto = response.fes_paging_dto
+            	update_paging(fes_paging_dto)
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("AJAX Error:", textStatus, errorThrown)
+            }
+        })
+    })
+})
+
+function update_paging(paging_data) {
+    const fes_board_paging = $(".fes_board_paging");
+    fes_board_paging.empty();
+
+    if (paging_data.prev) {
+        fes_board_paging.append(`<a href="${cpath}/fes_board/fes_board_list?request_page=${paging_data.page_begin - 1}">◀이전</a>`);
+    }
+
+    for (let page_number = paging_data.page_begin; page_number <= paging_data.page_end; page_number++) {
+        fes_board_paging.append(`<a href="${cpath}/fes_board/fes_board_list?request_page=${page_number}">[${page_number}]</a>`);
+    }
+
+    if (paging_data.next) {
+        fes_board_paging.append(`<a href="${cpath}/fes_board/fes_board_list?request_page=${paging_data.page_end + 1}">다음▶</a>`);
+    }
+}
+
