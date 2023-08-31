@@ -20,11 +20,11 @@ public class MessageAjaxController {
 	    return String.format("%d", row);
 	}
 	
-	@GetMapping("/reciever_nickname/{reciever}")
-	public int reciever_nicknameCheck(@PathVariable("reciever")String reciever) {
+	@GetMapping("/receiver_nickname/{receiver}")
+	public int receiver_nicknameCheck(@PathVariable("receiver")String receiver) {
 		System.out.println("닉네임 체크");
-		System.out.println(reciever);
-		int row = post_messageService.reciever_nicknameCheck(reciever);
+		System.out.println(receiver);
+		int row = post_messageService.receiver_nicknameCheck(receiver);
 		System.out.println("닉네임 체크 확인 : "+row);
 	    return row;
 	}

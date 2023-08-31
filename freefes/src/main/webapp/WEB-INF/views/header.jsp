@@ -22,7 +22,7 @@
 </script>
 <script defer src="${cpath }/resources/js/qna_board.js"></script>
 <script defer src="${cpath }/resources/js/admin_board.js"></script>
-<!-- js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <header>

@@ -2,23 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@include file="../header.jsp" %>
 <style>
-* {
-  box-sizing: border-box;
+*{ 
+   box-sizing: border-box; 
+ } 
+ 
+ html, 
+ body { 
+   height: 100%; 
+ } 
+BODY {
+/*   DISPLAY: FLEX; */
+border : 1px solid red;
+  MARGIN: 0;
+  BACKGROUND-COLOR: #F5F6F7;
+  FONT-FAMILY: -APPLE-SYSTEM, BLINKMACSYSTEMFONT, "SEGOE UI", ROBOTO, OXYGEN,
+    UBUNTU, CANTARELL, "OPEN SANS", "HELVETICA NEUE", SANS-SERIF;
 }
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-/*   display: flex; */
-  margin: 0;
-  background-color: #f5f6f7;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
 ul {
   list-style: none;
   padding: 0;
@@ -26,28 +25,38 @@ ul {
 }
 
 .wrap {
-  margin: auto;
+	margin-bottom: 100px;
+	border : 1px solid green;
+     display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 중앙 정렬 */
+    height: 100vh;           /* 뷰포트 높이를 100%로 설정 */
+    flex-direction: column;  /* 추가: 자식 요소를 세로로 정렬 */
 }
 
 .wrap .logo {
   text-align: center;
+  border : 1px solid black;
   margin-bottom: 10px;
 }
 
 .wrap .logo h1 {
-  margin: 0;
+  margin-bottom: 10px;
   font-size: 50px;
+  
 }
-
-.wrap .contents {
+.wrap .contents { /*이게 흰색 배경을 줌*/
   padding: 50px;
+  margin-bottom : 200px; /* 이용약관이 위에 헤더에 전체적으로 올라가게함*/
   background-color: #ffffff;
   border: 1px solid #dadada;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+
 #formAll {
+ border :1px solid pink;
   margin: 0 auto;
   width: 460px;
   font-size: 14px;

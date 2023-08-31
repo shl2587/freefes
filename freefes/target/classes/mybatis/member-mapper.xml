@@ -73,17 +73,17 @@
 				email = #{email}
 	</select>
 	
-	<select id="findReciever" parameterType="string" resultType="member">
+	<select id="findreceiver" parameterType="string" resultType="member">
 		SELECT idx FROM member
-			WHERE nickname = #{reciever_nickname}
+			WHERE nickname = #{receiver_nickname}
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="member">
 	select * from member where idx = #{idx}
 </select>
 
-<select id="reciever_nicknameCheck" parameterType="string" resultType="int">
-	select count(*) from member where nickname = #{reciever_nickname}
+<select id="receiver_nicknameCheck" parameterType="string" resultType="int">
+	select count(*) from member where nickname = #{receiver_nickname}
 </select>
 
 <select id="passCheck_before" parameterType="member" resultType="int">
@@ -109,6 +109,10 @@
 				and
 			userid = #{userid}
 </select>
+
+<delete id="login_bye_check" parameterType="member">
+	delete from member where userid = #{userid} and userpw = #{userpw}
+</delete>
 
 </mapper>
 

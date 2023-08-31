@@ -86,4 +86,10 @@ public class MemberController {
 	@GetMapping("/mypage/passwd_chang")
 	public void passwd_chang() {}
 	
+	@GetMapping("/cancel")
+	public void cancel() {}
+	
+	@GetMapping("/member_bye")
+	public void member_bye() {}
+	
 }

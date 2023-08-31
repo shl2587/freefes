@@ -17,6 +17,7 @@
 		<typeAlias type="com.ohmija.model.Festival_statusDTO" alias="fes_list"/>
 		<typeAlias type="com.ohmija.model.Festival_board_pagingDTO" alias="fes_board_page"/>
 		<typeAlias type="com.ohmija.model.Fes_searchDTO" alias="fes_search"/>
+		<typeAlias type="com.ohmija.model.FavoritesDTO" alias="favorites_board"/>
 		
 		<!-- 도윤 -->
 		<typeAlias type="com.ohmija.model.Admin_boardDTO" alias="adminboard"/>

@@ -21,16 +21,22 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
+// 로그인 페이지 제외하고 모든 경로 밴.
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 	
-	@Override
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginRoleInterceptor())
-                .addPathPatterns("/admin_board/admin_write")
-                .addPathPatterns("/admin_board/admin_modify/*");
+        registry.addInterceptor(new BanInterceptor())
+            .addPathPatterns("/admin_board/**", "/fes_board/**", "/member/**", "/qna/**")
+            .excludePathPatterns("/login", "/logout", "/home", "/freefes/ban_Page");
     }
 
+    
+    
+    
+    
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
 		// TODO Auto-generated method stub

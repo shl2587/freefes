@@ -57,7 +57,9 @@
 			      	<div class="dropdown-content">
 				        <a href="${cpath }/admin_board/management_page">Notice</a>
 				        <a href="${cpath }/admin_board/management_qnaList">Question</a>
-				        <a href="#">Confirm</a>
+				        <a href="${cpath }/admin_board/exclude_list">Exclude-List</a>
+				        <a href="${cpath }/admin_board/addExclude_member">Exclude-User</a>
+				        <a href="${cpath }/admin_board/confirm_list">Confirm</a>
 			      	</div>
 			     </div>
 			     <div class="dropdown">

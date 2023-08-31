@@ -28,6 +28,8 @@ public interface Fes_boardDAO {
 	
 	int mainWrite(BoardDTO dto);
 	
+	BoardDTO load_after_save(BoardDTO dto);
+	
 	
 	
 	
@@ -37,6 +39,7 @@ public interface Fes_boardDAO {
 	List<BoardDTO> fes_board_selectAll(Festival_board_pagingDTO fes_paging_dto);
 
 	// 선택한 게시판 불러오기
+	int update_board_count(BoardDTO dto);
 	BoardDTO select_main_board(BoardDTO dto);
 
 	// 검색했을때 게시판 리스트
@@ -46,6 +49,9 @@ public interface Fes_boardDAO {
 	// 내용 검색 했을 때 총 게시글 수
 	int search_complex_total(Fes_searchDTO fes_search);
 	List<BoardDTO> select_search_complex(Fes_searchDTO fes_search);
+
+	List<BoardDTO> selectfav(int idx);
+
 
 
 	

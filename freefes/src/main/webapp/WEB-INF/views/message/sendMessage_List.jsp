@@ -46,7 +46,7 @@ th {
 	font-weight: bold;
 }
 
-.reciever, .writer {
+.receiver, .writer {
 	font-style: italic;
 }
 
@@ -113,7 +113,7 @@ tr:hover {
 	<c:forEach var="dto" items="${list}">
 		<tr class="message-row" data-title="${dto.title}"
 			data-content="${dto.content}"
-			data-reciever="${dto.reciever_nickname}"
+			data-receiver="${dto.receiver_nickname}"
 			data-writer="${dto.writer_nickname}" data-category="${dto.category}"
 			 data-date="${dto.date_column}">
 			<td><input type="checkbox" class="message-checkbox"
@@ -130,7 +130,7 @@ tr:hover {
 			</td>
 			<td>
 				<div class="item">
-					<div class="reciever">${dto.reciever_nickname}</div>
+					<div class="receiver">${dto.receiver_nickname}</div>
 				</div>
 			</td>
 			<td>
@@ -160,7 +160,7 @@ tr:hover {
 			<strong>보낸이:</strong> <span id="messageWriter"></span>
 		</p>
 		<p>
-			<strong>받는 이:</strong> <span id="messageReciever"></span>
+			<strong>받는 이:</strong> <span id="messagereceiver"></span>
 		</p>
 		<p>
 			<strong>카테고리:</strong> <span id="messageCategory"></span>
@@ -172,17 +172,17 @@ tr:hover {
 
 <script>
 // 모달 열기 함수
-function openModal(title, content, reciever, writer, category) {
+function openModal(title, content, receiver, writer, category) {
     var modal = document.getElementById('myModal')
     var messageTitle = document.getElementById('messageTitle')
     var messageWriter = document.getElementById('messageWriter')
-    var messageReciever = document.getElementById('messageReciever')
+    var messagereceiver = document.getElementById('messagereceiver')
     var messageCategory = document.getElementById('messageCategory')
     var messageText = document.getElementById('messageText')
 
     messageTitle.textContent = title
     messageWriter.textContent = writer
-    messageReciever.textContent = reciever
+    messagereceiver.textContent = receiver
     messageCategory.textContent = category
     messageText.textContent = content
 
@@ -209,11 +209,11 @@ for (var i = 0; i < rows.length; i++) {
         if (event.target.type !== 'checkbox') {
             var title = this.getAttribute('data-title')
             var content = this.getAttribute('data-content')
-            var reciever = this.getAttribute('data-reciever')
+            var receiver = this.getAttribute('data-receiver')
             var writer = this.getAttribute('data-writer')
             var category = this.getAttribute('data-category')
 
-            openModal(title, content, reciever, writer, category)
+            openModal(title, content, receiver, writer, category)
         }
     });
 }

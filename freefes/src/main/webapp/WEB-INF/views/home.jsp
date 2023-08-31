@@ -125,7 +125,56 @@
 			</div>
 		</div>
 	</div>
-	<div class="main_body2">지도</div>
+	<!-- 병학 -->
+	<div class="map">
+		<div>
+			<a href="${cpath }/fes_board/fes_board_list?region=강원">
+            	<img src="${cpath}/resources/img/강원도.png" style="z-index: 1;">
+        	</a>
+        	<a href="${cpath }/fes_board/fes_board_list?region=경기도">
+				<img src="${cpath }/resources/img/경기도.png" style="z-index: 1;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=서울">
+				<img src="${cpath }/resources/img/서울.png" style="z-index: 2; width: 3.8%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=충청북도">
+				<img src="${cpath }/resources/img/충청북도.png" style="z-index: 2;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=충청남도">
+				<img src="${cpath }/resources/img/충청남도.png" style="z-index: 1; width: 13%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=대전">
+				<img src="${cpath }/resources/img/대전.png" style="z-index: 3; width: 3%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=경상북도">
+				<img src="${cpath }/resources/img/경상북도.png" style="z-index: 1; width: 13%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=대구">
+				<img src="${cpath }/resources/img/대구.png" style="z-index: 2; width: 5.4%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=경상남도">
+				<img src="${cpath }/resources/img/경상남도.png" style="z-index: 1; width: 15%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=전라남도">
+				<img src="${cpath }/resources/img/전라북도.png" style="width: 15%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=울산">
+				<img src="${cpath }/resources/img/울산.png" style="z-index: 2;width: 7%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=부산">
+				<img src="${cpath }/resources/img/부산.png" style="z-index: 2;width: 9%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=전라남도">
+				<img src="${cpath }/resources/img/전라남도.png" style="z-index: 1;width: 13%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=광주">
+				<img src="${cpath }/resources/img/광주.png" style="z-index: 4;width: 4%; height: auto;">
+			</a>
+			<a href="${cpath }/fes_board/fes_board_list?region=제주도">
+				<img src="${cpath }/resources/img/제주도.png" style="z-index: 3;width: 11%; height: auto;">
+			</a>
+		</div>
+	</div>
 	<div class="main_body3">요약</div>
 	<div class="main_body4">축제순위배너</div>
 </main>

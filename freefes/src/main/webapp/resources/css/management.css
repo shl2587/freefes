@@ -471,4 +471,236 @@ table.management_qna_table th {
 }
 
 
+/*-----------------밴리스트에 추가 버튼-------------------------------*/
+
+.fa-solid.fa-user-plus {
+		font-size: 40px;
+		background-color: transparent;
+	}
 	
+	.management_addban_btn button {
+		background-color: transparent;
+		margin-top: 20px;
+		border: 3px solid black;
+		width: 70px;
+		height: 70px;
+		border-radius: 70%;
+		text-decoration: none;
+		text-align: center;
+	    display: inline-block;
+	    margin-left: 20px;
+		margin-top: 180px;
+		margin-bottom: 35px;
+		
+	}
+	
+	.management_addban_btn button .addban-icon-text {
+	    display: block;
+	    margin-top: 6px;
+	    text-align: center;
+	    color: black;
+	    font-weight: bold;
+	  }
+	
+	.management_addban_btn button:hover {
+	    cursor: pointer;
+	  }
+
+/*----------------------밴 리스트 css------------------------------------*/
+
+table.management_excludeList_table {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  margin: 0 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+table.management_excludeList_table thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #F31559;
+  border-bottom: 3px solid #F31559;
+  gap: 100px;
+}
+
+table.management_excludeList_table tbody th {
+  width: 120px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+
+table.management_excludeList_table td {
+  width: 450px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #35A29F;
+}
+
+table.management_excludeList_table td,
+table.management_excludeList_table th {
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;	
+ 	}
+
+#management_excludeList_list {
+	text-align: center;
+}
+
+.management_excludeList_table a {
+	text-decoration: none;
+	color: #000;
+}
+
+.management_excludeList_table a:hover {
+	color: #F29727;
+} 
+	  
+#nickname {
+	width: 400px;
+	height: 60px;
+	padding-left: 20px;
+	border: 1px solid #F31559;
+	outline: none;
+	border-radius: 10px;
+	color: #27374D;
+}
+
+ #addexclude-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.exclude-title {
+	font-size: 25px;
+	font-weight: bold;
+	color: #F31559;
+	text-align: center;
+}
+
+
+
+#addexclude-form form {
+	margin-top: 40px;
+}
+
+.addban_btn button {
+		width: 200px;
+		height: 60px;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+		border-radius: 20px;
+		border-color: gold;
+		background-color: #F99B7D;
+		color: #FFD95A;
+		font-weight: bold;
+		font-size: 20px;
+		margin-bottom: 50px;
+		margin-top: 40px;
+		
+	}
+	
+.addban_btn button:hover {
+	cursor: pointer;
+	background-color: #FFD95A;
+	color: #F99B7D;
+}
+
+
+/*------------------ 게시판 승인 목록 ------------------*/
+
+.notApprove_btn {
+	width: 100px;
+	height: 30px;
+	background-color: #E76161;
+	color: white;
+	font-weight: bold;
+	border: none;
+	box-shadow: 2px 2px 0px 1px black;
+}
+
+.Approve_btn {
+	width: 100px;
+	height: 30px;
+	background-color: #B0DAFF;
+	color: black;
+	font-weight: bold;
+	border: none;
+	box-shadow: 2px 2px 0px 1px black;
+}
+
+.fa-floppy-disk {
+	font-size: 25px;
+	color: #537188;
+}
+
+
+table.confirm_list_table {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  margin: 0 50px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+table.confirm_list_table thead th {
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #F31559;
+  border-bottom: 3px solid #F31559;
+  gap: 100px;
+}
+
+table.confirm_list_table tbody th {
+  width: 120px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  background: #f3f6f7;
+}
+
+table.confirm_list_table td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #35A29F;
+}
+
+table.confirm_list_table td,
+table.confirm_list_table th {
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;	
+ 	}
+
+#confirm_list_main {
+	text-align: center;
+}
+
+.confirm_list_table a {
+	text-decoration: none;
+	color: #000;
+}
+
+.confirm_list_table a:hover {
+	color: #F29727;
+}
+
+.confirm_list_table a:visited {
+	text-decoration: none;
+}
+
+	  

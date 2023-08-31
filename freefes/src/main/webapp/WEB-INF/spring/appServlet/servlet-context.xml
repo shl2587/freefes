@@ -29,9 +29,26 @@
    	</beans:bean>
 	
 	
+	<interceptors>
+		<interceptor>
+			<!-- 인터셉터 처리를 적용할 경로 나열 -->
+			<mapping path="/member/**" />		
+			<mapping path="/admin_board/**" />		
+			<mapping path="/fes_board/**" />		
+			<mapping path="/qna/**" />
+			<!-- 제외할 경로 -->
+			<exclude-mapping path="/member/login"/>
+			<exclude-mapping path="/member/logout"/>
+			<exclude-mapping path="/freefes/ban_Page"/>
+			<exclude-mapping path="/home"/>
+			<beans:bean id="BanInterceptor"
+						class="com.ohmija.interceptor.BanInterceptor" />
+		</interceptor>
+	</interceptors>	
+	
+	
 	
 	<context:component-scan base-package="com.ohmija.controller" />
-	
 	
 	
 </beans:beans>

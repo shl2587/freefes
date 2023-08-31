@@ -1,5 +1,7 @@
 package com.ohmija.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -23,108 +25,129 @@ public class Fes_boardService {
 	private LocalDate now = LocalDate.now();
 	
 	// 동영 코드
-	// 다가오는 축제
-	public ArrayList<BoardDTO> select_coming() {
-		ArrayList<BoardDTO> list = dao.select_coming();
-		for(BoardDTO dto:list) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String start = sdf.format(dto.getStart_date());
-			String end = sdf.format(dto.getEnd_date());
-			LocalDate local_start_date = LocalDate.parse(start);
-			LocalDate local_end_date = LocalDate.parse(end);
-			boolean is_hold = false;
-			int remain = 0;
-			
-			// 개최 중 여부
-			if(local_start_date.compareTo(now) <= 0 && local_end_date.compareTo(now) >= 0) {
-				is_hold = true;
-			}
-			
-			// D-DAY 계산
-			remain = (int)ChronoUnit.DAYS.between(now, local_start_date);
-			
-			
-			// dto에 저장
-			dto.setIs_hold(is_hold);
-			dto.setRemain("D-" + Integer.toString(remain));				
-
-		}
-		return list;
-	}
-
-	// 상위 10개
-	public ArrayList<BoardDTO> select_top10() {
-		ArrayList<BoardDTO> list = dao.select_top10();
-		for(BoardDTO dto:list) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String start = sdf.format(dto.getStart_date());
-			String end = sdf.format(dto.getEnd_date());
-			LocalDate local_start_date = LocalDate.parse(start);
-			LocalDate local_end_date = LocalDate.parse(end);
-			boolean is_hold = false;
-			int remain = 0;
-			
-			// 개최 중 여부
-			if(local_start_date.compareTo(now) <= 0 && local_end_date.compareTo(now) >= 0) {
-				is_hold = true;
-			}
-			
-			// D-DAY 계산
-			remain = (int)ChronoUnit.DAYS.between(now, local_start_date);
-			
-			// dto에 저장
-			dto.setIs_hold(is_hold);
-			dto.setRemain("D-" + Integer.toString(remain));
-		}
-		return list;
-	}
-	
-	public int mainWrite(BoardDTO dto) {
-		
-		int row = 0;
-		List<MultipartFile> list = dto.getFile_list();
-		ArrayList<String> path = new ArrayList<>();
-		String origin_path="";
-		if (!list.contains("@")) {			
-			for (MultipartFile f : list) {
-				if(f.isEmpty()) { break; }
-				String origin_file_name = f.getOriginalFilename();
-				path.add(origin_file_name);
+		// 다가오는 축제
+		public ArrayList<BoardDTO> select_coming() {
+			ArrayList<BoardDTO> list = dao.select_coming();
+			for(BoardDTO dto:list) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String start = sdf.format(dto.getStart_date());
+				String end = sdf.format(dto.getEnd_date());
+				LocalDate local_start_date = LocalDate.parse(start);
+				LocalDate local_end_date = LocalDate.parse(end);
+				boolean is_hold = false;
+				int remain = 0;
 				
-				String f_name = origin_file_name.substring(0, origin_file_name.indexOf("."));
-				String real_name = (f_name + ".");
-				origin_path += real_name;
-				dto.setFile_path(origin_path);
+				// 개최 중 여부
+				if(local_start_date.compareTo(now) <= 0 && local_end_date.compareTo(now) >= 0) {
+					is_hold = true;
+				}
+				
+				// D-DAY 계산
+				remain = (int)ChronoUnit.DAYS.between(now, local_start_date);
+				
+				
+				// dto에 저장
+				dto.setIs_hold(is_hold);
+				dto.setRemain("D-" + Integer.toString(remain));				
+
 			}
+			return list;
 		}
-		else {
-			dto.setFile_path(null);
+
+		// 상위 10개
+		public ArrayList<BoardDTO> select_top10() {
+			ArrayList<BoardDTO> list = dao.select_top10();
+			for(BoardDTO dto:list) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String start = sdf.format(dto.getStart_date());
+				String end = sdf.format(dto.getEnd_date());
+				LocalDate local_start_date = LocalDate.parse(start);
+				LocalDate local_end_date = LocalDate.parse(end);
+				boolean is_hold = false;
+				int remain = 0;
+				
+				// 개최 중 여부
+				if(local_start_date.compareTo(now) <= 0 && local_end_date.compareTo(now) >= 0) {
+					is_hold = true;
+				}
+				
+				// D-DAY 계산
+				remain = (int)ChronoUnit.DAYS.between(now, local_start_date);
+				
+				// dto에 저장
+				dto.setIs_hold(is_hold);
+				dto.setRemain("D-" + Integer.toString(remain));
+			}
+			return list;
 		}
 		
-		row = dao.mainWrite(dto);
-		return row;
-	}
+		public int mainWrite(BoardDTO dto) {
+			
+			int row = 0;
+			List<MultipartFile> list = dto.getFile_list();
+			String origin_path = "C:\\freefes_img\\" + dto.getTitle();		// 사진 저장 경로 (게시판 
+			String file_path = "";
+			int fileIdx = 0;
+			
+			for (MultipartFile f : list) {
+				if(f.isEmpty()) {
+					dto.setFile_path(null);
+					break;
+				}
+				fileIdx++;
+				String ext = f.getContentType().substring(f.getContentType().indexOf("/") + 1);		// 확장자
+				
+				File dest = new File(origin_path, fileIdx + "." + ext);
+				file_path += fileIdx + "&";
+				try {
+					if(dest.exists() == false) {
+						dest.mkdirs();
+					}
+					f.transferTo(dest);
+				} catch (IllegalStateException | IOException e) {
+					e.printStackTrace();
+				}
+			}
+			String posterExt = dto.getPoster().getContentType().substring(dto.getPoster().getContentType().indexOf("/") + 1);	// 포스터 확장자
+			File destination = new File(origin_path, "poster." + posterExt);
+			file_path += "poster." + posterExt;
+			
+			try {
+				if(destination.exists() == false) {
+					destination.mkdirs();
+				}
+				dto.getPoster().transferTo(destination);
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
 
-	/* 임시 게시판 코드 */
-	// 임시게시글 목록 불러오는 코드
-	public ArrayList<BoardDTO> select_temp_board(int member) {
-		return dao.select_temp_board(member);
-	}
+			dto.setFile_path(file_path);
+			
+			row = dao.mainWrite(dto);
+			return row;
+		}
 
-	// 새로운 임시저장글을 저장하는 코드
-	public int temp_board_save(BoardDTO dto) {
-		int row = dao.temp_board_save(dto);
-		System.out.println(row + "행이 temp_board에 추가/변경 되었습니다");
-		return row;
-	}
+		/* 임시 게시판 코드 */
+		// 임시게시글 목록 불러오는 코드
+		public ArrayList<BoardDTO> select_temp_board(int member) {
+			return dao.select_temp_board(member);
+		}
 
-	public BoardDTO load_temp_board(int idx) {
-		return dao.load_temp_board(idx);
-	}
+		// 새로운 임시저장글을 저장하는 코드
+		public BoardDTO temp_board_save(BoardDTO dto) {
+			int row = dao.temp_board_save(dto);
+			System.out.println(row + "행이 temp_board에 추가/변경 되었습니다");
+			return dao.load_after_save(dto);
+		}
 
-	public int temp_delete(int idx) {
-		return dao.temp_delete(idx);
-	}
+
+		public BoardDTO load_temp_board(int idx) {
+			return dao.load_temp_board(idx);
+		}
+
+		public int temp_delete(int idx) {
+			return dao.temp_delete(idx);
+		}
 	
 	
 	
@@ -141,11 +164,16 @@ public class Fes_boardService {
 	
 
 	// 해당 게시글을 불러오는 메서드
-	public BoardDTO get_main_board(int idx, BoardDTO dto) {
-		dto.setIdx(idx);
-		int count = 0;
-		dto.setCount(count++);
-		return dao.select_main_board(dto);
+	public BoardDTO get_main_board(BoardDTO dto) {
+		dto = dao.select_main_board(dto);
+		int count = dto.getCount();
+		dto.setCount(++count);
+		int row = dao.update_board_count(dto);
+		
+		if (row != 0) {
+			return dto;			
+		}
+		return null;
 	}
 
 	
@@ -187,6 +215,10 @@ public class Fes_boardService {
 		else {
 			return dao.select_search_All(fes_search_dto);
 		}
+	}
+
+	public List<BoardDTO> selectfav(int idx) {
+		return dao.selectfav(idx);
 	}
 
 

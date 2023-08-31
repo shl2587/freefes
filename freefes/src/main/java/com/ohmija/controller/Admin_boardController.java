@@ -16,24 +16,26 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ohmija.model.Admin_boardDTO;
+import com.ohmija.model.BoardDTO;
 import com.ohmija.model.MemberDTO;
 import com.ohmija.model.QnADTO;
 import com.ohmija.service.Admin_boardService;
-import com.ohmija.service.MemberService;
+import com.ohmija.service.Fes_boardService;
 import com.ohmija.service.QnAService;
 
 @Controller
 @RequestMapping("/admin_board")
 public class Admin_boardController {
 	
-	@Autowired
-	private MemberService memberService;
 
 	@Autowired
 	private Admin_boardService admin_boardService;
 	
 	@Autowired
 	private QnAService qnaService;
+	
+	@Autowired
+	private Fes_boardService fes_boardService;
 	
 	@RequestMapping("/admin_board")
 	public ModelAndView list() {
@@ -198,7 +200,6 @@ public class Admin_boardController {
 		    }
 		}
 		
-		
 		// 관리자 공지사항 보기
 		@GetMapping("/management_notice_view/{idx}")
 		public ModelAndView mng_notice_view(@PathVariable("idx") int idx) {
@@ -207,6 +208,66 @@ public class Admin_boardController {
 			mav.addObject("dto", dto);
 			return mav;
 		}
+		
+
+	    // 벤 처리된 회원 목록 불러오기
+	    @RequestMapping("/exclude_list")
+	    public ModelAndView bannedMembers() {
+	        ModelAndView mav = new ModelAndView("/admin_board/exclude_list");
+	        List<MemberDTO> list = admin_boardService.getBannedMembers();
+	        mav.addObject("list", list);
+	        return mav;
+	    }
+	    
+	    @GetMapping("/addExclude_member")
+	    public void addExcludeMember() {}
+		
+	    @PostMapping("/addExclude_member")
+	    public String addExcludeMember(String nickname, RedirectAttributes redirectAttributes) {
+	        MemberDTO member = admin_boardService.findMemberByNickname(nickname);
+	        if (member != null) {
+	            LocalDate banUntil = LocalDate.now().plusDays(3);
+	            admin_boardService.banMember(member.getIdx(), banUntil);  // 벤 처리
+	            redirectAttributes.addFlashAttribute("message", "회원이 3일 동안 벤 처리되었습니다.");
+	        } else {
+	            redirectAttributes.addFlashAttribute("message", "닉네임이 존재하지 않습니다. 다시 입력해주세요.");
+	        }
+	        return "redirect:/admin_board/exclude_list";
+	    }
+	    
+	    
+	    // 축제 게시글 신청 리스트
+	    @GetMapping("/confirm_list")
+	    public ModelAndView confirm_list() {
+		    ModelAndView mav = new ModelAndView("/admin_board/confirm_list");
+			List<BoardDTO> list = admin_boardService.confirm_selectAll();
+			mav.addObject("list", list);
+			return mav;
+		}
+		
+//	    // 축제 게시글 view
+//	    @GetMapping("/confirm_list_view/{idx}")
+//		public ModelAndView confirm_lsit_view(@PathVariable("idx") int idx) {
+//			ModelAndView mav = new ModelAndView("/admin_board/confirm_list_view");
+//			BoardDTO dto = admin_boardService.confirm_selectOne(idx);
+//			mav.addObject("dto", dto);
+//			return mav;
+//		}
+//		
+//		@PostMapping("/confirm_list_view/{idx}")
+//		public String insertConfirm(@PathVariable("idx") HttpServletRequest request, RedirectAttributes redirectAttributes) {
+//			HttpSession session = request.getSession();
+//		    BoardDTO dto = (BoardDTO)session.getAttribute("approve");
+//		    int approve = dto.getApprove();
+//		    
+//		    if(approve == 0) {
+//		        return "redirect:/admin_board/management__view";
+//		    }
+//	
+//			return "";
+//		}
+	    
+	    
 		
 	
 	@GetMapping("/{choice}")
