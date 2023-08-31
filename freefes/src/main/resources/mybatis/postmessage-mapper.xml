@@ -6,20 +6,20 @@
 <mapper namespace="com.ohmija.repository.PostMessageDAO">
 
 	
-<!-- 	<select id="findReciever" parameterType="string" resultType="int"> -->
-<!-- 		SELECT idx FROM member WHERE nickname = #{reciever} -->
+<!-- 	<select id="findreceiver" parameterType="string" resultType="int"> -->
+<!-- 		SELECT idx FROM member WHERE nickname = #{receiver} -->
 <!-- 	</select> -->
 	
 	<insert id="sendMessage" parameterType="message">
-		insert into post_message (writer, reciever, title, content, category)
+		insert into post_message (writer, receiver, title, content, category)
 			values 
-				(#{writer}, #{reciever}, #{title}, #{content}, #{category})
+				(#{writer}, #{receiver}, #{title}, #{content}, #{category})
 	</insert>
 	
 	<select id="selectMessage" parameterType="int" resultType="message">
 		SELECT pm.idx,
        		wm.nickname as writer_nickname,
-       		rm.nickname as reciever_nickname,
+       		rm.nickname as receiver_nickname,
        		pm.title,
        		pm.content,
       		pm.category,
@@ -27,8 +27,8 @@
        		pm.date_column
 		FROM post_message pm
 		JOIN member wm ON pm.writer = wm.idx
-		join member rm on pm.reciever = rm.idx 
-		WHERE pm.reciever = #{idx} or pm.writer = #{idx}
+		join member rm on pm.receiver = rm.idx 
+		WHERE pm.receiver = #{idx} or pm.writer = #{idx}
 	</select>
 	
 	<delete id="delete" parameterType="int">
@@ -38,7 +38,7 @@
 		<select id="select_SendMessage" parameterType="int" resultType="message">
 		SELECT pm.idx,
        		wm.nickname as writer_nickname,
-       		rm.nickname as reciever_nickname,
+       		rm.nickname as receiver_nickname,
        		pm.title,
        		pm.content,
       		pm.category,
@@ -46,13 +46,13 @@
        		pm.date_column
 		FROM post_message pm
 		JOIN member wm ON pm.writer = wm.idx
-		join member rm on pm.reciever = rm.idx 
+		join member rm on pm.receiver = rm.idx 
 		WHERE pm.writer = #{idx}
 	</select>
 		<select id="select_recievedMessage" parameterType="int" resultType="message">
 		SELECT pm.idx,
        		wm.nickname as writer_nickname,
-       		rm.nickname as reciever_nickname,
+       		rm.nickname as receiver_nickname,
        		pm.title,
        		pm.content,
       		pm.category,
@@ -60,8 +60,8 @@
        		pm.date_column
 		FROM post_message pm
 		JOIN member wm ON pm.writer = wm.idx
-		join member rm on pm.reciever = rm.idx 
-		WHERE pm.reciever = #{idx}
+		join member rm on pm.receiver = rm.idx 
+		WHERE pm.receiver = #{idx}
 	</select>
 	
 </mapper>

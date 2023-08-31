@@ -20,15 +20,15 @@ public class Post_messageService {
 	@Autowired private MemberDAO daoM;
 	
 	@Transactional
-	public int sendMessage (Post_messageDTO dtoP, int idx, String reciever_nickname) {
-		System.out.println("idx : "+idx+"reciever_nickname : "+reciever_nickname);
-		MemberDTO row1 = daoM.findReciever(reciever_nickname);
+	public int sendMessage (Post_messageDTO dtoP, int idx, String receiver_nickname) {
+		System.out.println("idx : "+idx+"receiver_nickname : "+receiver_nickname);
+		MemberDTO row1 = daoM.findreceiver(receiver_nickname);
 		System.out.println("row1 :"+row1);
-		int recieverIdx = row1.getIdx();
-		System.out.println("recieverIdx : " + recieverIdx);
-		dtoP.setReciever(recieverIdx);
+		int receiverIdx = row1.getIdx();
+		System.out.println("receiverIdx : " + receiverIdx);
+		dtoP.setreceiver(receiverIdx);
 		dtoP.setWriter(idx);
-		System.out.println("row1의 idx : "+ recieverIdx);
+		System.out.println("row1의 idx : "+ receiverIdx);
 		int row2 = 0;
 			if(row1.getIdx() != 0) {
 				row2 = dao.sendMessage(dtoP);
@@ -54,8 +54,8 @@ public class Post_messageService {
 		return dao.select_recievedMessage(idx);
 	}
 
-	public int reciever_nicknameCheck(String reciever_nickname) {
-		return daoM.reciever_nicknameCheck(reciever_nickname);
+	public int receiver_nicknameCheck(String receiver_nickname) {
+		return daoM.receiver_nicknameCheck(receiver_nickname);
 	}
 
 //	public int titleCheck(String titleInput) {

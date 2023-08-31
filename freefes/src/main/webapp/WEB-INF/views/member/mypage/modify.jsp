@@ -80,7 +80,7 @@
       alert('이까지 오나?')
       alert(count)
       if(count !=0){
-           window.location.href = '../passwd_chang' // 새로운 페이지로 이동
+           window.location.href = '../../qwer' // 새로운 페이지로 이동
       }
       else{
          return
@@ -119,12 +119,8 @@
 <script>
    const logLeaveBtn = document.getElementById('logLeaveBtn')
    
-   async function logLeaveHandler() {
-      const sessionId = document.getElementById('sessionId').value
-      alert('진짜 탈퇴각?')
-      const url = '${cpath}/logHandler/'+ sessionId
-      const count = await fetch(url).then(resp => resp.text())
-      console.log(count)
+   function logLeaveHandler() {
+	   window.location.href = '../../cancel' // 새로운 페이지로 이동
    }
    logLeaveBtn.addEventListener('click', logLeaveHandler)
    logLeaveBtn.addEventListener('mousedown', () => {

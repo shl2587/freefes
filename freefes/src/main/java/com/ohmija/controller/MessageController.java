@@ -29,19 +29,19 @@ public class MessageController {
 	}
 	
 	@PostMapping("/sendMessage/{idx}")
-	public String sendMessage(@PathVariable("idx")int idx, Post_messageDTO dtoP, String reciever_nickname) {
+	public String sendMessage(@PathVariable("idx")int idx, Post_messageDTO dtoP, String receiver_nickname) {
 		System.out.println("받는이 찾을꺼지?");
-			int row = post_messageService.sendMessage(dtoP, idx, reciever_nickname);
+			int row = post_messageService.sendMessage(dtoP, idx, receiver_nickname);
 			System.out.println("row : "+row);
 		return "redirect:/message/listMessage/{idx}";
 	}
 	
 	@GetMapping("/listMessage/{idx}")
-	public ModelAndView recieverMessage(@PathVariable("idx")int idx) {
+	public ModelAndView receiverMessage(@PathVariable("idx")int idx) {
 		ModelAndView mav = new ModelAndView("/message/listMessage");
 		List<Post_messageDTO> list = post_messageService.selectMessage(idx);
 //		System.out.println(list.get(0).getWriter_nickname());
-//		System.out.println(list.get(0).getReciever_nickname());
+//		System.out.println(list.get(0).getreceiver_nickname());
 		System.out.println("list : " + list);
 		mav.addObject("list", list);
 		return mav;
@@ -52,7 +52,7 @@ public class MessageController {
 		ModelAndView mav = new ModelAndView("/message/sendMessage_List");
 		List<Post_messageDTO> list = post_messageService.select_SendMessage(idx);
 //		System.out.println(list.get(0).getWriter_nickname());
-//		System.out.println(list.get(0).getReciever_nickname());
+//		System.out.println(list.get(0).getreceiver_nickname());
 		System.out.println("list : " + list);
 		mav.addObject("list", list);
 		return mav;
@@ -63,7 +63,7 @@ public class MessageController {
 		ModelAndView mav = new ModelAndView("/message/recievedMessage_List");
 		List<Post_messageDTO> list = post_messageService.recievedMessage_List(idx);
 //		System.out.println(list.get(0).getWriter_nickname());
-//		System.out.println(list.get(0).getReciever_nickname());
+//		System.out.println(list.get(0).getreceiver_nickname());
 		System.out.println("list : " + list);
 		mav.addObject("list", list);
 		return mav;

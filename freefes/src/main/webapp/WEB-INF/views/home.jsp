@@ -54,7 +54,16 @@
 					</button>
 				</a>
 			</li>
-			<li><a href="${cpath }/member/mypage/mypage/${login.idx}">마이페이지</a></li>
+			<c:if test="${login.role == 1 || login.role == 2 }">
+				<li><a href="${cpath }/member/mypage/mypage/${login.idx}">
+					<button><i class="fa-solid fa-address-book" style="color: #f2f5f7;"></i></button>
+				</a></li>
+			</c:if>
+			<c:if test="${login.role == 0 }">
+				<li><a href="${cpath }/admin_board/management_page">
+					<button><i class="fa-solid fa-address-book" style="color: #f2f5f7;"></i></button>
+				</a></li>
+			</c:if>
 		</c:if>
 		<!-- 드랍다운 버튼 -->
 		</ul>
@@ -64,17 +73,30 @@
 					<i class="fa-solid fa-arrow-down inactive-icon" style="color: #edeff3; display: none;"></i>
 				</button>
 			    <ul class="dropdown-menu">
-					<li class="festival"><a href="${cpath}/board/board_list">Festival</a></li>
-					<li><a href="${cpath}/admin_board/admin_board">공지사항</a></li>
-					<li><a href="${cpath}/chat/home">1:1문의</a></li>
-					<c:if test="${not empty login}">
-						<li><h3>나중에 ${nickname }님 환영합니다 형식으로 ㄱ</h3></li>
-						<li><a href="${cpath}/member/logout">로그아웃</a></li>
-						<li><a href="${cpath}/member/mypage/mypage/${login.idx}">마이페이지</a></li>
-					</c:if>
+					<li class="festival"><a href="${cpath}/fes_board/fes_board_list">Festival</a></li>
 					<c:if test="${empty login}">
 						<li><a href="${cpath}/member/login">로그인</a></li>
 					</c:if>
+					<c:if test="${not empty login}">
+						<c:if test="${login.role == 1 || login.role == 2 }">
+							<li>
+							  <h3 style="color: white; font-size:26px;">
+							    <span style="color: #FFD6A5;">'${login.nickname}'</span>님 축제를 시작해봐요!
+							  </h3>
+							</li>
+							<li><a href="${cpath}/member/mypage/mypage/">마이페이지</a></li>
+						</c:if>
+						<c:if test="${login.role == 0 }">
+							<li>
+							  <h3 style="color: white; font-size:26px;">
+							    <span style="color: #FFD6A5;">'${login.nickname}'</span>관리자님 어서오세요.
+							  </h3>
+							</li>
+							<li><a href="${cpath }/admin_board/management_page/">관리자 페이지</a></li>
+						</c:if>
+						<li><a href="${cpath}/member/logout">로그아웃</a></li>
+					</c:if>
+					<li><a href="${cpath}/admin_board/admin_board">고객센터</a></li>
 				</ul>
 			</div>
 	</div>
@@ -86,7 +108,7 @@
 			<div class="next">&gt;</div>
 			<c:forEach var="dto" items="${comming_list }" varStatus="status">
 				<div class="slide ${status.index == 0 ? 'active' : 'hidden' }" >
-					<a href="${cpath }/board/board_view/${dto.idx}">
+					<a href="${cpath }/fes_board/mainboard/${dto.idx}">
 						<img class="image" alt="${dto.file_name }" src="${cpath }/resources/img/${dto.file_path }">
 					</a>
 					
@@ -109,7 +131,7 @@
 </main>
 
 <!-- 스크롤 유도 -->
-<a href="#">
+<a class="scrollA" href="#">
    <span></span>
    <div class="scroll-text">Scroll</div>
 </a>

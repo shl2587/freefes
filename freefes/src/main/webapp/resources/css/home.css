@@ -14,11 +14,6 @@
 		margin-top: 100vh;
 	}
 	
-	
-	#homepage_logo > a {
-		color: #643624;
-	}
-	
 	.main_header {
 		z-index: 13;
 		position: fixed;
@@ -227,7 +222,7 @@
 
 /* 스크롤 유도 */
 
-	a {
+	.scrollA {
 	  padding-top: 60px;
 	}
 	

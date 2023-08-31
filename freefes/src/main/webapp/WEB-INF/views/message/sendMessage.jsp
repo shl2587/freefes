@@ -83,7 +83,7 @@
 	<form method="POST" id="aaaa">
 		<div class="sendAll">
 			<input type="hidden" name="writer" value="${login.idx }"> <input
-				id="reciever_nickname" type="text" name="reciever_nickname"
+				id="receiver_nickname" type="text" name="receiver_nickname"
 				placeholder="받는 사람의 닉네임"> <input id="title" type="text"
 				name="title" placeholder="제목(15자 이하)">
 			<textarea id="content" name="content" placeholder="내용 (300자 이하)"></textarea>
@@ -101,14 +101,14 @@
 </html>
 
 <script>
-var recieverInput = document.getElementById("reciever_nickname");
+var receiverInput = document.getElementById("receiver_nickname");
 var titleInput = document.getElementById("title");
 var contentInput = document.getElementById("content");
     var aaaa = document.getElementById("aaaa");
  // 추가 검증 함수 정의
-    async function isValidReciever(reciever) {
+    async function isValidreceiver(receiver) {
     	alert('들어오냐?')
-        const url1 = '${cpath}/reciever_nickname/' + reciever;
+        const url1 = '${cpath}/receiver_nickname/' + receiver;
         const count1 = await fetch(url1).then(resp => resp.text())
         alert('count1 :' + count1)
         return count1
@@ -135,12 +135,12 @@ var contentInput = document.getElementById("content");
         
 
         // 각 필드값이 비어있는지 확인
-        if (recieverInput.value.trim() === "" || titleInput.value.trim() === "" || contentInput.value.trim() === "") {
+        if (receiverInput.value.trim() === "" || titleInput.value.trim() === "" || contentInput.value.trim() === "") {
             alert("모든 필드를 채워주세요.")
             return; // event.preventDefault() 대신에 return을 사용하여 이벤트를 중지합니다.
         } else {
-            alert ('ㅁㄴㅇㄹ : ' + recieverInput.value)
-            if (await(isValidReciever(recieverInput.value))==0) { // await 추가
+            alert ('ㅁㄴㅇㄹ : ' + receiverInput.value)
+            if (await(isValidreceiver(receiverInput.value))==0) { // await 추가
                 alert("받는 사람의 닉네임이 올바르지 않습니다.")
                 event.preventDefault(); // 이벤트를 중지하지 않는다.
                 return

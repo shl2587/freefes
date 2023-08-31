@@ -5,19 +5,19 @@ import java.sql.Date;
 public class Post_messageDTO {
 //    idx                 number                  generated always as identity primary key,
 //    writer              number                  not null,   -- 보내는 사람
-//    reciever            number                  not null,   -- 받는 사람 (닉네임)
+//    receiver            number                  not null,   -- 받는 사람 (닉네임)
 //    title               varchar2(50)            not null,   -- 제목
 //    content             varchar2(1000)          not null,   -- 내용
 //    category            varchar2(20)            not null,   -- 관리자 or 사적 내용
 //    result              number                  default 0 check (result in (0, 1)), -- 알람
 	private int idx;
 	private int writer;
-	private int reciever;
+	private int receiver;
 	private String title;
 	private String content;
 	private String category;
 	private int result;
-	private int recieverIdx;
+	private int receiverIdx;
 	private Date date_column;
 	
 	public Date getDate_column() {
@@ -27,7 +27,7 @@ public class Post_messageDTO {
 		this.date_column = date_column;
 	}
 	private String writer_nickname;
-	private String reciever_nickname;
+	private String receiver_nickname;
 	
 	public String getWriter_nickname() {
 		return writer_nickname;
@@ -35,18 +35,18 @@ public class Post_messageDTO {
 	public void setWriter_nickname(String writer_nickname) {
 		this.writer_nickname = writer_nickname;
 	}
-	public String getReciever_nickname() {
-		return reciever_nickname;
+	public String getreceiver_nickname() {
+		return receiver_nickname;
 	}
-	public void setReciever_nickname(String reciever_nickname) {
-		this.reciever_nickname = reciever_nickname;
+	public void setreceiver_nickname(String receiver_nickname) {
+		this.receiver_nickname = receiver_nickname;
 	}
 	
-	public int getRecieverIdx() {
-		return recieverIdx;
+	public int getreceiverIdx() {
+		return receiverIdx;
 	}
-	public void setRecieverIdx(int recieverIdx) {
-		this.recieverIdx = recieverIdx;
+	public void setreceiverIdx(int receiverIdx) {
+		this.receiverIdx = receiverIdx;
 	}
 	public int getWriter() {
 		return writer;
@@ -54,11 +54,11 @@ public class Post_messageDTO {
 	public void setWriter(int writer) {
 		this.writer = writer;
 	}
-	public int getReciever() {
-		return reciever;
+	public int getreceiver() {
+		return receiver;
 	}
-	public void setReciever(int reciever) {
-		this.reciever = reciever;
+	public void setreceiver(int receiver) {
+		this.receiver = receiver;
 	}
 	public int getIdx() {
 		return idx;
