@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ohmija.model.BoardDTO;
 import com.ohmija.model.FavoritesDTO;
 import com.ohmija.model.MemberDTO;
 import com.ohmija.service.FavoritesService;
@@ -26,14 +25,17 @@ public class FavoritesAjaxController {
 										HttpSession session) {
 		
 		MemberDTO member_dto = (MemberDTO)session.getAttribute("login");
-		int login_idx = member_dto.getIdx();
-
-		HashMap<String, Object> favorites_result = new HashMap<>(); 
+		int login_idx = 0;
+				
+		login_idx = member_dto.getIdx();
 		FavoritesDTO favorites_dto = favoritesService.add_favorites(board_idx, login_idx);
-		System.out.println("추가각 : " + favorites_dto);
-		favorites_result.put("favorites_dto", favorites_dto);
 		
-		return favorites_dto;
+		if(login_idx != 0) {
+			return favorites_dto;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	@GetMapping("/favorites_delete/{idx}")
@@ -45,7 +47,6 @@ public class FavoritesAjaxController {
 		
 		HashMap<String, Object> favorites_delete = new HashMap<>(); 
 		FavoritesDTO favorites_dto = favoritesService.remove_favorites(board_idx, login_idx);
-		System.out.println("삭제각 : " + favorites_dto);
 		favorites_delete.put("favorites_dto", favorites_dto);
 	
 		return favorites_dto;

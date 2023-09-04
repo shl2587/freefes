@@ -11,7 +11,7 @@
 				 (select idx from board where idx = #{board}))
 	</insert>
 	
-	<select id="select_favorite_board" parameterType="favorites_board">
+	<select id="select_favorite_board" parameterType="favorites_board" resultType="favorites_board">
 		select * from favorites
 			where 
 				member = #{member}
@@ -27,4 +27,12 @@
 			and
 				board = #{board}
 	</delete>
+	
+	<select id="check_favorites_board" parameterType="favorites_board" resultType="int">
+		select count(*) from favorites
+			where 
+				member = #{member}
+			and
+				board = #{board}
+	</select>
 </mapper>

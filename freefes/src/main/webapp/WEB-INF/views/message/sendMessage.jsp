@@ -107,7 +107,7 @@ var contentInput = document.getElementById("content");
     var aaaa = document.getElementById("aaaa");
  // 추가 검증 함수 정의
     async function isValidreceiver(receiver) {
-    	alert('들어오냐?')
+       alert('들어오냐?')
         const url1 = '${cpath}/receiver_nickname/' + receiver;
         const count1 = await fetch(url1).then(resp => resp.text())
         alert('count1 :' + count1)
@@ -118,7 +118,7 @@ var contentInput = document.getElementById("content");
                 const url2 = '${cpath}/isValidTitle/' + title;
                 const count2 = await fetch(url2).then(resp => resp.text())
                 alert('count2 :' + count2)
-                return count2
+                return event.preventDefault()
             }
 
                 async function isValidContent(content) {
@@ -126,7 +126,7 @@ var contentInput = document.getElementById("content");
                     const url3 = '${cpath}/isValidContent/' + content;
                     const count3 = await fetch(url3).then(resp => resp.text())
                     alert('count3 :' + count3)
-                    return count3
+                    return event.preventDefault()
                 }
    
     async function submitHandler(event) {
@@ -151,12 +151,12 @@ var contentInput = document.getElementById("content");
                 event.preventDefault() // 이벤트를 중지하지 않는다.
                 return
             } 
-           	if (await(isValidContent(contentInput.value))==0) {
+              if (await(isValidContent(contentInput.value))==0) {
                 alert("내용은 300자 이하로 입력해주세요.")
                 event.preventDefault() // 이벤트를 중지하지 않는다.
                 return
             }  
-           	else {
+              else {
                 alert("쪽지를 보내기를 완료하였습니다.");
                 window.location.href='../message/listMessage'
             }

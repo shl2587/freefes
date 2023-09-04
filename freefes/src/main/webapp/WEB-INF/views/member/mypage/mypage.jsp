@@ -52,19 +52,3 @@
 	<div><a href="${cpath }/admin_board/admin_board">고객센터</a></div>
 </div>
 <hr>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".select_img img:not([src*='_ov.png'])").hover(
-                function() {
-                    var src = $(this).attr('src').replace('.png', '_ov.png');
-                    $(`.select_img img[src='${src}']`).css('opacity', '1');
-                },
-                function() {
-                    var src = $(this).attr('src').replace('.png', '_ov.png');
-                    $(`.select_img img[src='${src}']`).css('opacity', '0');
-                }
-            );
-        });
-    </script>

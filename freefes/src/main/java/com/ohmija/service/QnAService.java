@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ohmija.model.PostMessageDTO;
+import com.ohmija.model.Post_messageDTO;
 import com.ohmija.model.QnADTO;
 import com.ohmija.repository.QnADAO;
 
@@ -35,7 +35,7 @@ public class QnAService {
 	
 
 	public void sendMessage(QnADTO qna) {
-		PostMessageDTO message = new PostMessageDTO();
+		Post_messageDTO message = new Post_messageDTO();
 		message.setWriter(0); // 관리자 role 0
 		message.setReceiver(qna.getMember()); // 질문 작성 회원
 		message.setTitle("1:1 문의 답변");

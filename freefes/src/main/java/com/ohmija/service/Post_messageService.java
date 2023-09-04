@@ -26,7 +26,7 @@ public class Post_messageService {
 		System.out.println("row1 :"+row1);
 		int receiverIdx = row1.getIdx();
 		System.out.println("receiverIdx : " + receiverIdx);
-		dtoP.setreceiver(receiverIdx);
+		dtoP.setReceiver(receiverIdx);
 		dtoP.setWriter(idx);
 		System.out.println("row1의 idx : "+ receiverIdx);
 		int row2 = 0;

@@ -154,4 +154,28 @@ document.querySelector('.hamburger button').addEventListener('click', function()
 		  }
 		});
 
+function total_search() {
+	$(document).ready(function () {
+	    const total_search_form = $("#total_search_form");
+	    const search_input = $("#search_input");
+	    const search_results = $("#search_results");
 
+	    total_search_form.submit(function (event) {
+	        event.preventDefault(); // 기본 폼 제출 동작을 막음
+
+	        const search_term = searchInput.val().toLowerCase();
+	        searchResults.empty(); // 이전 검색 결과를 초기화
+
+	        // 웹 페이지 내의 모든 요소를 순회하며 검색어와 일치하는 것을 찾습니다.
+	        const all_elements = $("body *");
+
+	        all_elements.each(function () {
+	            const content = $(this).text().toLowerCase();
+	            if (content.includes(search_term)) {
+	                const result_item = $("<div>").text(content);
+	                search_results.append(result_item);
+	            }
+	        })
+	    })
+	})
+}		

@@ -86,7 +86,7 @@ tr:hover {
 <div class="listM">
 	<a href="${cpath }/message/listMessage/${login.idx}">전체 쪽지 목록</a> <a
 		href="${cpath }/message/sendMessage_List/${login.idx}">보낸 쪽지 목록</a> <a
-		href="${cpath }/message/recievedMessage_List/${login.idx}">받은 쪽지
+		href="${cpath }/message/receivedMessage_List/${login.idx}">받은 쪽지
 		목록</a> <a href="${cpath }/message/sendMessage/${login.idx}">쪽지보내기</a>
 </div>
 <br>

@@ -20,14 +20,15 @@ public class Post_messageDTO {
 	private int receiverIdx;
 	private Date date_column;
 	
+	private String writer_nickname;
+	private String receiver_nickname;
+	
 	public Date getDate_column() {
 		return date_column;
 	}
 	public void setDate_column(Date date_column) {
 		this.date_column = date_column;
 	}
-	private String writer_nickname;
-	private String receiver_nickname;
 	
 	public String getWriter_nickname() {
 		return writer_nickname;
@@ -35,17 +36,17 @@ public class Post_messageDTO {
 	public void setWriter_nickname(String writer_nickname) {
 		this.writer_nickname = writer_nickname;
 	}
-	public String getreceiver_nickname() {
+	public String getReceiver_nickname() {
 		return receiver_nickname;
 	}
-	public void setreceiver_nickname(String receiver_nickname) {
+	public void setReceiver_nickname(String receiver_nickname) {
 		this.receiver_nickname = receiver_nickname;
 	}
 	
-	public int getreceiverIdx() {
+	public int getReceiverIdx() {
 		return receiverIdx;
 	}
-	public void setreceiverIdx(int receiverIdx) {
+	public void setReceiverIdx(int receiverIdx) {
 		this.receiverIdx = receiverIdx;
 	}
 	public int getWriter() {
@@ -54,10 +55,10 @@ public class Post_messageDTO {
 	public void setWriter(int writer) {
 		this.writer = writer;
 	}
-	public int getreceiver() {
+	public int getReceiver() {
 		return receiver;
 	}
-	public void setreceiver(int receiver) {
+	public void setReceiver(int receiver) {
 		this.receiver = receiver;
 	}
 	public int getIdx() {

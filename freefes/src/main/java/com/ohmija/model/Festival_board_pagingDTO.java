@@ -23,36 +23,36 @@ public class Festival_board_pagingDTO {
 		this.board_page_count = board_page_count;
 		
 		total_count = board_page_count / per_page;
-		
 		if(board_page_count % per_page != 0) {
 			total_count += 1;			
 		}
 		
-		if (request_page > total_count) {
-			request_page = total_count;
-			this.request_page = request_page;
-		}
-		if (request_page < 1) {
-			request_page = 1;
-			this.request_page = request_page;
-		}
+		
 		page_begin = ((request_page - 1) / per_section) * per_section + 1;
 		page_end = page_begin + per_section - 1;
 		if (page_end >= total_count) {
 			page_end = total_count;
 		}
 		
-		
+	
 		offset = (request_page - 1) * per_section;
 		
 		prev = false;
 		next = false;
 		
-		if (request_page != 1 && request_page <= total_count) {
+		if (request_page > 1 && request_page <= total_count) {
 			prev = true;
 		}
 		if (request_page < total_count) {
 			next = true;
+		}
+		if (request_page < 1) {
+			page_begin = 1;
+			this.request_page = 1;
+		}
+		if (request_page > total_count) {
+			page_end = total_count;
+			this.request_page = total_count;
 		}
 	}
 		
