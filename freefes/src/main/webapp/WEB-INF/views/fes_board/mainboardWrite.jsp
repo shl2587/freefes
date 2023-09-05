@@ -25,7 +25,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	<form method="POST" enctype="multipart/form-data" id="form" action="${cpath }/fes_board/mainboardWrite">
+	<form method="POST" enctype="multipart/form-data" id="form">
 		<input type="hidden" name="member" value="${login.idx }">
 		<p>
 			<select id="local_gov" name="region" required>

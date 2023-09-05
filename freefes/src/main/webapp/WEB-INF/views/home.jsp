@@ -85,7 +85,7 @@
 							    <span style="color: #FFD6A5;">'${login.nickname}'</span>님 축제를 시작해봐요!
 							  </h3>
 							</li>
-							<li><a href="${cpath}/member/mypage/mypage/">마이페이지</a></li>
+							<li><a href="${cpath}/member/mypage/mypage/${login.idx}">마이페이지</a></li>
 						</c:if>
 						<c:if test="${login.role == 0 }">
 							<li>

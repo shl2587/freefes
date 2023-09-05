@@ -129,137 +129,141 @@ function update_region_section(seleted_option, initial_region_section = null) {
 }
 
 
-let cached_results = null
-let query_string = null
-// 페이지 로드 시 초기 검색 수행
-$(document).ready(function () {
-	const initialFormData = getFormDataFromURL();
-	performSearch(initialFormData);
-});
 
-$("form").on("submit", function (event) {
-    event.preventDefault(); // 기본 폼 제출 동작을 막음
-    const form_data = getFormDataFromInputs(); // 폼 데이터를 가져옴
-    performSearch(form_data); // 검색을 수행
-});
 
-function getFormDataFromInputs() {
-    return {
-        region: $("#local_gov").val(),
-        region_section: $("#region_section").val(),
-        festival_category: $("#festival_category").val(),
-        start_date: $("#start_date").val(),
-        end_date: $("#end_date").val(),
-        search_method: $("#search_method").val(),
-        fes_keyword: $("#search").val(),
-        request_page: 1, // 페이지 번호 초기화
-    };
-}
 
-// 페이징 링크 클릭 시
-$("#result_div").on("click", ".page-link", function (event) {
-	event.preventDefault()
-	const page = $(this).text();
+//$(document).ready(function () {
+	let query_string = null
+	
 	const form_data = getFormDataFromInputs();
-
-	// 페이지 번호 업데이트
-	form_data.request_page = parseInt(page);
-
-	performSearch(form_data);
-});
-
-// URL에서 쿼리 파라미터를 읽어서 form_data 객체를 반환하는 함수
-function getFormDataFromURL() {
-	const searchParams = new URLSearchParams(window.location.search);
-	const form_data = {
-		region: searchParams.get("region"),
-		region_section: searchParams.get("region_section"),
-		festival_category: searchParams.get("festival_category"),
-		start_date: searchParams.get("start_date"),
-		end_date: searchParams.get("end_date"),
-		search_method: searchParams.get("search_method"),
-		fes_keyword: searchParams.get("fes_keyword"),
-		request_page: searchParams.get("request_page"),
-	};
-
-	return form_data;
-}
-
-// 검색 요청을 처리하는 함수
-function performSearch(form_data) {
-	$.ajax({
-		type: "GET",
-		url: cpath + "/fes_board/board_search_list",
-		data: form_data,
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		success: function (response) {
-			cached_results = response
-			
-			query_string = $.param(getFormDataFromInputs())
-			query_string = query_string.substring(0, query_string.indexOf("&request"))
-			update_paging(cached_results.fes_paging_dto, query_string)
-			updateResultsOnPage();
-
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-			console.log("AJAX Error:", textStatus, errorThrown);
-		},
-	});
-}
-
-// 페이지 업데이트 함수
-function updateResultsOnPage() {
-	const result_div = $("#result_div");
-	result_div.empty();
-
-	if (cached_results === null) {
-		return; // 캐싱된 결과가 없으면 아무 것도 표시하지 않음
+    performSearch(form_data);
+    
+    // 검색 폼 제출 시 검색 수행
+    $("#fes_search_form").on("submit", function (event) {
+        event.preventDefault();
+        const form_data = getFormDataFromInputs();
+        performSearch(form_data);
+    });
+	
+	
+	function getFormDataFromInputs() {
+	    return {
+	        region: $("#local_gov").val(),
+	        region_section: $("#region_section").val(),
+	        festival_category: $("#festival_category").val(),
+	        start_date: $("#start_date").val(),
+	        end_date: $("#end_date").val(),
+	        search_method: $("#search_method").val(),
+	        fes_keyword: $("#search").val(),
+	        request_page: 1, // 페이지 번호 초기화
+	    };
 	}
-
-	const board_list = cached_results.fes_boardList;
-	if (typeof board_list === 'string') {
-		const festival_list = `
-            <div class="festival_list">
-                <div>${board_list}</div>
-            </div>`;
-		result_div.append(festival_list);
-	} else {
-		board_list.forEach(function (board) {
-			const festival_list = `
-                <div class="festival_list">
-                    <a href="${cpath}/fes_board/mainboard/${board.idx}">
-                        ${board.idx} ${board.title} ${board.count}
-                    </a>
-                </div>`;
-			result_div.append(festival_list);
+	
+	
+	// 페이징 링크 클릭 시 검색 수행
+    $("#result_div").on("click", ".page-link", function (event) {
+        event.preventDefault();
+        const page = $(this).text();
+        const form_data = getFormDataFromURL();
+        form_data.request_page = parseInt(page);
+        performSearch(form_data);
+    });
+	
+	// URL에서 쿼리 파라미터를 읽어서 form_data 객체를 반환하는 함수
+	function getFormDataFromURL() {
+		const searchParams = new URLSearchParams(window.location.search);
+		const form_data = {
+			region: searchParams.get("region"),
+			region_section: searchParams.get("region_section"),
+			festival_category: searchParams.get("festival_category"),
+			start_date: searchParams.get("start_date"),
+			end_date: searchParams.get("end_date"),
+			search_method: searchParams.get("search_method"),
+			fes_keyword: searchParams.get("fes_keyword"),
+			request_page: searchParams.get("request_page"),
+		};
+	
+		return form_data;
+	}
+	
+	//파라미터 업데이트 및 URL 업데이트
+	function updateURLWithFormData(form_data) {
+	    const searchParams = form_data
+	    for (const key in form_data) {
+	        if (form_data[key]) {
+	            searchParams.set(key, form_data[key]);
+	        }
+	    }
+	
+	    const newURL = `${window.location.pathname}?${searchParams.toString()}`;
+	    window.history.pushState({ path: newURL }, "", newURL);
+	}
+	
+	// 검색 요청을 처리하는 함수
+	function performSearch(form_data) {
+		$.ajax({
+			type: "GET",
+			url: cpath + "/fes_board/board_search_list",
+			data: form_data,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			success: function (response) {
+				const result_div = $("#result_div")
+				result_div.empty()
+				
+				const board_list = response.fes_boardList
+				
+				if (typeof board_list === 'string') {
+					const festival_list = `
+			            <div class="festival_list">
+			                <div>${board_list}</div>
+			            </div>`;
+					result_div.append(festival_list);
+				} 
+				else {
+					board_list.forEach(function (board) {
+						const festival_list = `
+			                <div class="festival_list">
+			                    <a href="${cpath}/fes_board/mainboard/${board.idx}">
+			                        ${board.idx} ${board.title} ${board.count}
+			                    </a>
+			                </div>`
+						result_div.append(festival_list)
+					})
+				}
+				
+				query_string = $.param(getFormDataFromInputs())
+				console.log(query_string)
+				updateURLWithFormData(form_data)
+				update_paging(response.fes_paging_dto, query_string)
+				
+				
+	
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				console.log("AJAX Error:", textStatus, errorThrown);
+			},
 		});
 	}
-
-	update_paging(cached_results.fes_paging_dto, query_string)
-}
-
-// 페이징 업데이트 함수 (기존 코드)
-function update_paging(paging_data, query_string) {
-	const fes_board_paging = $(".fes_board_paging");
-	if (paging_data === null) {
-		fes_board_paging.remove();
-	} else {
+	
+	
+	// 페이징 업데이트 함수 (기존 코드)
+	function update_paging(paging_data, query_string) {
+		const fes_board_paging = $(".fes_board_paging");
 		fes_board_paging.empty();
 		if (paging_data.prev && paging_data.page_begin > 1) {
 			fes_board_paging.append(`<a class="page-link" href="${cpath}/fes_board/fes_board_list?request_page=${paging_data.page_begin - 1}&` + query_string + `">◀이전</a>`);
 		}
-
+	
 		for (let page_number = paging_data.page_begin; page_number <= paging_data.page_end; page_number++) {
 			fes_board_paging.append(`<a class="page-link" href="${cpath}/fes_board/fes_board_list?` + query_string + `&request_page=${page_number}">[${page_number}]</a>`);
 		}
-
+	
 		if (paging_data.next && paging_data.page_end < paging_data.total_count) {
 			fes_board_paging.append(`<a class="page-link" href="${cpath}/fes_board/fes_board_list?request_page=${paging_data.page_end + 1}&` + query_string + `">다음▶</a>`);
 		}
 	}
-}
 
-
+//})
 

@@ -17,7 +17,7 @@
 
 <div id="b_fes_list">
 	<div class="b_search">
-		<form>
+		<form id="fes_search_form">
 			<p>
 				<select id="local_gov" name="region" >
 					<option value="">=== 시 / 도 선택 ===</option>
@@ -70,7 +70,6 @@
 	</div>
 
 	<div id="result_div">
-		
 		<c:forEach var="board_list" items="${fes_boardList }">
 			<div class="festival_list">
 				<a href="${cpath }/fes_board/mainboard/${board_list.idx}">
@@ -80,8 +79,10 @@
 				</a>
 			</div>
 		</c:forEach>
-		<a href="${cpath }/fes_board/mainboardWrite/${login.idx}"><button>글쓰기</button></a>
 	</div>
+	<a href="${cpath }/fes_board/mainboardWrite/${login.idx}">
+		<button>글쓰기</button>
+	</a>
 	<div class="fes_board_paging">
 		<c:if test="${fes_paging_dto.prev && fes_paging_dto.page_begin > 1}">
 			<a href="${cpath }/fes_board/fes_board_list?request_page=
@@ -109,7 +110,6 @@
 
 <script>
 
-
 $(function () {
 	local_gov_list()
 	const initial_local_gov = "${param.region}"
@@ -125,6 +125,7 @@ $(function() {
 	$("#search_method").val("${param.search_method}").attr("selected", "selected")
 	$("#search").val("${param.fes_keyword}")
 })
+
 
 </script>
 

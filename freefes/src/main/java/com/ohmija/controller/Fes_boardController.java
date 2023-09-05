@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ohmija.component.FesboardComponent;
 import com.ohmija.model.BoardDTO;
-import com.ohmija.model.FavoritesDTO;
 import com.ohmija.model.Festival_board_pagingDTO;
 import com.ohmija.service.Fes_boardService;
 
@@ -26,6 +26,7 @@ import com.ohmija.service.Fes_boardService;
 public class Fes_boardController {
 	
 	@Autowired Fes_boardService fes_boardService;
+	@Autowired HttpSession session;
 	
 	// 동영 코드
 	// 임시 저장 선택
@@ -39,7 +40,7 @@ public class Fes_boardController {
 	}
 	
 	// 게시글 작성
-	@PostMapping("/mainboardWrite")
+	@PostMapping("/mainboardWrite/{member}")
 	public String mainWrite(BoardDTO dto) {
 		int row = 0;
 		row = fes_boardService.mainWrite(dto);
@@ -72,8 +73,7 @@ public class Fes_boardController {
 	public ModelAndView main_board(BoardDTO dto, HttpSession session) {
 		ModelAndView mav = new ModelAndView("/fes_board/mainboard");
 		
-		long last_access = session.getLastAccessedTime();
-		session.setAttribute("last_access", last_access);
+		
 		
 		BoardDTO board_dto = fes_boardService.get_main_board(dto, session);
 		int check_favorites = fes_boardService.check_favorites_board(dto, session);

@@ -171,30 +171,18 @@ public class Fes_boardService {
 
 	// 해당 게시글을 불러오는 메서드
 	public BoardDTO get_main_board(BoardDTO board_dto, HttpSession session) {
-		
-		
-		long last_access = 0;
-		if (session.getAttribute("last_access") != null) {
-			last_access =(long)session.getAttribute("last_access");
-		}
-		
-		
-		long current_time =System.currentTimeMillis();
 		int row = 0;
-		if(current_time - last_access > 24*60*601000){
+		if (session.getAttribute("last_access") == null) {
 			int count = board_dto.getCount();
-			board_dto.setCount(++count);			
+			board_dto.setCount(++count);
 			row = dao.update_board_count(board_dto);
 		}
-		
+		else {
 			
-
-		if (row != 0) {
-			board_dto = dao.select_main_board(board_dto);
-			return board_dto;			
 		}
+		System.out.printf("%d행 조회수 업데이트 성공\n", row);
 		
-		return board_dto;
+		return dao.select_main_board(board_dto);
 	}
 
 	
@@ -244,9 +232,8 @@ public class Fes_boardService {
 
 	public int check_favorites_board(BoardDTO board_dto, HttpSession session) {
 		FavoritesDTO favorites_dto = new FavoritesDTO();
-		MemberDTO member_dto = (MemberDTO) session.getAttribute("login");
-		
-		if(member_dto.getIdx() != 0) {
+		if(session.getAttribute("login") != null) {
+			MemberDTO member_dto = (MemberDTO) session.getAttribute("login");
 			favorites_dto.setMember(member_dto.getIdx());
 			favorites_dto.setBoard(board_dto.getIdx());
 			return favoritesDao.check_favorites_board(favorites_dto);			
