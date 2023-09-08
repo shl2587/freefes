@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ohmija.repository.ReplyDAO">
+
+	<!-- 페이징을 위한 모든 게시물 개수 불러오기 -->
+	<select id="select_total_page" parameterType="int"
+		resultType="int">
+		SELECT COUNT(b.idx)
+		FROM board b
+		JOIN reply r ON b.idx = r.board
+		WHERE #{idx} = r.member
+	</select>
+
+	<!-- 기본 페이징 -->
+	<select id="select_reply" parameterType="reply_page"
+		resultType="reply">
+SELECT 
+    r.*,
+    b.title, b.content 
+FROM 
+    reply r
+JOIN 
+    member m ON r.member = m.idx
+JOIN 
+    board b ON r.board = b.idx
+WHERE 
+    r.member = #{idx}
+ORDER BY 
+    r.idx DESC
+OFFSET #{offset} ROWS
+FETCH NEXT #{per_page} ROWS ONLY
+	</select>
+</mapper>
