@@ -19,7 +19,9 @@ public class BanInterceptor implements HandlerInterceptor {
 
         if (member != null) {
             Date ban_until = member.getBan_until();
+            System.out.println(ban_until);
             Date currentDate = new Date();
+            System.out.println(currentDate);
             if (ban_until != null && ban_until.after(currentDate)) {
                 response.sendRedirect("/freefes/ban_Page");
                 return false;

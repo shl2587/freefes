@@ -18,6 +18,7 @@
 		<typeAlias type="com.ohmija.model.Festival_board_pagingDTO" alias="fes_board_page"/>
 		<typeAlias type="com.ohmija.model.Fes_searchDTO" alias="fes_search"/>
 		<typeAlias type="com.ohmija.model.FavoritesDTO" alias="favorites_board"/>
+		<typeAlias type="com.ohmija.model.ReplyDTO" alias="reply"/>
 		
 		<!-- 도윤 -->
 		<typeAlias type="com.ohmija.model.Admin_boardDTO" alias="adminboard"/>
@@ -25,7 +26,6 @@
    		
    		<!-- 병학, 계립 -->
    		<typeAlias type="com.ohmija.model.MemberDTO" alias="member"/>
-		<typeAlias type="com.ohmija.model.Post_messageDTO" alias="message"/>
-		<typeAlias type="com.ohmija.model.ReplyDTO" alias="reply"/>
+		<typeAlias type="com.ohmija.model.PostMessageDTO" alias="message"/>
 	</typeAliases>
 </configuration>

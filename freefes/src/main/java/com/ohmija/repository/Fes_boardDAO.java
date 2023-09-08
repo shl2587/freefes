@@ -91,6 +91,10 @@ public interface Fes_boardDAO {
 	// 계립
 	List<BoardDTO> selectfav(int idx);
 
+	List<BoardDTO> selectfav(int idx);
+
+	void grade_update(BoardDTO boardDTO);
+
 
 
 	

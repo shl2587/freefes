@@ -38,7 +38,7 @@ public class BoardDTO {
 	private String content;
 	private int count;
 	private int favorites;
-	private int grade;
+	private float grade;
 	private String region;
 	private String festival_category;
 	private String period;
@@ -129,10 +129,10 @@ public class BoardDTO {
 	public void setFavorites(int favorites) {
 		this.favorites = favorites;
 	}
-	public int getGrade() {
+	public float getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
+	public void setGrade(float grade) {
 		this.grade = grade;
 	}
 	public String getRegion() {

@@ -1,5 +1,39 @@
 'use strict'
 
+//불꽃놀이
+setInterval(createFirework, 800);
+
+function createFirework() {
+    const firework = document.createElement("div");
+    firework.className = 'firework';
+  
+    for (let i = 0; i < 50; i++) {
+        const trail = document.createElement('div');
+        trail.className = 'trail';
+        trail.style.backgroundColor = getRandomColor();
+        trail.style.transform = `rotate(${Math.random() * 360}deg)`;
+        trail.style.animationDelay = `${Math.random() * 0.3}s`;
+        firework.appendChild(trail);
+    }
+    firework.style.left = Math.random() * window.innerWidth + "px";
+    firework.style.bottom = Math.random() * window.innerWidth + "px";
+    firework.style.scale = Math.random();
+    document.body.appendChild(firework);
+    setTimeout(() => {
+        firework.remove();
+    }, 2000);
+  };
+  
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+
 // 배너 슬라이드 기능
 const prev = document.querySelector('.prev')
 const next = document.querySelector('.next')
@@ -38,6 +72,8 @@ function prev_click() {
 	slide[current_idx].classList.add('active')
 	banner_color_change(slide[current_idx])
  }
+
+
 
 
 // 포스터 사진 색에 따른 배너 배경 색 설정
