@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ohmija.model.Post_messageDTO;
-import com.ohmija.service.MemberService;
 import com.ohmija.service.Post_messageService;
 
 @Controller
@@ -28,9 +27,7 @@ public class MessageController {
 	
 	@PostMapping("/sendMessage/{idx}")
 	public String sendMessage(@PathVariable("idx")int idx, Post_messageDTO dtoP, String receiver_nickname) {
-		System.out.println("받는이 찾을꺼지?");
-			int row = post_messageService.sendMessage(dtoP, idx, receiver_nickname);
-			System.out.println("row : "+row);
+		post_messageService.sendMessage(dtoP, idx, receiver_nickname);
 		return "redirect:/message/listMessage/{idx}";
 	}
 	
@@ -38,9 +35,6 @@ public class MessageController {
 	public ModelAndView receiverMessage(@PathVariable("idx")int idx) {
 		ModelAndView mav = new ModelAndView("/message/listMessage");
 		List<Post_messageDTO> list = post_messageService.selectMessage(idx);
-//		System.out.println(list.get(0).getWriter_nickname());
-//		System.out.println(list.get(0).getreceiver_nickname());
-		System.out.println("list : " + list);
 		mav.addObject("list", list);
 		return mav;
 	}
@@ -49,9 +43,6 @@ public class MessageController {
 	public ModelAndView sendMessage_List(@PathVariable("idx")int idx) {
 		ModelAndView mav = new ModelAndView("/message/sendMessage_List");
 		List<Post_messageDTO> list = post_messageService.select_SendMessage(idx);
-//		System.out.println(list.get(0).getWriter_nickname());
-//		System.out.println(list.get(0).getreceiver_nickname());
-		System.out.println("list : " + list);
 		mav.addObject("list", list);
 		return mav;
 	}
@@ -59,12 +50,10 @@ public class MessageController {
 	@GetMapping("/recievedMessage_List/{idx}")
 	public ModelAndView recievedMessage_List(@PathVariable("idx")int idx) {
 		ModelAndView mav = new ModelAndView("/message/recievedMessage_List");
-		List<Post_messageDTO> list = post_messageService.recievedMessage_List(idx);
-//		System.out.println(list.get(0).getWriter_nickname());
-//		System.out.println(list.get(0).getreceiver_nickname());
-		System.out.println("list : " + list);
+		List<Post_messageDTO> list = post_messageService.receivedMessage_List(idx);
 		mav.addObject("list", list);
 		return mav;
 	}
+	
 
 }

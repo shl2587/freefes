@@ -9,20 +9,25 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ohmija.model.BoardDTO;
-import com.ohmija.model.Favorites_pagingDTO;
+import com.ohmija.model.FavoritesDTO;
 import com.ohmija.model.Fes_searchDTO;
 import com.ohmija.model.Festival_board_pagingDTO;
+import com.ohmija.model.MemberDTO;
+import com.ohmija.repository.FavoritesDAO;
 import com.ohmija.repository.Fes_boardDAO;
 
 @Service
 public class Fes_boardService {
 
 	@Autowired private Fes_boardDAO dao;
+	@Autowired private FavoritesDAO favoritesDao;
 	private LocalDate now = LocalDate.now();
 	
 	// 동영 코드
@@ -165,16 +170,31 @@ public class Fes_boardService {
 	
 
 	// 해당 게시글을 불러오는 메서드
-	public BoardDTO get_main_board(BoardDTO dto) {
-		dto = dao.select_main_board(dto);
-		int count = dto.getCount();
-		dto.setCount(++count);
-		int row = dao.update_board_count(dto);
+	public BoardDTO get_main_board(BoardDTO board_dto, HttpSession session) {
 		
-		if (row != 0) {
-			return dto;			
+		
+		long last_access = 0;
+		if (session.getAttribute("last_access") != null) {
+			last_access =(long)session.getAttribute("last_access");
 		}
-		return null;
+		
+		
+		long current_time =System.currentTimeMillis();
+		int row = 0;
+		if(current_time - last_access > 24*60*601000){
+			int count = board_dto.getCount();
+			board_dto.setCount(++count);			
+			row = dao.update_board_count(board_dto);
+		}
+		
+			
+
+		if (row != 0) {
+			board_dto = dao.select_main_board(board_dto);
+			return board_dto;			
+		}
+		
+		return board_dto;
 	}
 
 	
@@ -188,7 +208,7 @@ public class Fes_boardService {
 		}
 	}
 
-	public List<BoardDTO> fes_board_selectAll
+	public List<BoardDTO> fes_search_selectAll
 		(Fes_searchDTO fes_search, Festival_board_pagingDTO fes_paging_dto) {
 		Fes_searchDTO fes_search_dto = new Fes_searchDTO();
 		
@@ -218,13 +238,25 @@ public class Fes_boardService {
 		}
 	}
 
-	public int select_my_board_list(int idx) {
-		return dao.select_my_board_list(idx);
+	public List<BoardDTO> selectfav(int idx) {
+		return dao.selectfav(idx);
 	}
 
-	public List<BoardDTO> my_board_selectAll(Festival_board_pagingDTO fes_paging_dto) {
-		return dao.my_board_selectAll(fes_paging_dto);
+	public int check_favorites_board(BoardDTO board_dto, HttpSession session) {
+		FavoritesDTO favorites_dto = new FavoritesDTO();
+		MemberDTO member_dto = (MemberDTO) session.getAttribute("login");
+		
+		if(member_dto.getIdx() != 0) {
+			favorites_dto.setMember(member_dto.getIdx());
+			favorites_dto.setBoard(board_dto.getIdx());
+			return favoritesDao.check_favorites_board(favorites_dto);			
+		}
+		else {
+			return 0;
+		}
 	}
+
+
 
 	
 }

@@ -1,5 +1,7 @@
 package com.ohmija.controller;
 
+
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,37 +17,31 @@ import com.ohmija.service.MemberService;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-
-	@Autowired
-	private MemberService memberService;
-
+	
+	@Autowired private MemberService memberService;
+	
 	@GetMapping("/login")
-	public void login() {
-	}
-
+	public void login() {}
+	
 	@PostMapping("/login")
 	public String login(MemberDTO dto, HttpSession session) {
-		MemberDTO login = memberService.login(dto);
+		MemberDTO login =  memberService.login(dto);
 		session.setAttribute("login", login);
 		return "redirect:/";
 	}
 
 	@GetMapping("/findId")
-	public void findId() {
-	}
-
+	public void findId() {}
+	
 	@GetMapping("repw_email")
-	public void repw_email() {
-	}
+	public void repw_email() {}
 
 	@GetMapping("repw")
-	public void repw() {
-	}
-
+	public void repw() {}
+	
 	@GetMapping("verify")
-	public void verify() {
-	}
-
+	public void verify() {}
+	
 	@PostMapping("/verify")
 	public ModelAndView verify1(MemberDTO dto) {
 		ModelAndView mav = new ModelAndView("/member/verify");
@@ -55,7 +51,6 @@ public class MemberController {
 		mav.addObject("verify2", dto.getVerify2());
 		return mav;
 	}
-
 	@PostMapping("/answer")
 	public String answer(MemberDTO dto) {
 		System.out.println("answer 1 = " + dto.getAnswer1());
@@ -65,49 +60,36 @@ public class MemberController {
 		System.out.println(row);
 		return "redirect:/member/login";
 	}
+	
 
+	
 	// 로그아웃
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
-
+	
 	@GetMapping("/terms")
 	public void terms() {
 	}
-
+	
 	@GetMapping("/join")
-	public void join() {
-	}
-
+	public void join() {}
+	
 	@PostMapping("/join")
-	public String join(MemberDTO dto, String userpw, String nickname) {
-		System.out.println(dto.getUserid());
-		System.out.println(dto.getUserpw());
-		System.out.println(dto.getNickname());
+	public String join(MemberDTO dto,String userpw, String nickname){
 		int row = memberService.insert(dto);
 		return "redirect:/";
 	}
-
+	
 	@GetMapping("/mypage/passwd_chang")
-	public void passwd_chang() {
-	}
-
+	public void passwd_chang() {}
+	
 	@GetMapping("/cancel")
-	public void cancel() {
-	}
-
+	public void cancel() {}
+	
 	@GetMapping("/member_bye")
-	public void member_bye() {
-	}
-
-	@RequestMapping("/jusoPopup")
-	public void jusoPopup() {
-	}
-
-	@RequestMapping("/mypage/modify/jusoPopup")
-	public String myJusoPopup() {
-		return "member/jusoPopup";
-	}
+	public void member_bye() {}
+	
 }

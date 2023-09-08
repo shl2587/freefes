@@ -18,9 +18,17 @@ public class Post_messageDTO {
 	private String category;
 	private int result;
 	private int receiverIdx;
-	private String receiver_nickname;
 	private Date date_column;
+	
 	private String writer_nickname;
+	private String receiver_nickname;
+	
+	public Date getDate_column() {
+		return date_column;
+	}
+	public void setDate_column(Date date_column) {
+		this.date_column = date_column;
+	}
 	
 	public String getWriter_nickname() {
 		return writer_nickname;
@@ -28,11 +36,18 @@ public class Post_messageDTO {
 	public void setWriter_nickname(String writer_nickname) {
 		this.writer_nickname = writer_nickname;
 	}
-	public int getIdx() {
-		return idx;
+	public String getReceiver_nickname() {
+		return receiver_nickname;
 	}
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setReceiver_nickname(String receiver_nickname) {
+		this.receiver_nickname = receiver_nickname;
+	}
+	
+	public int getReceiverIdx() {
+		return receiverIdx;
+	}
+	public void setReceiverIdx(int receiverIdx) {
+		this.receiverIdx = receiverIdx;
 	}
 	public int getWriter() {
 		return writer;
@@ -45,6 +60,12 @@ public class Post_messageDTO {
 	}
 	public void setReceiver(int receiver) {
 		this.receiver = receiver;
+	}
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 	public String getTitle() {
 		return title;
@@ -70,24 +91,7 @@ public class Post_messageDTO {
 	public void setResult(int result) {
 		this.result = result;
 	}
-	public int getReceiverIdx() {
-		return receiverIdx;
-	}
-	public void setReceiverIdx(int receiverIdx) {
-		this.receiverIdx = receiverIdx;
-	}
-	public String getReceiver_nickname() {
-		return receiver_nickname;
-	}
-	public void setReceiver_nickname(String receiver_nickname) {
-		this.receiver_nickname = receiver_nickname;
-	}
-	public Date getDate_column() {
-		return date_column;
-	}
-	public void setDate_column(Date date_column) {
-		this.date_column = date_column;
-	}
+	
 	
 
 }

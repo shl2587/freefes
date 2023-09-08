@@ -7,3 +7,13 @@ function addhorsehead() {
     var horsehead = select.value !== "선택" ? select.options[select.selectedIndex].text : "";
     titleInput.value = horsehead + " " + titleInput.value;
   }
+
+document.querySelectorAll('.addban_btn') {
+	button.addEventListener('click', async function() {
+		
+	})
+}
+
+
+
+

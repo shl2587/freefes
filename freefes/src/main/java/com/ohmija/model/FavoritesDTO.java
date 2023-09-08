@@ -10,7 +10,6 @@ public class FavoritesDTO {
 	private int board;
 	private int member;
 
-
 	public int getIdx() {
 		return idx;
 	}

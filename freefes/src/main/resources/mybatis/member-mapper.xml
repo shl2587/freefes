@@ -114,24 +114,6 @@
 	delete from member where userid = #{userid} and userpw = #{userpw}
 </delete>
 
-<update id="passupdate" parameterType="member">
-    UPDATE member SET userpw = #{userpw} WHERE userid=#{userid}
-</update>
-
-<update id="update" parameterType="member">
-	UPDATE member 
-		SET 
-			address = #{address},
-			nickname = #{nickname},
-			phonenumber = #{phonenumber}
-		WHERE 
-			idx=#{idx}
-</update>
-
-<update id="profileUpdate" parameterType="member">
-   update member SET profile_img = #{profile_img} where nickname = #{nickname}
-</update>
-
 </mapper>
 
 

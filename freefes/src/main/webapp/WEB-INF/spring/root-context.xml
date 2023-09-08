@@ -30,7 +30,6 @@
 				<value>classpath:mybatis/postmessage-mapper.xml</value>
 				<value>classpath:mybatis/qna-mapper.xml</value>
 				<value>classpath:mybatis/favorites-mapper.xml</value>
-				<value>classpath:mybatis/reply-mapper.xml</value>
 			</list>
  		</property>
 	</bean>
@@ -39,8 +38,12 @@
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<!-- 웹 크롤링 서비스 빈 정의 -->
+
+	
 	
 	<context:component-scan base-package="com.ohmija.service"/>
+	<context:component-scan base-package="com.ohmija.cron"/>
 	<context:component-scan base-package="com.ohmija.mail"/>
 	<mybatis-spring:scan base-package="com.ohmija.repository"/>
 	

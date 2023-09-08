@@ -16,14 +16,7 @@ public class ReplyDTO {
 	private String content;
 	private int number;
 	private Date write_date;
-	private String title;
 	
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	public int getIdx() {
 		return idx;
 	}

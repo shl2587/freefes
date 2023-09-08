@@ -15,6 +15,11 @@ public class MypageService {
 		return dao.changepw(userpw2);
 	}
 
+	public int update(MemberDTO dto) {
+		System.out.println(dto.getPhonenumber());
+		return dao.update(dto);
+	}
+
 	public int userpwsam(String newPassword) {
 		return dao.selectuserpw(newPassword);
 	}
@@ -26,7 +31,6 @@ public class MypageService {
 	public MemberDTO selectOne(int idx) {
 		return dao.selectOne(idx);
 	}
-
 
 	
 

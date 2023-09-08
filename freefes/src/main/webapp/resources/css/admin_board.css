@@ -2,13 +2,15 @@
 
   /*admin_board 공지사항 시작 */
 
+	main {
+	}
 	.admin_board_menu ul {
-		position: relative;
 		display: flex;
 		flex-wrap: wrap;
 	  	gap: 80px;
 		justify-content: left;
 		font-size: 20px;
+		font-weight: bold;
 		list-style: none;
 		margin-top: 80px;
 		width: 80%;
@@ -144,6 +146,14 @@
 		cursor: pointer;
 	}
 
+	#a_content {
+		padding-top: 20px;
+		padding-left: 40px;
+		border: 3px solid #434977;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
 /* admin_board_ask 자주 묻는 질문 시작 */
 
 	#modal.modalOverlay {
@@ -165,7 +175,7 @@
 	}
 	
 	#modal .modalWindow {
-	    background: rgba(69, 139, 197, 0.70);
+	    background: #113452d6;
 	    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 	    backdrop-filter: blur(13.5px);
 	    -webkit-backdrop-filter: blur(13.5px);
@@ -195,14 +205,19 @@
 	    text-align: center;
 	    line-height: 200px;
 	    border: none;
-	    background-color: #F4F7C5;
-	    color: #537188;
+	    background-color: #434977;
+	    color: white;
 	    font-size: 20px;
+	    cursor: pointer;
+	    transition: 0.3s;
+	}
+	.modal-button:hover {
+		opacity: 0.8;
+		transition: 0.3s;
 	}
 	
 	
 	#modal .title {
-/* 	    padding-left: 10px; */
 	    display: inline;
 	    text-shadow: 1px 1px 2px gray;
 	    color: white;

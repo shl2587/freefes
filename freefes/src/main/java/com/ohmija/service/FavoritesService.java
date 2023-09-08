@@ -1,14 +1,10 @@
 package com.ohmija.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ohmija.model.BoardDTO;
 import com.ohmija.model.FavoritesDTO;
-import com.ohmija.model.Favorites_pagingDTO;
 import com.ohmija.repository.FavoritesDAO;
 
 @Service
@@ -43,15 +39,6 @@ public class FavoritesService {
 		}
 		return dto;
 	}
-
-	public int select_fav_total_page(int idx) {
-		return favoritesDao.select_fav_total_page(idx);
-	}
-
-	public List<BoardDTO> selectfav(Favorites_pagingDTO favorites_pagingdto) {
-		return favoritesDao.selectfav(favorites_pagingdto);
-	}
-
 
 
 }

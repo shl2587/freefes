@@ -17,5 +17,9 @@ public interface MypageDAO {
 
 	int userpwNew(MemberDTO dto);
 
+	int update(MemberDTO dto);
+
 	MemberDTO selectOne(int idx);
+
+
 }

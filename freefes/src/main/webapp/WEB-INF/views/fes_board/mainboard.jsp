@@ -2,19 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 
-<c:if test="${login.idx != favorites_result.member || empty login }">
-<style>
-	#b_cancel_favorites {
-		display: none;
-	}
-</style>
+<c:if test="${login.role == 0 }">
+	<style>
+		#b_favorites {
+ 			display: none;
+ 		}
+		#b_cancel_favorites {
+			display: none;
+		}
+	</style>
 </c:if>
-<c:if test="${not empty login && login.idx == favorites_result.member }">
-<style>
-	#b_favorites {
- 		display: none;
- 	}
-</style>
+
+<!-- 로그인이 비어있지 않고 login.idx와 favorites_result.member의 값이 같으면-->
+<c:if test="${not empty login && check_favorites != 0 }">
+	<style>
+		#b_favorites {
+	 		display: none;
+	 	}
+	</style>
+</c:if>
+
+<c:if test="${empty login || check_favorites == 0 }">
+	<style>
+		#b_cancel_favorites {
+			display: none;
+		}
+	</style>
 </c:if>
 
 
@@ -76,19 +89,26 @@
 			<button id="b_cancel_favorites">★</button>
 		</div>
 	</div>
+
 </div>
 
 <script>
 
-	const login_session = "${session.login}"
-	const fes_board_idx = "${board_dto.idx}"
-	const favorites_result = "${favorites_result}"
-		
-	console.log(favorites_result)
-	
+const fes_board_idx = "${board_dto.idx}"
+const login = "${session.login}"
+const login_role = "${sessionScope.login.role}"
+
+
+if (login != "" || login_role != 0) {
 	$(document).ready(function() {
-		if (favorites_result && login_session) {
-			if (favorites_dto.member === login_session.idx && favorites_dto.board === fes_board_idx) {
+	
+		const favorites_key = "favorites"
+		const favorites = JSON.parse(localStorage.getItem(favorites_key)) || {}
+		
+		
+			
+		const update_favorites = () => {
+			if (favorites[fes_board_idx]) {
 				$("#b_favorites").hide()
 				$("#b_cancel_favorites").show()
 			} else {
@@ -97,13 +117,16 @@
 			}
 		}
 		
+	
 		$("#b_favorites").click(function() {
 			$.ajax({
 				url: "${cpath}/fes_board/favorites/" + fes_board_idx,
 				type: "GET",
 				success: function(data) {
-					$("#b_favorites").hide()
-					$("#b_cancel_favorites").show()
+					console.log(data)
+					favorites[fes_board_idx] = true
+					localStorage.setItem(favorites_key, JSON.stringify(favorites))
+					update_favorites()
 					alert("축제 리스트에 추가되었습니다!!!")
 				},
 				error: function(error) {
@@ -111,23 +134,39 @@
 				}
 			})
 		})
-		
+			
 		$("#b_cancel_favorites").click(function() {
 			$.ajax({
 				url: "${cpath}/fes_board/favorites_delete/" + fes_board_idx,
-				type: "GET",
-				success: function(data) {
-					$("#b_favorites").show()
-					$("#b_cancel_favorites").hide()
-					alert("축제 리스트에서 제외 되었습니다. 다른 축제를 찾으러 가볼까요?")
-				},
+	            type: "GET",
+	            success: function(data) {
+	                delete favorites[fes_board_idx]
+	                
+	                localStorage.setItem(favorites_key, JSON.stringify(favorites)) // 웹 스토리지에 저장
+	                
+	                update_favorites() 
+	                
+	                alert("축제 리스트에서 제외되었습니다. 다른 축제를 찾으러 가볼까요?")
+	            },
 				error: function(error) {
 					alert("이미 리스트에서 제외된 축제입니다.")
 				}
 			})
 		})
 	})
-</script>
+}
+else if (login == "") {
+	$("#b_favorites").click(function() {
+		let result = confirm("로그인 후 사용 가능합니다. 로그인 페이지로 이동하시겠습니까?")
+		if (result === true) {
+			location.href = '${cpath}/member/login'
+		}
+		else {
+			location.href = '${cpath}/fes_board/mainboard/' + fes_board_idx
+		}
+	})
+}
 
+</script>
 </body>
 </html>

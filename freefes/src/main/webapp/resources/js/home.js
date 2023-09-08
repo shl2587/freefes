@@ -1,5 +1,28 @@
 'use strict'
 
+// 스크롤 한번에 100vh씩 이동
+	let lastScrollTop = 0;
+
+	window.addEventListener("wheel", function(e) {
+	  const viewportHeight = window.innerHeight;
+	  const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+	  if (e.deltaY > 0) {
+	    window.scrollTo({
+	      top: currentScrollTop + viewportHeight,
+	      behavior: "smooth"
+	    });
+	  } else {
+	    window.scrollTo({
+	      top: currentScrollTop - viewportHeight,
+	      behavior: "smooth"
+	    });
+	  }
+
+	  lastScrollTop = currentScrollTop;
+	}, false);
+
+
 // 배너 슬라이드 기능
 const prev = document.querySelector('.prev')
 const next = document.querySelector('.next')
@@ -75,7 +98,7 @@ function current_page_on() {
 	banner_page[current_idx].classList.add('on')
 }
 
-// 도윤 스크립트
+
 document.querySelector('.hamburger button').addEventListener('click', function() {
 	  var dropdownMenu = document.querySelector('.hamburger .dropdown-menu');
 	  var barsIcon = document.querySelector('.fa-bars');
@@ -136,22 +159,23 @@ document.querySelector('.hamburger button').addEventListener('click', function()
 		  arrowIcon.classList.remove('active-icon');
 		}
 
-		// 드랍다운 종료
-		document.addEventListener('keydown', function(event) {
-		  if (event.key === 'Escape') {
-		    var dropdownMenu = document.querySelector('.hamburger .dropdown-menu');
-		    dropdownMenu.classList.remove('show');
-		    resetDropdownIcon();
-		  }
-		});
+	// 드랍다운 종료
+	document.addEventListener('keydown', function(event) {
+	  if (event.key === 'Escape') {
+	    var dropdownMenu = document.querySelector('.hamburger .dropdown-menu');
+	    dropdownMenu.classList.remove('show');
+	    resetDropdownIcon();
+	  }
+	});
 
-		document.addEventListener('click', function(event) {
-		  var dropdownMenu = document.querySelector('.hamburger .dropdown-menu');
-		  var hamburgerButton = document.querySelector('.hamburger button');
-		  if (!dropdownMenu.contains(event.target) && !hamburgerButton.contains(event.target)) {
-		    dropdownMenu.classList.remove('show');
-		    resetDropdownIcon();
-		  }
-		});
+	document.addEventListener('click', function(event) {
+	  var dropdownMenu = document.querySelector('.hamburger .dropdown-menu');
+	  var hamburgerButton = document.querySelector('.hamburger button');
+	  if (!dropdownMenu.contains(event.target) && !hamburgerButton.contains(event.target)) {
+	    dropdownMenu.classList.remove('show');
+	    resetDropdownIcon();
+	  }
+	});
+	
 
 

@@ -48,12 +48,6 @@ public interface MemberDAO {
 
 	int login_bye_check(MemberDTO dto);
 
-	int passupdate(MemberDTO dto);
-
-	int update(MemberDTO dto);
-
-	int profileUpdate(MemberDTO dto);
-
 
 
 }

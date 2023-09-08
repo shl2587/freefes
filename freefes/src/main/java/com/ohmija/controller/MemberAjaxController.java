@@ -108,6 +108,8 @@ public class MemberAjaxController {
 		result.put("message", row2 > 0 ? "메일이 발송되었습니다" : "메일 전송에 실패했습니다");
 		return result;
 	}
+
+	
 	
 	@GetMapping("/dupCheck/{userid}")
 	public String dupCheck(@PathVariable("userid") String userid) {
@@ -131,7 +133,7 @@ public class MemberAjaxController {
 	@GetMapping("/emailCheck/{email}")
 	public int emailCheck(@PathVariable("email")String email) {
 		int row = memberService.emailCheck(email);
-		System.out.println("경로이메일 : "+email);
+		System.out.println("경로이메일"+email);
 		System.out.println("이메일  row : "+row);
 		return  row;
 	}
@@ -139,7 +141,7 @@ public class MemberAjaxController {
 	
 	@PostMapping("/upload_pw")
 	public String upload_pw(MemberDTO dto, String userpw2, HttpSession session) {
-//		String loggedInUserId = (String) session.getAttribute("login.userid");
+		String loggedInUserId = (String) session.getAttribute("login.userid");
 		
 		int row = mypageService.changepw(userpw2);
 		if(row != 0) {
@@ -184,7 +186,7 @@ public class MemberAjaxController {
 	}
 
 	@PostMapping("/login_bye_check/")
-	public int login_bye_check(@RequestBody MemberDTO dto, HttpSession session) {
+	public int login_bye_check(@RequestBody MemberDTO dto) {
 		System.out.println("회원탈퇴");
 		
 		System.out.println(dto.getUserid());
@@ -192,33 +194,9 @@ public class MemberAjaxController {
 		
 		int row = memberService.login_bye_check(dto);
 		System.out.println("회원탈퇴 row : "+ row);
-		session.invalidate();
 		
 		return row;
 	}
 
-	@PostMapping("/passupdate/")
-	public int passupdate(@RequestBody MemberDTO dto) {
-		int row = memberService.passupdate(dto);
-		System.out.println(dto.getUserid());
-		System.out.println(dto.getUserpw());
-		return row;
-	}
 
-	@PostMapping("/image_choice")
-    public int image_choice(@RequestBody MemberDTO dto, HttpSession session) {
-        if(dto.getProfile_img().equals("1")) {dto.setProfile_img("https://hakcoding.github.io/img/마이멜로디.png");}
-        if(dto.getProfile_img().equals("2")) {dto.setProfile_img("https://hakcoding.github.io/img/시나모롤.png");}
-        if(dto.getProfile_img().equals("3")) {dto.setProfile_img("https://hakcoding.github.io/img/케로피.png");}
-        if(dto.getProfile_img().equals("4")) {dto.setProfile_img("https://hakcoding.github.io/img/쿠로미.png");}
-        if(dto.getProfile_img().equals("5")) {dto.setProfile_img("https://hakcoding.github.io/img/키티.png");}
-        if(dto.getProfile_img().equals("6")) {dto.setProfile_img("https://hakcoding.github.io/img/폼폼푸린.png");}
-        if(dto.getProfile_img().equals("7")) {dto.setProfile_img("https://hakcoding.github.io/img/구데타마.png");}
-        if(dto.getProfile_img().equals("8")) {dto.setProfile_img("https://hakcoding.github.io/img/배드바츠마루.png");}
-        if(dto.getProfile_img().equals("9")) {dto.setProfile_img("https://hakcoding.github.io/img/포차코.png");}
-        
-        int row = memberService.profileUpdate(dto);
-        session.setAttribute("login", dto);
-        return row;
-    }
 }

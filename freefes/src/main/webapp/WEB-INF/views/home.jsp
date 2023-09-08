@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="cpath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
@@ -24,14 +25,14 @@
 	</div>
 	<div class="main_header_right">
 	<!-- 검색 경로를 action으로 설정하고 button으로 모양잡음 -->
-		<form method="POST" action="${cpath }/">
-			<div class="search_bar">
-				<input type="search" name="search" id="search" maxlength="15">
+		<div class="search_bar">
+			<form id="total_search_form" action="${cpath }/total_search">
+				<input type="search" name="total_search" class="total_search" maxlength="15">
 				<button type="submit" style="background: none; border: none;">
 					<i class="fa-solid fa-magnifying-glass" style="color: #edeff3;"></i>
 				</button>
-			</div>
-		</form>
+			</form>
+		</div>
 		<!-- 로그아웃 상태 -->
 		<ul class="login_btn">
 		<c:if test="${empty login }">
@@ -84,7 +85,7 @@
 							    <span style="color: #FFD6A5;">'${login.nickname}'</span>님 축제를 시작해봐요!
 							  </h3>
 							</li>
-							<li><a href="${cpath}/member/mypage/mypage/">마이페이지</a></li>
+							<li><a href="${cpath}/member/mypage/mypage/${login.idx}">마이페이지</a></li>
 						</c:if>
 						<c:if test="${login.role == 0 }">
 							<li>
@@ -107,11 +108,15 @@
 			<div class="prev">&lt;</div>
 			<div class="next">&gt;</div>
 			<c:forEach var="dto" items="${comming_list }" varStatus="status">
-				<div class="slide ${status.index == 0 ? 'active' : 'hidden' }" >
-					<a href="${cpath }/fes_board/mainboard/${dto.idx}">
-						<img class="image" alt="${dto.file_name }" src="${cpath }/resources/img/${dto.file_path }">
-					</a>
-					
+
+         <c:set var="filePath" value="${dto.file_path }" />
+         <c:set var ="length" value = "${fn:length(filePath)}"/>
+         <c:set var="lastDotIndex" value="${fn:indexOf(filePath, '.')}"/>
+         <c:set var="fileExtension" value="${fn:substring(filePath, lastDotIndex + 1, length)}" />
+            <div class="slide ${status.index == 0 ? 'active' : 'hidden' }" >
+               <a href="${cpath }/fes_board/mainboard/${dto.idx}">
+                  <img class="image" src="${cpath }/upload/${dto.title }/poster.${fileExtension}">
+               </a>
 					<!-- 개최중인지 상태 -->
 					<div class="hold ${dto.is_hold ? 'holding' : 'not_yet' }">
 						${dto.is_hold ? "개최중" : dto.remain}
@@ -200,8 +205,8 @@
 	next.onclick = next_click
 	prev.onclick = prev_click
 	banner_color_change(slide[0])
+	total_search()
 </script>
-
 
 
 </body>

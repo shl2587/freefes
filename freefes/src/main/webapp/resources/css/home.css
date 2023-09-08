@@ -183,8 +183,6 @@
 	}
 	
 	.hamburger .dropdown-menu > .festival a:hover {
-/* 		background-image: linear-gradient(90deg, yellow, orange, purple, blue); */
-/* 		-webkit-background-clip: text; */
 		animation: rainbow 3s;
 		animation-iteration-count: infinite;
 		color: transparent;
@@ -425,42 +423,5 @@
 	}
 	/*덩엉엔드*/
 	
-	/* 병학 css*/
-	.map {
-		background-image: url("../img/지도배경.png");
-		height: 100vh;
-		width: 100%;
-		margin: auto;
-		position: relative;
-	}
-	 .map > div > a > img {
-		height: 25vh;
-		width: auto;
-        position: absolute;
-        transition: transform 0.3s;
-	 }
-	 .map > div > a > img:hover {
-            transform: scale(1.2);
-            z-index: 10;
-        }
-     .map > div > a > img.not-hovered {
-            transform: scale(1);
-        }      
-	.map > div > a:nth-child(1) > img { top: 10%; left: 45%; }      
-	.map > div > a:nth-child(2) > img { top: 14.7%; left: 38.7%; }
-    .map > div > a:nth-child(3) > img { top: 24.5%; left: 41.5%; }
-    .map > div > a:nth-child(4) > img { top: 31%; left: 44.5%; }
-    .map > div > a:nth-child(5) > img  { top: 35%; left: 35%; }
-    .map > div > a:nth-child(6) > img { top: 45.8%; left: 44%; }
-    .map > div > a:nth-child(7) > img { top: 33.5%; left: 49.3%; }
-    .map > div > a:nth-child(8) > img { top: 54.5%; left: 52%; }
-    .map > div > a:nth-child(9) > img { top: 56%; left: 46.2%; }
-    .map > div > a:nth-child(10) > img { top: 53%; left: 36%; }
-    .map > div > a:nth-child(11) > img { top: 60%; left: 57.7%; }
-    .map > div > a:nth-child(12) > img { top: 67.8%; left: 55.7%; }
-    .map > div > a:nth-child(13) > img { top: 67%; left: 35.5%; }
-    .map > div > a:nth-child(14) > img { top: 72%; left: 40%; }
-    .map > div > a:nth-child(15) > img { top: 81%; left: 52%; }
 	
-	/* 병학 end*/
 

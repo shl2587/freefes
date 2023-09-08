@@ -48,25 +48,6 @@ public class MemberDTO {
 	private String profile_img;		// DB에 저장된 파일 경로를 문자열로 받아오기 위한 필드
 	private MultipartFile upload;	// <form>으로 전송되는 파일을 저장하기 위한 필드
 	
-	private String email_front;
-	private String email_back;
-	
-	public String getEmail() {
-		return this.email_front + "@" + this.email_back;
-	}
-	
-	  public String getEmail_front() {
-		return email_front;
-	}
-	public void setEmail_front(String email_front) {
-		this.email_front = email_front;
-	}
-	public String getEmail_back() {
-		return email_back;
-	}
-	public void setEmail_back(String email_back) {
-		this.email_back = email_back;
-	}
 	private Date ban_until;
 	
 	public String getUserpwNew() {
@@ -136,6 +117,9 @@ public class MemberDTO {
 	}
 	public void setAnswer2(String answer2) {
 		this.answer2 = answer2;
+	}
+	public String getEmail() {
+		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;

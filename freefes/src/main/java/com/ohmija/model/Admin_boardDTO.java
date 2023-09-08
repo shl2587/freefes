@@ -1,6 +1,6 @@
 package com.ohmija.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 //idx                 number                  generated always as identity primary key,
 //member              number                  not null,

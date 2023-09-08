@@ -2,64 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@include file="mypage/mypage.jsp" %>
 <style>
- /* 기본 스타일 */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f6f8fa;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    font-size: 32px;
-    color: #333;
-    text-align: center;
-    border-bottom: 3px solid #007BFF;
-    padding: 20px 0;
-    margin-bottom: 30px;
-    background-color: #f9f9f9;
-}
-
-pre {
-    background-color: #fff;
-    border: 1px solid #e1e4e8;
-    border-radius: 4px;
-    padding: 20px;
-    font-size: 15px;
-    line-height: 1.6;
-    white-space: pre-wrap; /* pre 태그에서 줄바꿈을 반영하도록 설정 */
-    margin: 20px;
-}
-
-p {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 16px;
-}
-
-button {
-    background-color: #007BFF;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 20px;
-    display: block;
-    width: 200px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-input[type="checkbox"] {
-    margin-right: 10px;
-}
+    pre {
+        color: black;
+        font-weight: bold; /* 글자를 진하게 설정 */
+        font-size: 13px;   /* 글자 크기를 18픽셀로 설정 (크기는 원하는대로 조절 가능) */
+    }
     
 </style>
 <h1>탈퇴 안내</h1>
@@ -85,9 +32,9 @@ modoo!(모두)	등록된 홈페이지 및 게시물 삭제
 
 freefes 아이디를 사용해 다른 서비스에 로그인 할 수 없게 됩니다.
 freefes 아이디로 로그인하여 사용 중이던 외부 사이트를 방문하여
-다른 로그인 수단을 준비하거나, 데이터를 백업한 후 freefes 회원을 탈퇴해야 합니다.
+다른 로그인 수단을 준비하거나, 데이터를 백업한 후 네이버 회원을 탈퇴해야 합니다.
 
-freefes 아이디로 로그인을 통해 연동된 사이트 확인
+네이버 아이디로 로그인을 통해 연동된 사이트 확인
 탈퇴 후에는 아이디${login.userid } 로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.
 게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.
 또한, freefes 아이디를 사용해 다른 서비스에 로그인 할 수 없게 됩니다.

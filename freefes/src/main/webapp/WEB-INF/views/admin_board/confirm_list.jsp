@@ -40,7 +40,7 @@
 		      <tr>
 		        <td>${dto.idx}</td>
 		        <td>${dto.writer }</td>
-		        <td><a href="${cpath}/confirm_list/confirm_list_view/${dto.idx}">${dto.title}</a></td>
+		        <td><a href="${cpath}/admin_board/confirm_list_view/${dto.idx}">${dto.title}</a></td>
 		        <td><fmt:formatDate value="${dto.write_date }" pattern="yyyy-MM-dd" /></td>
 		        
 		        <c:if test="${not empty dto.file_path }" >
@@ -50,16 +50,33 @@
 		        	<td>❌</td>
 		        </c:if>
 				<c:if test="${dto.approve == 0 }">
-		     		<td><button class="notApprove_btn" disabled>not Approve</button></td>
+		     		<td><button class="notApprove_btn" disabled>Waiting...</button></td>
 		        </c:if>
 		        <c:if test="${dto.approve == 1 }">
 		     		<td><button class="Approve_btn" disabled>Approved</button></td>
+		        </c:if>
+		        <c:if test="${dto.approve == 2 }">
+		     		<td><button class="Refuse_btn" disabled>Refuse</button></td>
 		        </c:if>
 		      </tr>
 		    </c:forEach>
 		  </tbody>
 		</table>
 	</div>
+	
+<div class="page_wrap">
+   <div class="page_nation">
+      <c:if test="${paging_dto.prev && paging_dto.page_begin > 1}">
+	      <a class="arrow prev" href="${cpath }/admin_board/confirm_list?request_page=${paging_dto.page_begin - paging_dto.per_page}"></a>
+	  </c:if>
+	  <c:forEach var="page_number" begin="${paging_dto.page_begin }" end="${paging_dto.page_end }">
+      	  <a href="${cpath }/admin_board/confirm_list?request_page=${page_number}" class="active">${page_number }</a>
+      </c:forEach>
+      <c:if test="${paging_dto.next && paging_dto.page_end < paging_dto.total_count}">
+      	  <a class="arrow next" href="${cpath }/admin_board/confirm_list?request_page=${paging_dto.page_end + 1 }"></a>
+      </c:if>
+   </div>
+</div>
 
 </main>
 

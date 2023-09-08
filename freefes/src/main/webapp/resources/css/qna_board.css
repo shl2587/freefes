@@ -19,29 +19,41 @@
 	.qna_write_form textarea {
 	   width: 90%;
 	   height: 300px;
-	   padding-left: 20px;
-	   padding-top: 20px;
-	   font-size: 13px;
-	   border: 1px solid skyblue;
+	   padding-left: 30px;
+	   padding-top: 30px;
+	   font-size: 14px;
+	   border: 3px solid #434977;
 	   outline: none;
 	   border-radius: 20px;
 	}
 	
+	.qna_write_form textarea::placeholder {
+		opacity: 0.5;
+	}
+	
 	#q_title {
 		width: 80%;
+		font-size: 14px;
 		height: 40px;
-		padding-left: 20px;
-		border: 1px solid skyblue;
+		padding-left: 23px;
+		border: 3px solid #434977;
 		outline: none;
 		border-radius: 20px;
+	}
+	
+	#q_title::placeholder {
+		opacity: 0.5;
 	}
 	
 	#category {
 		width: 70px;
 		height: 45px;
 		margin-left: 10px;
-		border: 1px solid skyblue;
+		border: 3px solid #434977;
+		border-radius: 20px;
 		outline: none;
+		font-weight: bold;
+		cursor: pointer;
 	}
 	
 	.submit_btn button {
@@ -57,32 +69,44 @@
 		font-weight: bold;
 		font-size: 20px;
 		margin-bottom: 50px;
+		transition: 0.3s;
 	}
 	
 	.submit_btn button:hover {
 		cursor: pointer;
+		background-color: #537188;
+		color: #E3F4F4;
+		opacity: 0.8;
+		transition: 0.3s;
 	}
 	
-	
+	.qna_write_btn {
+		margin-top: 30px;
+		margin-bottom: -20px;
+		background-color: #1D5D9B;
+		border: none;
+		border-radius: 40px;
+		cursor: pointer;
+		font-size: 20px;
+		font-weight: bold;
+		padding: 10px;
+		color: white;
+		transition: 0.3s
+	}
+	.qna_write_btn:hover {
+		opacity: 0.7;
+		transition: 0.3s;
+	}
 	
 /* 1:1 문의함 관리자 목록으로 버튼 */
 	
 	.qna_board_btn {
 		margin-bottom: 100px;
 	}
-	
-	/* 1:1문의 작성하기 버튼 */
-	.qna_board_btn h3 {
-	  float: right;
-	  margin-top: 0px;
-	  margin-right: 150px;
-	  background-color: transparent;
 
-	}
-	
 	.fa-pen-nib {
-		font-size: 30px;
-		background-color: white;
+		font-size: 20px;
+		background-color: transparent;
 	}
 	
 	.fa-list {
@@ -176,12 +200,22 @@
 	.qna_board_table a:visited {
 		text-decoration: none;
 	}
+	.delete_btn {
+		display: flex;
+   	 	justify-content: flex-end;
+	}
 	
 	.fa-solid.fa-trash.fa-bounce {
-		font-size: 40px;
-		margin-top: 30px;
-		margin-left: 30px;
+		font-size: 50px;
+		float: right;
+		margin-right: 160px;
+		transition: 0.3s;
 	}
+	.fa-solid.fa-trash.fa-bounce:hover {
+		opacity: 0.7;
+		trasition: 0.3s;
+	}
+
 	
 	/* view안에 제목, 버튼 flex */
 	.view_question_list {
@@ -191,4 +225,14 @@
 		height: 30px;
 		margin-top: 30px;
 	}
+	
+	.complete_answer {
+		background-color: lightgrey !important;
+		color: #504652ba;
+		font-weight: bold;
+		width: 66px;
+		height: 25px;
+		box-shadow: 0.5px 0.5px 3px 0.5px black;
+	}
+	
 	

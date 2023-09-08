@@ -13,6 +13,16 @@
 	update member set userpw = #{userpwNew} where userid = #{userid}
 </update>
 
+<update id="update" parameterType="member"> 
+update member set 
+	userpw = #{userpw},
+	profile_img = '${profile_img}',
+	nickname = #{nickname},
+	address = #{address},
+	phonenumber = #{phonenumber} 
+where idx=#{idx}
+</update>
+
 
 </mapper>
 

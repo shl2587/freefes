@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.ohmija.model.BoardDTO;
-import com.ohmija.model.Favorites_pagingDTO;
+import com.ohmija.model.FavoritesDTO;
 import com.ohmija.model.Fes_searchDTO;
 import com.ohmija.model.Festival_board_pagingDTO;
 
@@ -51,7 +51,13 @@ public interface Fes_boardDAO {
 	int search_complex_total(Fes_searchDTO fes_search);
 	List<BoardDTO> select_search_complex(Fes_searchDTO fes_search);
 
-	int select_my_board_list(int idx);
 
-	List<BoardDTO> my_board_selectAll(Festival_board_pagingDTO fes_paging_dto);
+	
+	
+	// 계립
+	List<BoardDTO> selectfav(int idx);
+
+
+
+	
 }

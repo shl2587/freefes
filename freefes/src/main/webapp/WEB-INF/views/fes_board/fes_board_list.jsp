@@ -9,7 +9,7 @@
 	}
 	div.paging {
 		text-align: center;
-	}광주
+	}
 </style>
 
 
@@ -70,6 +70,7 @@
 	</div>
 
 	<div id="result_div">
+		
 		<c:forEach var="board_list" items="${fes_boardList }">
 			<div class="festival_list">
 				<a href="${cpath }/fes_board/mainboard/${board_list.idx}">
@@ -82,9 +83,9 @@
 		<a href="${cpath }/fes_board/mainboardWrite/${login.idx}"><button>글쓰기</button></a>
 	</div>
 	<div class="fes_board_paging">
-		<c:if test="${fes_paging_dto.prev }">
+		<c:if test="${fes_paging_dto.prev && fes_paging_dto.page_begin > 1}">
 			<a href="${cpath }/fes_board/fes_board_list?request_page=
-				${fes_paging_dto.page_begin - 1}">
+				${fes_paging_dto.page_begin - fes_paging_dto.per_page}">
 				◀이전
 			</a>
 		</c:if>
@@ -93,7 +94,7 @@
 				[${page_number }]
 			</a>
 		</c:forEach>
-		<c:if test="${fes_paging_dto.next }">
+		<c:if test="${fes_paging_dto.next && fes_paging_dto.page_end < fes_paging_dto.total_count}">
 			<a href="${cpath }/fes_board/fes_board_list?request_page=
 				${fes_paging_dto.page_end + 1 }">
 				다음▶
@@ -116,15 +117,6 @@ $(function () {
     local_gov_list(initial_local_gov, initial_region_section)
 })
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const initial_selected_option = document.getElementById("local_gov").value
-//     update_region_options(initial_selected_option)
-// })
-
-// $("form").on("submit", function () {
-//     const selected_option = $("#region_section").val()
-//     update_region_options(selected_option)
-// })
 
 $(function() {
 	$("#festival_category").val("${param.festival_category}").attr("selected", "selected")

@@ -70,13 +70,18 @@ public class Fes_boardAjaxController {
 		// 검색 코드
 		int board_page_count = fes_boardService.select_search_total(fes_search);
 		Festival_board_pagingDTO fes_paging_dto = new Festival_board_pagingDTO(request_page, board_page_count);
-		List<BoardDTO> fes_boardList = fes_boardService.fes_board_selectAll(fes_search, fes_paging_dto);
+		List<BoardDTO> fes_boardList = fes_boardService.fes_search_selectAll(fes_search, fes_paging_dto);
 			
-			
-			
-		map.put("fes_paging_dto", fes_paging_dto);
-		map.put("fes_boardList", fes_boardList);
-		
+
+		// 검색 결과가 있을 경우와 없을 경우 분리
+		if (fes_boardList.size() > 0) {
+			map.put("fes_boardList", fes_boardList);
+			map.put("fes_paging_dto", fes_paging_dto);
+		}
+		if(fes_boardList.size() == 0) {
+			map.put("fes_boardList", "검색된 축제가 없습니다.\n 다른 축제를 찾아 떠나요🎉🎉🎉");
+			map.put("fes_paging_dto", null);
+		}
 		return ResponseEntity.ok(map);
 	}
 	

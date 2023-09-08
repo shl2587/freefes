@@ -14,8 +14,6 @@ public interface QnADAO {
 
 	int write(QnADTO dto);
 
-	List<QnADTO> selectAll();
-
 	List<QnADTO> myList(int idx);
 
 	int answer(HashMap<String, Object> map);
@@ -23,5 +21,25 @@ public interface QnADAO {
 	int modify(QnADTO dto);
 
 	int delete(int idx);
-
 }
+
+
+
+//@Repository
+//public interface QnADAO {
+//
+//	QnADTO selectOne(int idx);
+//
+//	int write(QnADTO dto);
+//
+//	List<QnADTO> selectAll();
+//
+//	List<QnADTO> myList(int idx);
+//
+//	int answer(HashMap<String, Object> map);
+//
+//	int modify(QnADTO dto);
+//
+//	int delete(int idx);
+//
+//}

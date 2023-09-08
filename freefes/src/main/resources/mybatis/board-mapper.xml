@@ -25,13 +25,14 @@
             order by idx
 	</select>
 	
-	<select id="select_coming" resultType="fes_board">
-		select * from board
-			where end_date &gt;= sysdate
-				and approve = 1
-			order by start_date, end_date
-			fetch first 10 rows only
-	</select>
+   <select id="select_coming" resultType="fes_board">
+      select * from board
+         where end_date &gt;= sysdate
+            and approve = 1
+            and end_date - start_date &lt; 10
+         order by start_date, end_date
+         fetch first 5 rows only
+   </select>
 	
 	<select id="select_top10" resultType="fes_board">
 		select rownum as rank, 
@@ -115,10 +116,12 @@
 	
 	
 	
+	
 	<!-- 승록 -->
 	<!-- 페이징을 위한 모든 게시물 개수 불러오기 -->
 	<select id="select_total_page" resultType="int">
 		select count(*) from board
+			where approve = 1
 	</select>
 	
 	<!-- 기본 페이징 -->
@@ -235,26 +238,13 @@
 			offset #{offset} rows
 			fetch next #{per_page} rows only
 	</select>
-
-<select id="select_my_board_list" parameterType="int" resultType="int">
-	SELECT COUNT(b.idx)
-		FROM board b
-		JOIN member m ON b.member = m.idx
-		WHERE #{idx} = m.idx
-</select>
 	
-<select id="my_board_selectAll" parameterType="fes_board_page" resultType="fes_board">
-	SELECT 
-    b.*
-FROM 
-    board b
-JOIN 
-    member m ON b.member = m.idx
-WHERE 
-    b.member = #{idx}
-ORDER BY 
-    b.idx DESC
-OFFSET #{offset} ROWS
-FETCH NEXT #{per_page} ROWS ONLY
-</select>
+	<!-- 계립 좋아요 내역-->
+   <select id="selectfav" parameterType="int" resultType="fes_board">
+	   select b.* from board b
+		       join favorites f
+		    on b.idx = f.board
+		    where #{idx} = f.member
+   </select>
+	
 </mapper>
