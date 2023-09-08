@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ohmija.model.BoardDTO;
-import com.ohmija.model.Festival_board_pagingDTO;
 import com.ohmija.model.ReplyDTO;
 import com.ohmija.model.Reply_pagingDTO;
 import com.ohmija.service.ReplyService;

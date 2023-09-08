@@ -3,41 +3,42 @@
 <%@include file="mypage.jsp" %>
 
 <style>
-   /* 기본 스타일 */
+/* 기본 스타일 */
 form#myForm {
     width: 400px;
-    margin:auto; /* 상단 여백 추가 */
+    margin: auto; /* 상단 여백 추가 */
     font-family: Arial, sans-serif;
     background-color: #f9f9f9; /* 배경색 추가 */
     padding: 20px;
     border-radius: 8px; /* 둥근 테두리 추가 */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
 }
-h1.modify_title_h1  {
-    font-size: 32px;            /* 글자 크기를 크게 설정 */
-    color: #007BFF;             /* 파란색으로 설정 */
-    text-align: center;         /* 중앙 정렬 */
-     padding-bottom: 10px;       /* 아래쪽 패딩 추가 */ 
-    margin-bottom: 20px;        /* 아래쪽 여백 추가 */ 
+
+h1.modify_title_h1 {
+    font-size: 32px; /* 글자 크기를 크게 설정 */
+    color: #007BFF; /* 파란색으로 설정 */
+    text-align: center; /* 중앙 정렬 */
+    padding-bottom: 10px; /* 아래쪽 패딩 추가 */
+    margin-bottom: 20px; /* 아래쪽 여백 추가 */
 }
-.member_modify_pass_all{
+
+.member_modify_profile_all {
     border: 1px solid #e0e0e0;
     padding: 10px;
-    margin-bottom: 9px; 
+    margin-bottom: 9px;
     border-radius: 4px; /* 입력란에 둥근 테두리 추가 */
     height: 50px;
 }
-#passwd_change{
-	 padding-bottom: 10px;
-}
-.member_modify_nickname_all{
+
+.member_modify_nickname_all {
     border: 1px solid #e0e0e0;
     padding: 10px;
-    margin-bottom: 9px; 
+    margin-bottom: 9px;
     border-radius: 4px; /* 입력란에 둥근 테두리 추가 */
 }
 
-input[type="text"].modify_text, input[type="password"].modify_text {
+input[type="text"].modify_text,
+input[type="password"].modify_text {
     width: 100%;
     padding: 8px;
     border: 1px solid #e0e0e0;
@@ -46,21 +47,19 @@ input[type="text"].modify_text, input[type="password"].modify_text {
     border-radius: 4px;
 }
 
-input[type="text"].modify_text:focus, input[type="password"]:focus {
+input[type="text"].modify_text:focus,
+input[type="password"]:focus {
     border-color: #007BFF; /* 포커스 시 테두리 색상 변경 */
     outline: none; /* 브라우저 기본 포커스 스타일 제거 */
 }
 
-input[type="submit"].modify_submit_btn{
+input[type="submit"].modify_submit_btn {
     width: 100%;
-    padding: 10px 15px; 
+    padding: 10px 15px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
-}
-
-input[type="submit"].modify_submit_btn {
-    background-color: #007BFF;
+    background-color: #07277d;
     color: white;
 }
 
@@ -79,10 +78,8 @@ input[type="submit"].modify_submit_btn:hover {
 #logLeaveBtn {
     color: #a9a9a9;
     padding: 10px 15px;
-    width: 30%;
     cursor: pointer;
-    border: 1px solid white;
-    background: white;
+    border: none;
     margin: 20px auto; /* 중앙 정렬을 위한 설정 */
     display: block;
     text-align: center;
@@ -93,16 +90,24 @@ input[type="submit"].modify_submit_btn:hover {
     text-decoration: underline; /* 호버 상태일 때 밑줄 추가 */
     background-color: #f2f2f2; /* 약간의 배경색 변경 */
 }
+
 /* 비밀번호 변경 란 */
 .member_modify_pass_all {
     position: relative;
     padding-bottom: 40px; /* 버튼이 입력란 아래에 오도록 패딩 추가 */
 }
 
+.member_modify_password_all{
+	position: relative;
+    padding-bottom: 40px; /* 버튼이 입력란 아래에 오도록 패딩 추가 */
+    border: 1px solid red;
+}
+
 /* 비밀번호 변경 버튼 */
 #passwd_change {
     bottom: 0; /* 입력란 하단에 배치 */
-    width: 100%; /* 부모 요소 너비만큼 버튼 너비 설정 */
+    width: ; /* 부모 요소 너비만큼 버튼 너비 설정 */
+    padding-bottom: 10px;
 }
 
 /* 연락처와 주소 변경란의 겉 선 제거 */
@@ -116,81 +121,130 @@ input[type="submit"].modify_submit_btn:hover {
     font-size: 15px;
 }
 
-   .profile {
-      cursor: pointer;
-      z-index: 3;
-   }
-   .profile > img {
-      width: 100px;
-      height: 100px;
-      border: 2px solid black; 
-      border-radius: 50%;
-      z-index: 1;
-      padding: 0;
-      background-color: #0068FF;
-   }
-   .img_hidden {
-      display: none;
-      margin-left: 150px;
-      position: absolute;
-      padding: 0;
-      height: auto;
-   }
-   
-.img_hidden::before {
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-right: 30px solid #002E7F;
-  content: "";
-  position: absolute;
-  top: 15%;
-  left: -30px; /* 화살표의 위치 조정 */
-  transform: translateY(-50%);
-  z-index: 3;
+.profile {
+    cursor: pointer;
+    z-index: 3;
 }
-    .img_hidden.show {
-      display: block;
-      border: 1px solid #002E7F;
-      border-radius: 20px;
-      background-color: white;
-      z-index: 2;
-      padding: 0;
-      background-color: #002E7F;
-  }
-   .img_hidden > .select_img {
-      display: grid;
-       grid-template-columns: repeat(3, 1fr); /* 3개의 동일한 너비의 열 생성 */
-      margin: 0; 
-      
-   }
-   .select_img div {
-      margin-bottom: -5px;
-      width: 150px;
-       height: auto;
-   }
-   .select_img > div > img {
-        width: 150px;
-       height: auto;
-       border-radius: 20px;
-       margin: 0;
-       padding: 0;
-       border: 1px solid black;
-   }
-   .select_img .image_choice img:last-child {
-       display: none; 
-   }
-   
-   .select_img .image_choice:hover img:first-child {
-       display: none;
-   }   
-   .select_img .image_choice:hover img:last-child {
-       display: inline-block; 
-   }
 
+.profile > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    z-index: 1;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.img_hidden {
+    display: none;
+    margin-left: 150px;
+    position: absolute;
+    padding: 0;
+    height: auto;
+}
+
+.img_hidden::before {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-right: 30px solid #002E7F;
+    content: "";
+    position: absolute;
+    top: 13%;
+    left: -30px; /* 화살표의 위치 조정 */
+    transform: translateY(-50%);
+    z-index: 3;
+}
+
+.img_hidden.show {
+    display: block;
+    border: 1px solid #002E7F;
+    border-radius: 20px;
+    background-color: white;
+    z-index: 2;
+    padding: 0;
+    background-color: #002E7F;
+}
+
+.img_hidden {
+    top: 15px;
+}
+
+.img_hidden > .select_img {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0;
+}
+
+.select_img div {
+    margin-bottom: -5px;
+    width: 150px;
+    height: auto;
+}
+
+.select_img > div > img {
+    width: 150px;
+    height: auto;
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.select_img .image_choice img:last-child {
+    display: none;
+}
+
+.select_img .image_choice:hover img:first-child {
+    display: none;
+}
+
+.select_img .image_choice:hover img:last-child {
+    display: inline-block;
+}
+
+.add {
+    margin-top: 20px;
+}
+
+.addressBox {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+div.addressBox  {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"].addressBox  {
+    width: 100%;
+     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-info {
+    background-color: #07277d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-info:hover {
+    background-color: #053c9f;
+}
 </style>
-<h1 class="modify_title_h1">회원 수정</h1>
 
 <form method="POST" id="myForm">
+<h1 class="modify_title_h1">회원 수정</h1>
 
     <input type="hidden" id="sessionId" name="sessionId" value="${login.userid}">
     <input type="hidden" id="idx" value="${login.idx}">
@@ -198,7 +252,8 @@ input[type="submit"].modify_submit_btn:hover {
 <div class="member_modify_pass_all">
 <input type="hidden" id="nickname" value="${login.nickname }">
 <div class="text">
-    <div id="profile" class="profile"><img src="${login.profile_img }"></div>
+    <div id="profile" class="profile"><img src="${login.profile_img }">
+    </div>
 <div class="img_hidden">
    <div class="select_img">
       <div class="image_choice" data-index="1">  
@@ -240,10 +295,11 @@ input[type="submit"].modify_submit_btn:hover {
    </div>
 </div>
 </div>
+</div>
 
-<div class="member_modify_pass_all">
-    <input type="password" class="modify_text" name="userpw" placeholder="비밀번호">
-    <input type="button" id="passwd_change" name="passwd_change" value="비밀번호변경">
+<div class="member_modify_password_all">
+    <div class="member_modify_password_first"><input type="password" class="modify_text" name="userpw" placeholder="비밀번호"></div>
+    <div class="member_modify_password_second"><input type="button" id="passwd_change" name="passwd_change" value="비밀번호변경"></div>
 </div>
 
 <div class="member_modify_nickname_all">
@@ -255,55 +311,29 @@ input[type="submit"].modify_submit_btn:hover {
    
 <div class="member_modify_phone_all">
    <input type="text" class="modify_text" name="phonenumber" placeholder="연락처 수정" >
-   <input type="hidden" value="${login.phonenumber }"> 
+   <input type="hidden" name="phonenumber" value="${login.phonenumber }"> 
    
 </div>
 <div>주소 변경</div>
 <div class="add">
- <input type="hidden" value="${login.address }"> 
-  <table class="table table-bordered table-hover text-center">
-					<col width='20%' />
-					<col width='30%' />
-					<col width='20%' />
-					<col width='30%' />
-					<thead class="thead-dark">
-						<tr>
-							<td colspan="4"><input type="button" class='btn btn-info'
-								value="주소검색" onclick="goPopup();"></td>
-						</tr>
-						<tr>
-							<th scope="col">도로명주소 전체</th>
-							<td scope="col" colspan="3"><input id="roadFullAddr"
-								class='form-control' name="address" id="address"></td>
-						</tr>
-						<td scope="col" colspan="3"><input id="roadAddrPart1"
-							class='form-control' type="hidden"></td>
-						<td scope="col" colspan='3'><input id="engAddr"
-							class='form-control' type="hidden"></td>
-						<td scope="col" colspan='3'><input id="jibunAddr"
-							class='form-control' type="hidden"></td>
-						<tr>
-							<th scope="col">고객입력 상세주소</th>
-							<td scope="col"><input id="addrDetail" class='form-control'></td>
-							<td scope="col"><input id="siNm" class='form-control'
-								type="hidden"></td>
-						</tr>
-						<tr>
-							<th scope="col">우편번호</th>
-						</tr>
-						<td scope="col"><input id="zipNo" class='form-control'></td>
-						<td scope="col"><input id="admCd" class='form-control'
-							type="hidden"></td>
-						<td scope="col"><input id="rn" class='form-control'
-							type="hidden"></td>
-						<td scope="col"><input id="rnMgtSn" class='form-control'
-							type="hidden"></td>
-						<td scope="col" colspan='3'><input id="detBdNmList"
-							class='form-control' type="hidden"></td>
-						<td scope="col" colspan='3'><input id="bdMgtSn"
-							class='form-control' type="hidden"></td>
-					</thead>
-				</table>
+				<div class="addressBox">
+					<div>도로명주소 전체</div>
+					<div>
+						<input id="roadFullAddr" class='form-control' name="address" value="${login.address }">
+					</div>
+					<div>고객입력 상세주소</div>
+					<div>
+						<input id="addrDetail" class='form-control'>
+					</div>
+					<div>우편번호</div>
+					<div>
+						<input id="zipNo" class='form-control'>
+					</div>
+					<div>
+						<input type="button" class='btn-info' value="주소검색"
+							onclick="goPopup();">
+					</div>
+				</div>
 </div>
 <!-- 사용하실 데이터는 오픈해주시면 됩니다. jusoCallBack 에러 방지용 -->
 <input type='hidden' id="bdNm" class='form-control'>
@@ -325,6 +355,7 @@ input[type="submit"].modify_submit_btn:hover {
 </form>
 
 <div><button id="logLeaveBtn">회원탈퇴</button></div>
+
 <script language="javascript">
 // opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
 // document.domain = "http://www.juso.go.kr/";

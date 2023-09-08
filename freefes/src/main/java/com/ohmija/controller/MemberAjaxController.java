@@ -206,7 +206,7 @@ public class MemberAjaxController {
 	}
 
 	@PostMapping("/image_choice")
-    public int image_choice(@RequestBody MemberDTO dto) {
+    public int image_choice(@RequestBody MemberDTO dto, HttpSession session) {
         if(dto.getProfile_img().equals("1")) {dto.setProfile_img("https://hakcoding.github.io/img/마이멜로디.png");}
         if(dto.getProfile_img().equals("2")) {dto.setProfile_img("https://hakcoding.github.io/img/시나모롤.png");}
         if(dto.getProfile_img().equals("3")) {dto.setProfile_img("https://hakcoding.github.io/img/케로피.png");}
@@ -218,6 +218,7 @@ public class MemberAjaxController {
         if(dto.getProfile_img().equals("9")) {dto.setProfile_img("https://hakcoding.github.io/img/포차코.png");}
         
         int row = memberService.profileUpdate(dto);
+        session.setAttribute("login", dto);
         return row;
     }
 }

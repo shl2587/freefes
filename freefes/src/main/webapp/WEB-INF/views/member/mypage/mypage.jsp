@@ -69,6 +69,10 @@
 		margin-right:130px; 
 		color: white;
 	}
+img.profile_img_mypage {
+	margin-top: -46px;
+}
+	
 	
 </style>
 </head>
@@ -77,7 +81,9 @@
 
 <div class="my_profile">
 <h1 class="Mypage_title_h1">My Page</h1>
-	<div class="my_profile_photo"><img src="${login.profile_img }"></div>
+	<div class="my_profile_photo">
+		<img class="profile_img_mypage" src="${login.profile_img }">
+	</div>
 	
 	<div class="my_profile_userid">
 		<div class="my_profile_userid_img">Ⓜ️</div>

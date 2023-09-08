@@ -19,7 +19,6 @@ import com.ohmija.service.Post_messageService;
 public class MessageController {
 	
 	@Autowired private Post_messageService post_messageService;
-	@Autowired private MemberService memberService;
 	
 	@GetMapping("/sendMessage/{idx}")
 	public ModelAndView sendMessage(@PathVariable("idx")int idx) {
