@@ -19,7 +19,7 @@
 					<span>조회수 : ${scheduled_list.count }</span>
 				</div>
 				<div>
-					<img src="${scheduled_list.filepath }">
+					<img src="${scheduled_list.file_path }">
 				</div>
 			</div>
 		</c:forEach>

@@ -30,7 +30,7 @@ public interface Fes_boardDAO {
 	
 	BoardDTO load_after_save(BoardDTO dto);
 	
-	
+	void grade_update(BoardDTO boardDTO);
 	
 	
 	// 승록
@@ -80,6 +80,7 @@ public interface Fes_boardDAO {
 	int select_total_favorites(BoardDTO board_dto);
 	int update_total_favorites(BoardDTO board_dto);
 
+
 	
 	
 	
@@ -91,9 +92,6 @@ public interface Fes_boardDAO {
 	// 계립
 	List<BoardDTO> selectfav(int idx);
 
-	List<BoardDTO> selectfav(int idx);
-
-	void grade_update(BoardDTO boardDTO);
 
 
 

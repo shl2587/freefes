@@ -192,17 +192,5 @@ public class MemberAjaxController {
 		return row;
 	}
 
-	@PostMapping("/login_bye_check/")
-	public int login_bye_check(@RequestBody MemberDTO dto) {
-		System.out.println("회원탈퇴");
-		
-		System.out.println(dto.getUserid());
-		System.out.println(dto.getUserpw());
-		
-		int row = memberService.login_bye_check(dto);
-		System.out.println("회원탈퇴 row : "+ row);
-		
-		return row;
-	}
 
 }

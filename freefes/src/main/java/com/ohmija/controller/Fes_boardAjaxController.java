@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
+//import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,19 +59,18 @@ public class Fes_boardAjaxController {
 										@PathVariable String fes_page_href,
 										@RequestParam(value="request_page", defaultValue="1") int request_page,
 										Fes_searchDTO fes_search,
-										BindingResult binding_result,
+//										BindingResult binding_result,
 										HttpSession search_session) {
 		
 		Map<String, Object> map = new HashMap<>();
 		
 		// 검색 시 날짜 없을때 처리
-        if (fes_search.getStart_date() == null) {
-            binding_result.rejectValue("start_date", "field.empty", "Start date must not be empty");
-        }
-        if (fes_search.getEnd_date() == null) {
-            binding_result.rejectValue("end_date", "field.empty", "End date must not be empty");
-        }
-
+//        if (fes_search.getStart_date() == null) {
+//            binding_result.rejectValue("start_date", "field.empty", "Start date must not be empty");
+//        }
+//        if (fes_search.getEnd_date() == null) {
+//            binding_result.rejectValue("end_date", "field.empty", "End date must not be empty");
+//        }
 		
 		// 검색 코드
 		int board_page_count = fes_boardService.select_search_total(fes_page_href, fes_search);
@@ -88,6 +87,7 @@ public class Fes_boardAjaxController {
 			map.put("fes_boardList", "검색된 축제가 없습니다.\n 다른 축제를 찾아 떠나요🎉🎉🎉");
 			map.put("fes_paging_dto", null);
 		}
+		
 		
 		return ResponseEntity.ok(map);
 	}

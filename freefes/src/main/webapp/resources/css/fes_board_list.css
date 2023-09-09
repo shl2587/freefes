@@ -15,7 +15,7 @@
 		text-decoration: none;
 		font-size: 14px;
 	}
-	#result_div {
+	.result_div {
 		width: 850px;
 		text-align: left;
 		display: inline-block;

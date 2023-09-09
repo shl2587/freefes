@@ -324,5 +324,9 @@ public class Fes_boardService {
 		return fes_boardDao.selectfav(idx);
 	}
 
+	public void grade_update(int boardIdx, float gradeAVG) {
+		
+	}
+
 	
 }

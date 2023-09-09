@@ -169,7 +169,7 @@
 </style>
 </c:if>
 
-<c:set var="filePath" value="${board_dto.file_path }" />
+<c:set var="filePath" value="${board_view.file_path }" />
 <c:set var="imges" value="${fn:split(filePath, '&') }"/>
 
 
@@ -177,13 +177,13 @@
 	<div class="board_contents">
 		<div class="festival_imgs">
 			<div class="poster">
-				<img src="${cpath }/upload/${board_dto.title}/${imges[0]}">
+				<img src="${cpath }/upload/${board_view.title}/${imges[0]}">
 			</div>
 			<c:if test="${not empty imges[1] }">
 				<div class="etc_imgs">
 					<c:forEach var="img" items="${imges }" varStatus="imgIdx">
 						<c:if test="${imgIdx.index != 0 }">
-							<img src="${cpath }/upload/${board_dto.title }/${img }">
+							<img src="${cpath }/upload/${board_view.title }/${img }">
 						</c:if>
 					</c:forEach>
 				</div>
@@ -192,52 +192,52 @@
 		<div class="contents_main">
 			<div class="write_date">
 				작성일
-				<fmt:formatDate value="${board_dto.write_date }" pattern="yyyy-MM-dd" />
+				<fmt:formatDate value="${board_view.write_date }" pattern="yyyy-MM-dd" />
 			</div>
-			<h3 class="title">${board_dto.title }</h3>
+			<h3 class="title">${board_view.title }</h3>
 			<div class="counts">
-				<div>조회수 <span style="color: #b31919">${board_dto.count }</span> | 추천수<span style="color: #b31919"> ${board_dto.favorites }</span></div>
-				<div>평점 <span class="grade">${board_dto.grade }</span><span style="color: #b31919">${board_dto.grade }</span>점</div>
+				<div>조회수 <span style="color: #b31919">${board_view.count }</span> | 추천수<span style="color: #b31919"> ${board_view.favorites }</span></div>
+				<div>평점 <span class="grade">${board_view.grade }</span><span style="color: #b31919">${board_view.grade }</span>점</div>
 			</div>
 			<div class="real_content">
 				<div class="flex">
 					<div>축제 기간</div>
 					<p>
-					<fmt:formatDate value="${board_dto.start_date }"
+					<fmt:formatDate value="${board_view.start_date }"
 						pattern="yyyy-MM-dd" />
 					~
-					<fmt:formatDate value="${board_dto.end_date }" pattern="yyyy-MM-dd" />
+					<fmt:formatDate value="${board_view.end_date }" pattern="yyyy-MM-dd" />
 					</p>
 				</div>
 				<div class="flex">
-					<div>개최 지역</div> <p>${board_dto.region }</p>
+					<div>개최 지역</div> <p>${board_view.region }</p>
 				</div>
 				<div class="flex">
-					<div>개최 장소</div> <p>${board_dto.place }</p>
+					<div>개최 장소</div> <p>${board_view.place }</p>
 				</div>
 				<div class="flex">
-					<div>축제 시간</div> <p>${board_dto.time }</p>
+					<div>축제 시간</div> <p>${board_view.time }</p>
 				</div>
-				<c:if test="${board_dto.content != '축제 설명' }">
+				<c:if test="${board_view.content != '축제 설명' }">
 				<div class="flex">
-					<div>축제 설명</div> <p>${board_dto.content }</p>
+					<div>축제 설명</div> <p>${board_view.content }</p>
 				</div>
 				</c:if>
 				<div class="flex">
 					<div>참고 사이트</div>
-					<p><a href="${board_dto.url }">${board_dto.url }</a>
+					<p><a href="${board_view.url }">${board_view.url }</a>
 				</div>
 				<div class="flex">
-					<div>참가 비용</div> <p>${board_dto.fee}</p>
+					<div>참가 비용</div> <p>${board_view.fee}</p>
 				</div>
 				<div class="flex">
-					<div>연령 제한</div> <p>${board_dto.age_limit }</p>
+					<div>연령 제한</div> <p>${board_view.age_limit }</p>
 				</div>
 				<div class="flex">
-					<div>주최자</div> <p>${board_dto.host_org }</p>
+					<div>주최자</div> <p>${board_view.host_org }</p>
 				</div>
 				<div class="flex">
-					<div>문의</div> <p>${board_dto.inquire }</p>
+					<div>문의</div> <p>${board_view.inquire }</p>
 				</div>
 			</div>
 		</div>                                                                                                                                                                                                                                                                                                               
@@ -258,7 +258,7 @@
 					<input type="hidden" value="${login.idx }" name="member">
 				</p>
 				<p>
-					<input type="hidden" value="${board_dto.idx }" name="board">
+					<input type="hidden" value="${board_view.idx }" name="board">
 				</p>
 				<div class="flex">
 					<p>기대감 점수 : </p>
@@ -314,7 +314,7 @@
 
 <script>
 	const login_session = "${session.login}"
-	const fes_board_idx = "${board_dto.idx}"
+	const fes_board_idx = "${board_view.idx}"
 	const favorites_result = "${favorites_result}"
 	
 	console.log(favorites_result)

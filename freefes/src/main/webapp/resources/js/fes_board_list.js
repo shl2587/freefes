@@ -155,20 +155,40 @@ function performSearch(form_data) {
 	        let board_list = response.fes_boardList
 	        if (typeof board_list != 'string') {
 	            board_list.forEach(function (board) {
-	                let festival_list = `
-	                <div class="festival_list">
-	                    <div class="festival_poster">
-	                    	<img src="${board.filepath}">
-	                    </div>
-                        <div>
-                            <a href="${cpath}/fes_board/mainboard/${board.idx}">
-                                ${board.idx} ${board.title} ${board.count}
-                            </a>
-                        </div>
-                	</div>`
-	                $(festival_list).appendTo(result_div)
-	            })
-	        } 
+
+            	 const start_date = new Date(board.start_date)
+                  const end_date = new Date(board.start_date)
+                  
+                  const formatted_start_date = formatDate(start_date)   // 시작일 ''월 ''일 형식 포맷
+                  const formatted_end_date = formatDate(end_date)   // 끝일 ''월 ''일 형식 포맷
+                  
+                  const filePath = board.file_path   // 파일 경로
+                  const index = filePath.indexOf('&')
+                  const slicedPath = index !== -1 ? filePath.substring(0, index) : filePath // poster.xxx 받아오기
+                   
+                  let festival_list = `
+                    <div class="festival_list">
+                         <div class="festival_poster">
+                     <a href="${cpath }/fes_board/mainboard/${board.idx }">
+                        <img src="${cpath }/upload/${board.title }/${slicedPath}">
+                     </a>
+                     </div>
+                     <div>
+                                <a href="${cpath}/fes_board/mainboard/${board.idx}">
+                           <span class="board_idx">${board.idx }</span>
+                           <span class="board_title">${board.title }</span><br>
+                           <span class="board_region">${board.region }</span>|
+                           <span class="board_count">조회수 ${board.count }</span>|
+                           <span class="board_date">${formatted_start_date} ~ ${formatted_end_date}</span>
+                        </a>
+                        <div class="board_grade">${board.grade }</div>
+                        <div class="board_favorites">추천수 ${board.favorites }</div>
+                            </div>
+                       </div>`   // jsp와 형태 맞췄습니다.
+                   $(festival_list).appendTo(result_div)
+               })
+           } 
+
 	        else {
 	            const message = response.fes_boardList.toString()
 	        	result_div.html(message)
@@ -185,7 +205,8 @@ function performSearch(form_data) {
 	        }
 	        
 	        update_paging(response.fes_paging_dto, query_string)
-	        
+	        grades = document.querySelectorAll(".board_grade")
+	        star()
 	        
 	        
 	    },
@@ -225,4 +246,30 @@ function update_paging(paging_data, query_string) {
 	else {
 		fes_board_paging.empty();
 	}
+}
+
+
+/*   동영 추가   */
+
+let grades = document.querySelectorAll(".board_grade")   // 평점 선택
+
+
+function star() {
+  for (const grade of grades) {
+    let percent = parseFloat(grade.innerText) * 20; // 문자열을 숫자로 변환
+    grade.innerHTML = `<div class="starpoint_wrap">
+         <div class="starpoint_box">
+            <div class="label_star" style="width: 100px"></div>
+            <span class="starpoint_bg" style="width: ${percent}%"></span>
+         </div>
+      </div>`;
+  }
+}
+
+// ''월 ''일 형식 포맷 코드
+function formatDate(date) {
+     const month = String(date.getMonth() + 1).padStart(2, '0');
+     const day = String(date.getDate()).padStart(2, '0');
+
+     return month + '월 ' + day + '일 ';
 }
