@@ -49,7 +49,7 @@
 		join member rm on pm.receiver = rm.idx 
 		WHERE pm.writer = #{idx}
 	</select>
-		<select id="select_recievedMessage" parameterType="int" resultType="message">
+		<select id="select_receivedMessage" parameterType="int" resultType="message">
 		SELECT pm.idx,
        		wm.nickname as writer_nickname,
        		rm.nickname as receiver_nickname,
@@ -62,6 +62,12 @@
 		JOIN member wm ON pm.writer = wm.idx
 		join member rm on pm.receiver = rm.idx 
 		WHERE pm.receiver = #{idx}
+	</select>
+	
+	
+	<!-- 쪽지 view -->
+	<select id="selectOne" parameterType="int" resultType="message">
+		select * from post_message where idx = #{idx}
 	</select>
 	
 </mapper>

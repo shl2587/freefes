@@ -152,6 +152,8 @@ public class MemberAjaxController {
 	
 	@GetMapping("/userpwsam/{newPassword}")
 	public int userpwsam(@PathVariable("newPassword") String newPassword) {
+		System.out.println("전비밀번호와 일치 불일치 조건문 들어옴");
+		System.out.println("새 패스워드 : " + newPassword);
 		int row = mypageService.userpwsam(newPassword);
 		System.out.println("row :" + row);
 		System.out.println("전비밀번호와 일치 불일치 : " + newPassword);
@@ -163,6 +165,7 @@ public class MemberAjaxController {
 		System.out.println(dto.getUserid());
 		System.out.println(dto.getUserpwNew());
 		int passNew = mypageService.userpwNew(dto);
+		System.out.println("안녕");
 		
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("passNew", passNew);
@@ -172,16 +175,19 @@ public class MemberAjaxController {
 
 	@PostMapping("/passCheck_before/")
 	public int passCheck_before(@RequestBody MemberDTO dto) {
+		System.out.println("아이디 비번 일치 불일치");
 		
 		System.out.println(dto.getUserpw());
 		System.out.println(dto.getUserid());
 		
 		int row = memberService.passCheck_before(dto);
+		System.out.println(row);
 		return row;
 	}
 
 	@PostMapping("/login_bye_check/")
 	public int login_bye_check(@RequestBody MemberDTO dto) {
+		System.out.println("회원탈퇴");
 		
 		System.out.println(dto.getUserid());
 		System.out.println(dto.getUserpw());

@@ -26,19 +26,12 @@ public class QnAController {
 	@Autowired
 	private QnAService qnaService;
 	
+	
+///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////사용자 고객센터 내용////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
-	// ---------- 운영진이 볼 1:1 문의목록 
-	@GetMapping("/qna_list")
-	public ModelAndView list() {
-		ModelAndView mav = new ModelAndView("/qna/qna_list");
-		List<QnADTO> list = qnaService.selectAll();
-		mav.addObject("list", list);
-		return mav;
-	}
-	
-	
-	
-	// 클라이언트가 볼 내 1:1 문의글 목록
+// 클라이언트 1:1 문의 목록 ------------------------------------------------------
 	@GetMapping("/qna_board")
 	public ModelAndView myList(HttpServletRequest request) {
 	    ModelAndView mav = new ModelAndView("/qna/qna_board");
@@ -50,7 +43,7 @@ public class QnAController {
 	    return mav;
 	}
 	
-	// ----------- 1:1 문의글 보기
+// 사용자 1:1 문의 자세히 보기 -----------------------------------------------------
 	@GetMapping("/qna_view/{idx}")
 	public ModelAndView view(@PathVariable("idx") int idx) {
 		ModelAndView mav = new ModelAndView("/qna/qna_view");
@@ -60,7 +53,7 @@ public class QnAController {
 	}
 	
 
-	// ----------- 1:1문의글 작성
+// 사용자 1:1 문의글 작성 -----------------------------------------------------------
 	@GetMapping("/qna_write")
 	public void write() {
 	}
@@ -83,7 +76,7 @@ public class QnAController {
 	}
 	
 	
-	// view에서 답글 달기
+// 1:1 문의 글 자세히 보기 -------------------------------------------------------------------
 	@PostMapping("/qna_view/{idx}")
 	public String insertAnswer(@PathVariable("idx") int idx, String answer, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		HttpSession session = request.getSession();
@@ -91,14 +84,14 @@ public class QnAController {
 	    int role = dto.getRole();
 	    
 	    if(role != 0) {
-	        return "redirect:/qna/qna_list";
+	        return "redirect:/admin_board/management_qna_list";
 	    }
 	    
 	    int result = qnaService.answer(idx, answer);
 	    
 	    if(result > 0) {
 	        redirectAttributes.addFlashAttribute("message", "답변 등록");
-	        return "redirect:/qna/qna_list";
+	        return "redirect:/qna/qna_board";
 	    } else {
 	        redirectAttributes.addFlashAttribute("message", "등록 실패");
 	        return "redirect:/qna/qna_view/" + idx;
@@ -106,7 +99,7 @@ public class QnAController {
 	}
 	
 	
-	// 문의글 board에서 수정버튼 눌러 이동하기
+// 사용자 1:1 문의글 수정 --------------------------------------------------------------
 	@GetMapping("/qna_modify/{idx}")
 	public ModelAndView modify(@PathVariable("idx") int idx) {
 		ModelAndView mav = new ModelAndView("qna/qna_modify");
@@ -119,7 +112,7 @@ public class QnAController {
 	public String modify(QnADTO dto) {
 		int row = qnaService.modify(dto);
 		System.out.println(row + "행이 수정");
-		return "redirect:/qna/qna_view/" + dto.getIdx();
+		return "redirect:/qna/qna_board";
 	}
 	
 	

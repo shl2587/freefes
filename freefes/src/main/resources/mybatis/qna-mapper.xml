@@ -5,12 +5,10 @@
 	
 <mapper namespace="com.ohmija.repository.QnADAO">
 
-     <select id="selectAll" resultType="qna">
-        select m.nickname as nickname, q.*
-		    from member m
-			    join qna q
-				    on m.idx = q.member order by q.idx desc
-   	 </select>
+	<select id="select_total_page" resultType="int">
+		select count(*) from qna
+	</select>
+
 
     <select id="selectOne" parameterType="int" resultType="qna">
         select m.nickname, q.*

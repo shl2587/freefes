@@ -21,18 +21,13 @@ public class Post_messageService {
 	
 	@Transactional
 	public int sendMessage (Post_messageDTO dtoP, int idx, String receiver_nickname) {
-		System.out.println("idx : "+idx+"receiver_nickname : "+receiver_nickname);
 		MemberDTO row1 = daoM.findreceiver(receiver_nickname);
-		System.out.println("row1 :"+row1);
 		int receiverIdx = row1.getIdx();
-		System.out.println("receiverIdx : " + receiverIdx);
 		dtoP.setReceiver(receiverIdx);
 		dtoP.setWriter(idx);
-		System.out.println("row1의 idx : "+ receiverIdx);
 		int row2 = 0;
 			if(row1.getIdx() != 0) {
 				row2 = dao.sendMessage(dtoP);
-				System.out.println("row2 : " + row2);
 				return row2;
 			}
 		return row2;
@@ -50,31 +45,19 @@ public class Post_messageService {
 		return dao.select_SendMessage(idx);
 	}
 
-	public List<Post_messageDTO> recievedMessage_List(int idx) {
-		return dao.select_recievedMessage(idx);
+	public List<Post_messageDTO> receivedMessage_List(int idx) {
+		return dao.select_receivedMessage(idx);
 	}
 
 	public int receiver_nicknameCheck(String receiver_nickname) {
 		return daoM.receiver_nicknameCheck(receiver_nickname);
 	}
 
-//	public int titleCheck(String titleInput) {
-//	    if (titleInput != null && titleInput.trim().length() <= 20) {
-//	        return 1;
-//	    } else {
-//	        return 0;
-//	    }
-//	}
-//
-//	public int contentCheck(String content) {
-//		   if (content != null && content.trim().length() <= 300) {
-//		        return 1;
-//		    } else {
-//		        return 0;
-//		    }
-//	}
+	public Post_messageDTO selectOne(int idx) {
+		return dao.selectOne(idx);
+	}
 
 
-	
+
 
 }

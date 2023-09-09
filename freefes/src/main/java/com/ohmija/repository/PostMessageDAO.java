@@ -17,8 +17,10 @@ public interface PostMessageDAO {
 
 	List<Post_messageDTO> select_SendMessage(int idx);
 
-	List<Post_messageDTO> select_recievedMessage(int idx);
+	List<Post_messageDTO> select_receivedMessage(int idx);
 
 	int insertMessage(Post_messageDTO message);
+
+	Post_messageDTO selectOne(int idx);
 	
 }

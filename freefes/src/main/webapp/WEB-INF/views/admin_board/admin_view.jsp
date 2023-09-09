@@ -6,9 +6,13 @@
 <div class="admin_board_menu">
 	<ul>
 		<li><a href="${cpath }/admin_board/admin_board">공지사항</a></li>
-		<li><a href="${cpath }/qna/${login.role >= 1 ? 'qna_board' : 'qna_list'}">1:1 문의함</a>
-		<li><a href="${cpath }/admin_board/admin_board_ask">자주묻는 질문</a></li>
-		<li><a href="${cpath }/admin_board/surround">주위 시설</a></li>
+		<c:if test="${not empty login && login.role >= 1 }">
+			<li><a href="${cpath }/qna/qna_board">1:1 문의함</a></li>
+		</c:if>
+		<c:if test="${not empty login && login.role == 0 }">
+			<li><a href="${cpath }/admin_board/management_qna_list">관리자 문의함</a></li>
+		</c:if>
+			<li><a href="${cpath }/admin_board/admin_board_ask">자주묻는 질문</a></li>
 	</ul>
 </div>
 

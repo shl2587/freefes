@@ -18,12 +18,7 @@ public class QnAService {
 	@Autowired
 	private QnADAO dao;
 	
-	
-
-	public List<QnADTO> selectAll() {
-		return dao.selectAll();
-	}
-	
+	//1:1 문의 고객센터 관련
 	public QnADTO selectOne(int idx) {
 		return dao.selectOne(idx);
 	}
@@ -32,21 +27,9 @@ public class QnAService {
 		return dao.write(dto);
 	}
 
-	
-
-	public void sendMessage(QnADTO qna) {
-		Post_messageDTO message = new Post_messageDTO();
-		message.setWriter(0); // 관리자 role 0
-		message.setReceiver(qna.getMember()); // 질문 작성 회원
-		message.setTitle("1:1 문의 답변");
-		message.setContent("1:1 문의에 답변이 등록되었습니다.");
-		message.setCategory("알림");
-	}
-
 	public List<QnADTO> myList(int idx) {
 		return dao.myList(idx);
 	}
-
 
 	public int answer(int idx, String answer) {
 		HashMap<String, Object> map = new HashMap<>();

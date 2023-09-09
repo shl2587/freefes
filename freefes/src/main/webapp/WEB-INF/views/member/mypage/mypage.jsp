@@ -2,69 +2,121 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../header.jsp" %>
 <style>
-	.all{
-		display: flex;
-	}
-	.all div {
-		border: 1px solid #000; /* 테두리 스타일 및 색상을 지정합니다. */
-		margin: 5px; /* 테두리와의 간격을 조정할 수 있습니다. */
-		padding: 10px; /* 테두리 내부의 내용과의 간격을 조정할 수 있습니다. */
-	}
-	.all a {
-		text-decoration: none; /* 링크의 밑줄을 제거합니다. */
-	}
-	   .select_img img {
-            transition: opacity 0.3s;
-        }
+   .all{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+       padding: 10px; 
+   }
+   .all div {
+      background-color: #07277d;
+      border-radius: 5px;
+      padding: 10px 20px;
+      transition: background-color 0.3s;
+   }
+   .all div:hover {
+      background-color: #053c9f;
+   }
+   .all a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+   }
 
-        .select_img img[src*="_ov.png"] {
-            opacity: 0;
-        }
+   .my_profile{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background-color: #07277d;
+      padding: 20px;
+   }
+
+   .my_profile > div {
+      display: flex;
+      color: white;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      font-size: 20px;
+   }
+
+   .my_profile_photo{
+      border-radius: 50%;
+      overflow: hidden;
+      width: 220px;
+      height: 200px;
+      background: gray;  /* 임시 배경 색상 */
+   }
+   
+   .my_profile > div > div {
+      color: white;
+      font-weight: bold;
+      font-size: 25px;
+      text-align: center;
+      margin: 5px;
+   }
+   
+   .Mypage_title_h1 h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-top: 20px;
+   }
+   .Mypage_title_h1{
+      margin-right:130px; 
+      color: white;
+   }
+img.profile_img_mypage {
+   margin-top: -46px;
+}
+   
+   
 </style>
-</head>
-<body>
 
-<h1>My Page</h1>
-<%-- <p>${login }</p> --%>
-<hr>
-<div class="select_img">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt1.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt1_ov.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt2.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt2_ov.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt3.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt3_ov.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt4.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt4_ov.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt5.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt5_ov.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt8.png">
-   <img src="http://sanriokorea.co.kr/wp-content/themes/sanrio/images/new_main_crt8_ov.png">
+
+
+
+<div class="my_profile">
+<h1 class="Mypage_title_h1">My Page</h1>
+   <div class="my_profile_photo">
+      <img class="profile_img_mypage" src="${login.profile_img }">
+   </div>
+   
+   <div class="my_profile_userid">
+      <div class="my_profile_userid_img">Ⓜ️</div>
+      <div class="my_profile_userid_ment">
+         user의 아이디
+      </div>
+         ${login.userid }
+   </div>
+   
+   <div class="my_profile_nickname">
+      <div class="my_profile_userid_img">📝</div>
+      <div class="my_profile_nickname_ment">user의 닉네임</div>
+      ${login.nickname }
+      </div>
+      
+   <div class="my_profile_birth">
+      <div class="my_profile_userid_img">🎂</div>
+      <div class="my_profile_birth_ment">user의 생일</div>
+      ${login.birth}
+   </div>
+   
 </div>
 
 <div class="all">
-	<div><a href="${cpath }/member/mypage/modify/${login.idx}">회원 정보 수정</a></div>
-	<div><a href="${cpath }/member/mypage/list/${login.idx}">게시글 신청 내역</a></div>
-	<div><a href="${cpath }/member/mypage/reply_list/${login.idx}">댓글 내역</a></div>
-	<div><a href="${cpath }/member/mypage/favorites/${login.idx}">좋아요 내역</a></div>
-	<div><a href="${cpath }/message/sendMessage/${login.idx}">쪽지보내기</a></div>
-	<div><a href="${cpath }/message/listMessage/${login.idx}">쪽지목록</a></div>
-	<div><a href="${cpath }/admin_board/admin_board">고객센터</a></div>
+   <div><a href="${cpath }/member/mypage/modify/${login.idx}">회원 정보 수정</a></div>
+   <div><a href="${cpath }/member/mypage/board_list/${login.idx}">게시글 리스트</a></div>
+   <div><a href="${cpath }/member/mypage/reply_list/${login.idx}">댓글 리스트</a></div>
+   <div><a href="${cpath }/member/mypage/favorites/${login.idx}">좋아요 리스트</a></div>
+   <div><a href="${cpath }/message/sendMessage/${login.idx}">쪽지보내기</a></div>
+   <div><a href="${cpath }/message/listMessage/${login.idx}">쪽지목록</a></div>
+   <div><a href="${cpath }/admin_board/admin_board">고객센터</a></div>
 </div>
-<hr>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".select_img img:not([src*='_ov.png'])").hover(
-                function() {
-                    var src = $(this).attr('src').replace('.png', '_ov.png');
-                    $(`.select_img img[src='${src}']`).css('opacity', '1');
-                },
-                function() {
-                    var src = $(this).attr('src').replace('.png', '_ov.png');
-                    $(`.select_img img[src='${src}']`).css('opacity', '0');
-                }
-            );
-        });
-    </script>
+
+</body>
+</html>
